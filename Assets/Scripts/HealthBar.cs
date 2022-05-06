@@ -15,7 +15,7 @@ public class HealthBar : MonoBehaviour
         _slider.value = health;
 
         _fill.color = _gradient.Evaluate(1);
-	//dandy branch
+	//bizazin branch
     }
 
     public void SetHealth(int health)
