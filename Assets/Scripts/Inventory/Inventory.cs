@@ -41,7 +41,7 @@ public class Inventory : MonoBehaviour
 
             if (OnItemChangedCallback != null) OnItemChangedCallback.Invoke();
         }
-        //ненужный коммент
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         return true;
     }
 
