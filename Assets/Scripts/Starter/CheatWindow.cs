@@ -30,7 +30,6 @@ public class CheatWindow : MonoBehaviour
     {
         opened = !opened;
         UpdateView(opened);
-        
     }
     
     private void UpdateView(bool value)
