@@ -7,7 +7,6 @@ public abstract class Interactable : MonoBehaviour
 {
     [SerializeField] private float _radius = 3f;
     [SerializeField] private Transform _player;
-
     private bool _isInteracting;
 
     private void Update()
@@ -18,6 +17,7 @@ public abstract class Interactable : MonoBehaviour
             Interact();
             _isInteracting = true;
         }
+        
         if (distance > _radius) _isInteracting = false;
     }
 
