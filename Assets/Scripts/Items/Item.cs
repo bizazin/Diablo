@@ -17,4 +17,9 @@ public class Item : ScriptableObject
     {
         Debug.Log("Using " + Name);
     }
+
+    public void RemoveFromInventory()
+    {
+        Inventory.Instance.Remove(this);
+    }
 }

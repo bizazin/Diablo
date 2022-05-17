@@ -22,7 +22,7 @@ public class JumpHandler : MonoBehaviour
         _characterPlayer.GravityForce = (2 * _maxJumpHeight) / (maxHeightTime * maxHeightTime);
         _startJumpVelocity = (2 * _maxJumpHeight) / maxHeightTime;
     }
-    //строчка
+    
     public void HandleJump()
     {
         if (_characterController.isGrounded)
