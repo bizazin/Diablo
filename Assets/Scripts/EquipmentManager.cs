@@ -1,0 +1,82 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EquipmentManager : MonoBehaviour
+{
+    #region Singleton
+
+    public static EquipmentManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    #endregion
+
+    [SerializeField] private SkinnedMeshRenderer _targetMesh;
+
+    private Equipment[] _currentEquipment;
+    private Inventory _inventory;
+    private SkinnedMeshRenderer[] _currentMeshes;
+
+    public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem);
+    public OnEquipmentChanged onEquipmentChanged;
+
+    private void Start()
+    {
+        _inventory = Inventory.Instance;
+        int numberSlots = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
+        _currentEquipment = new Equipment[numberSlots];
+       _currentMeshes = new SkinnedMeshRenderer[numberSlots];
+    }
+
+    public void Equip(Equipment newItem)
+    {
+        int slotIndex = (int)newItem.EquipSlot;
+        Equipment oldItem = null;
+        if (_currentEquipment[slotIndex] != null)
+        {
+            oldItem = _currentEquipment[slotIndex];
+            _inventory.Add(oldItem);
+        }
+
+        if (onEquipmentChanged != null)
+            onEquipmentChanged(newItem, oldItem);
+
+        _currentEquipment[slotIndex] = newItem;
+        SkinnedMeshRenderer newMesh = Instantiate<SkinnedMeshRenderer>(newItem.SkinnedMesh);
+        newMesh.transform.parent = _targetMesh.transform;
+        newMesh.bones = _targetMesh.bones;
+        newMesh.rootBone = _targetMesh.rootBone;
+        _currentMeshes[slotIndex] = newMesh;
+    }
+
+    private void Unequip(int slotIndex)
+    {
+        if (_currentEquipment[slotIndex] != null)
+        {
+            if (_currentMeshes[slotIndex] != null)
+                Destroy(_currentMeshes[slotIndex].gameObject);
+
+            Equipment oldItem = _currentEquipment[slotIndex];
+            _inventory.Add(oldItem);
+            _currentEquipment[slotIndex] = null;
+            if (onEquipmentChanged != null)
+                onEquipmentChanged(null, oldItem);
+        }
+    }
+
+    private void UnequipAll()
+    {
+        for (int i = 0; i < _currentEquipment.Length; i++)
+            Unequip(i);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.U))
+            UnequipAll();
+    }
+}

@@ -5,7 +5,7 @@ using UnityEngine;
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private Transform _itemsParent;
-
+    [SerializeField] private GameObject _inventoryUI;
     private Inventory _inventory;
     private InventorySlot[] _slots;
 
@@ -15,6 +15,12 @@ public class InventoryUI : MonoBehaviour
         _inventory.OnItemChangedCallback += UpdateUI;
 
         _slots = _itemsParent.GetComponentsInChildren<InventorySlot>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Inventory"))
+            _inventoryUI.SetActive(!_inventoryUI.activeSelf);
     }
 
     private void UpdateUI()
