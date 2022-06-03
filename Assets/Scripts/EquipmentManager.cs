@@ -49,6 +49,7 @@ public class EquipmentManager : MonoBehaviour
             onEquipmentChanged(newItem, oldItem);
 
         _currentEquipment[slotIndex] = newItem;
+
         SkinnedMeshRenderer newMesh = Instantiate<SkinnedMeshRenderer>(newItem.Mesh);
         newMesh.transform.parent = _targetMesh.transform;
         newMesh.bones = _targetMesh.bones;
