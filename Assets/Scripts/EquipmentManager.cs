@@ -22,7 +22,7 @@ public class EquipmentManager : MonoBehaviour
 
     private Equipment[] _currentEquipment;
     private Inventory _inventory;
-    private SkinnedMeshRenderer[] _currentMeshes;
+    SkinnedMeshRenderer[] _currentMeshes;
 
     public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem);
     public OnEquipmentChanged onEquipmentChanged;

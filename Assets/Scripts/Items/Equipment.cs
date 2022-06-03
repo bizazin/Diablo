@@ -6,12 +6,12 @@ using UnityEngine;
 public class Equipment : Item
 { 
     [SerializeField] private EquipmentSlot _equipSlot;
-    [SerializeField] private SkinnedMeshRenderer _skinnedMesh;
+    [SerializeField] private SkinnedMeshRenderer _mesh;
     [SerializeField] private int _armorModifier;
     [SerializeField] private int _damageModifier;
 
     public EquipmentSlot EquipSlot { get { return _equipSlot; } set { _equipSlot = value; } }
-    public SkinnedMeshRenderer SkinnedMesh { get { return _skinnedMesh; } set { _skinnedMesh = value; } }
+    public SkinnedMeshRenderer Mesh { get { return _mesh; } set { _mesh = value; } }
     public int ArmorModifier { get { return _armorModifier; } set { _armorModifier = value; } }
     public int DamageModifier { get { return _damageModifier; } set { _damageModifier = value; } }
 
