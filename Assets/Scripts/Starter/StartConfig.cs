@@ -9,4 +9,6 @@ public class StartConfig : ScriptableObject
   public bool ClearCache = false;
   public bool ShowCheats = false;
   public int TargetFrameRate = 30;
+
+  public static string[] str;
 }

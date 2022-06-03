@@ -9,10 +9,11 @@ public class InputJsonSerializer : MonoBehaviour
     [SerializeField] private Button button;
 
     [SerializeField] private GameObject[] gameObjects;
+    
 
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame

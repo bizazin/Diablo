@@ -20,6 +20,7 @@ public class SceneController : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         OnGameStarted += StartGame;
+        
     }
 
     private void OnDisable()

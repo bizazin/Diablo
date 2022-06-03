@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c909e92f0ae19e45aa4238636cd692c, type: 3}
-  m_Name: Start Config
+  m_Script: {fileID: 11500000, guid: bb92226e9cd970b43bd11ea929aeeab7, type: 3}
+  m_Name: Storage
   m_EditorClassIdentifier: 
-  ClearPrefs: 0
-  ClearCache: 0
-  ShowCheats: 0
-  TargetFrameRate: 30
+  configs:
+  - name: invent
+    type: 0
+    defaultValue: 123ahdf;dl4532
+  - name: invente
+    type: 1
+    defaultValue: 123ahdf;dl4532

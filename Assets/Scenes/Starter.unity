@@ -123,6 +123,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &197466176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 197466177}
+  - component: {fileID: 197466178}
+  m_Layer: 0
+  m_Name: ConfigsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &197466177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197466176}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1037.5995, y: 527.902, z: -11.368429}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &197466178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197466176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 329d8c09cd2afc24daaa6d2e92749ae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  remoteConfigs: {fileID: 0}
 --- !u!1001 &553138091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -511,5 +555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909f08ceb7d41bd45b8f77be9ea56aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startConfig: {fileID: 11400000, guid: e9ec31e250adc4a49a51b8391a0e7010, type: 2}
-  _cheatWindow: {fileID: 0}
+  _startConfig: {fileID: 11400000, guid: 210df86d212fb02498dbd12998602531, type: 2}
+  _cheatWindow: {fileID: 4745553101788924198, guid: a1cbd1a8829d2fd4eb7d3ba0a517c78b, type: 3}
+  rem: {fileID: 0}

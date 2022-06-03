@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
@@ -13,8 +14,9 @@ public class InventoryUI : MonoBehaviour
     {
         _inventory = Inventory.Instance;
         _inventory.OnItemChangedCallback += UpdateUI;
-
+    
         _slots = _itemsParent.GetComponentsInChildren<InventorySlot>();
+        UpdateUI();
     }
 
     private void Update()
@@ -28,7 +30,9 @@ public class InventoryUI : MonoBehaviour
         for (int i = 0; i < _slots.Length; i++)
         {
             if (i < _inventory.Items.Count)
+            {
                 _slots[i].AddItem(_inventory.Items[i]);
+            }
             else
                 _slots[i].ClearSlot();
         }
