@@ -19,7 +19,7 @@ public class EquipmentManager : MonoBehaviour
 
     private Equipment[] _currentEquipment;
     private Inventory _inventory;
-    private SkinnedMeshRenderer[] _currentMeshes;
+    SkinnedMeshRenderer[] _currentMeshes;
 
     public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem);
     public OnEquipmentChanged onEquipmentChanged;
@@ -46,7 +46,7 @@ public class EquipmentManager : MonoBehaviour
             onEquipmentChanged(newItem, oldItem);
 
         _currentEquipment[slotIndex] = newItem;
-        SkinnedMeshRenderer newMesh = Instantiate<SkinnedMeshRenderer>(newItem.SkinnedMesh);
+        SkinnedMeshRenderer newMesh = Instantiate<SkinnedMeshRenderer>(newItem.Mesh);
         newMesh.transform.parent = _targetMesh.transform;
         newMesh.bones = _targetMesh.bones;
         newMesh.rootBone = _targetMesh.rootBone;

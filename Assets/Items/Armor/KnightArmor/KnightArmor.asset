@@ -16,6 +16,6 @@ MonoBehaviour:
   _icon: {fileID: -4054265735571910013, guid: 50fc8ea05e8ba3c4abe0062bb85830c6, type: 3}
   _isDefaultItem: 0
   _equipSlot: 1
-  _skinnedMesh: {fileID: 6905321432925118375, guid: 74124d4d1e46e624a95fbd303a37c059, type: 3}
+  _mesh: {fileID: 6905321432925118375, guid: 74124d4d1e46e624a95fbd303a37c059, type: 3}
   _armorModifier: 0
   _damageModifier: 0
