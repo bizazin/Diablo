@@ -20,6 +20,16 @@ public class Equipment : Item
         base.Use();
         EquipmentManager.Instance.Equip(this);
         RemoveFromInventory();
+        
+        Equipment asset = ScriptableObject.CreateInstance<Equipment>();
+        {
+            name = "sdfsdf";
+            _equipSlot = EquipmentSlot.Head;
+        }
+        asset.name = "sdfsdf";
+
+        //MyScriptableObjectClass asset = ScriptableObject.CreateInstance<MyScriptableObjectClass>();
+
     }
 }
 

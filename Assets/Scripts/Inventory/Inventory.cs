@@ -44,17 +44,15 @@ public class Inventory : MonoBehaviour
     }
     public bool Add(Item item)
     {
-        if (!item.IsDefaultItem)
+        if (Items.Count >= _space)
         {
-            if (Items.Count >= _space)
-            {
-                Debug.Log("Not enough room");
-                return false;
-            }
-            Items.Add(item);
-            JsonItems.Add(item.Name);
-             if (OnItemChangedCallback != null) OnItemChangedCallback.Invoke();
+            Debug.Log("Not enough room");
+            return false;
         }
+        Items.Add(item);
+        JsonItems.Add(item.Name);
+        if (OnItemChangedCallback != null) OnItemChangedCallback.Invoke();
+       
         return true;
     }
     public void Remove(Item item)
