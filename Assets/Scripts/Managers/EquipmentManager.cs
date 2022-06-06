@@ -97,7 +97,7 @@ public class EquipmentManager : MonoBehaviour
     
     public void SaveToFile(string[] saveEquipToJson)
     {
-        string path = Application.streamingAssetsPath+"/test.json";
+        string path = Application.streamingAssetsPath+"/Equipment.json";
         string str = JsonConvert.SerializeObject(saveEquipToJson);
         File.WriteAllText(path,str);
     }

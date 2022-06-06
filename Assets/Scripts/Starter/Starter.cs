@@ -18,10 +18,6 @@ public class Starter : MonoBehaviour
     private void Start()
     {
         Initialization();
-      //  var str = ConfigsManager.remoteConfigs.GetConfig(RemoteConfigs.Inventory).Value;
-       // var str = rem.GetConfig(RemoteConfigs.Inventory).Value;
-      // var str = rem.GetConfig(RemoteConfigs.Inventory).Value;
-      var lol = 0;
     }
 
     public void Initialization()

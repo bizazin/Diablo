@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 110bb0d7e5d4c854f8a72abc56017626, type: 3}
-  m_Name: LeatherBoots
+  m_Name: KnightBoots
   m_EditorClassIdentifier: 
-  _name: LeatherBoots
-  _icon: {fileID: 3337963993109448469, guid: 50fc8ea05e8ba3c4abe0062bb85830c6, type: 3}
+  id: 2
+  _name: KnightBoots
+  _icon: {fileID: -7229608253006519833, guid: 50fc8ea05e8ba3c4abe0062bb85830c6, type: 3}
   _isDefaultItem: 0
+  id: 0
   _equipSlot: 5
-  _skinnedMesh: {fileID: 6734756825805420265, guid: 2f373164116063e4eb6f20b22ce1b044, type: 3}
+  _mesh: {fileID: 0}
   _armorModifier: 0
   _damageModifier: 0

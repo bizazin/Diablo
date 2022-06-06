@@ -9,7 +9,7 @@ public class Equipment : Item
     [SerializeField] private SkinnedMeshRenderer _mesh;
     [SerializeField] private int _armorModifier;
     [SerializeField] private int _damageModifier;
-
+    
     public EquipmentSlot EquipSlot { get { return _equipSlot; } set { _equipSlot = value; } }
     public SkinnedMeshRenderer Mesh { get { return _mesh; } set { _mesh = value; } }
     public int ArmorModifier { get { return _armorModifier; } set { _armorModifier = value; } }
