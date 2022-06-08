@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ClearPrefs: 0
   ClearCache: 0
-  ShowCheats: 1
+  ShowCheats: 0
   TargetFrameRate: 30
