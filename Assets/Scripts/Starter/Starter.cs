@@ -6,13 +6,14 @@ public class Starter : MonoBehaviour
     [SerializeField] private StartConfig _startConfig;
     [SerializeField] private CheatWindow _cheatWindow;
     private GamePreparer _preparer;
-    public RemoteConfigStorage rem;
+    public RemoteConfigStorage Rem;
+
     private void Awake()
     {
         if (!_startConfig.ShowCheats) 
             SceneManager.LoadScene("SampleScene");
 
-        rem = Resources.Load<RemoteConfigStorage>("Storage");
+        Rem = Resources.Load<RemoteConfigStorage>("Storage");
     }
 
     private void Start()
