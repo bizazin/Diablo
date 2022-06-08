@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -10,7 +11,7 @@ namespace DPUtils.Systems.ItemSystem.Scriptable_Objects.Items.Resources
     {
         [SerializeField] private List<Equipment> equipment;
         [SerializeField] private List<Equipment> heads;
-
+        
         public List<Equipment> Equipment => equipment;
 
         [ContextMenu("Set heads")]
@@ -23,6 +24,25 @@ namespace DPUtils.Systems.ItemSystem.Scriptable_Objects.Items.Resources
                 {
                     heads.Add(i);
                 }
+            }
+        }
+
+        [ContextMenu("Create Heads")]
+        public void CreateHead()
+        {
+            var prefabs = UnityEngine.Resources.LoadAll<SkinnedMeshRenderer>("EquipmentPrefabs/Head");
+            for (int i = 0; i < prefabs.Length; i++)
+            {
+                Equipment asset = CreateInstance<Equipment>();
+                asset.ID = i;
+                asset.Name = prefabs[i].name;
+                asset.Mesh = prefabs[i];
+                asset.EquipSlot = EquipmentSlot.Head;
+                
+                AssetDatabase.CreateAsset(asset, "Assets/ScriptableObjects/Equipment/Head/"+ asset.Name+".asset");
+                AssetDatabase.SaveAssets();
+                EditorUtility.FocusProjectWindow();
+                Selection.activeObject = asset;
             }
         }
 
