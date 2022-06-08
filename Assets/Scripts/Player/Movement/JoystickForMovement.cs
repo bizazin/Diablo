@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,12 @@ public class JoystickForMovement : MonoBehaviour
     [SerializeField] private float _moveSpeed;
 
     [Header("Animator components")]
-    [SerializeField] private Animator _animator;
+    [SerializeField] private PlayerAnimationController animator;
+
+    private void Start()
+    {
+        animator.Idle();
+    }
 
     private void Update()
     {
@@ -19,20 +25,13 @@ public class JoystickForMovement : MonoBehaviour
 
         if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
         {
-            Run();
+            animator.Run();
             _movement.RotateCharacter(new Vector3(sideForce, 0, forwardForce));
-//            transform.rotation = Quaternion.LookRotation(new Vector3(sideForce, 0, forwardForce));
         }
-        else StopRun();
+        else animator.Idle();
     }
 
-    private void Run()
-    {
-        _animator.SetBool("isRunning", true);
-    }
+  
 
-    private void StopRun()
-    {
-        _animator.SetBool("isRunning", false);
-    }
+   
 }
