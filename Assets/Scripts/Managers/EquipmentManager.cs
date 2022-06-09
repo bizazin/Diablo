@@ -5,11 +5,11 @@ using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
 
-public class EquipmentManager : MonoBehaviour
+public class EquipmentManageR : MonoBehaviour
 {
     #region Singleton
 
-    public static EquipmentManager Instance;
+    public static EquipmentManageR Instance;
 
     private void Awake()
     {

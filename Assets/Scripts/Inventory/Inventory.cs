@@ -25,14 +25,14 @@ public class Inventory : MonoBehaviour
     #endregion
     public delegate void OnItemChanged();
     public OnItemChanged OnItemChangedCallback;
-    [JsonProperty] public List<Item> Items = new List<Item>();
+    [JsonProperty] public List<IteM> Items = new List<IteM>();
     [JsonProperty] public List<string> JsonItems = new List<string>();
 
     public List<Equipment> itemsStock;
 
     [SerializeField] private int _space;
     public RemoteConfigStorage rem;
-    public Item item;
+    public IteM item;
     private void OnEnable()
     {
         rem = Resources.Load<RemoteConfigStorage>("Storage");
@@ -42,7 +42,7 @@ public class Inventory : MonoBehaviour
         JsonItems = LoadFromRemoteConfig.Instance.LoadJsonList(RemoteConfigs.Inventory, RemoteConfigs.EnableCustomInventory, JsonItems);
         FillList();
     }
-    public bool Add(Item item)
+    public bool Add(IteM item)
     {
         if (Items.Count >= _space)
         {
@@ -55,7 +55,7 @@ public class Inventory : MonoBehaviour
        
         return true;
     }
-    public void Remove(Item item)
+    public void Remove(IteM item)
     {
         if (Items.Contains(item))
         {

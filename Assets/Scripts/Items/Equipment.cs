@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Equipment", menuName = "Inventory/Equipment")]
-public class Equipment : Item
+public class Equipment : IteM
 { 
     [SerializeField] private EquipmentSlot _equipSlot;
     [SerializeField] private SkinnedMeshRenderer _mesh;
@@ -18,7 +18,7 @@ public class Equipment : Item
     public override void Use()
     {
         base.Use();
-        EquipmentManager.Instance.Equip(this);
+        EquipmentManageR.Instance.Equip(this);
         RemoveFromInventory();
         
         Equipment asset = ScriptableObject.CreateInstance<Equipment>();

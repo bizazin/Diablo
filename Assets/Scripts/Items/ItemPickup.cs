@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ItemPickup : Interactable
 {
-    [SerializeField] private Item _item; 
+    [SerializeField] private IteM _item; 
     public override void Interact()
     {
         base.Interact();

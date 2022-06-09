@@ -217,11 +217,11 @@ Material:
     - _Color_Eyes: {r: 0, g: 0, b: 0, a: 1}
     - _Color_Hair: {r: 0.54509807, g: 0.427451, b: 0.21568629, a: 0}
     - _Color_Leather_Primary: {r: 0.30882353, g: 0.21390574, b: 0.1589533, a: 1}
-    - _Color_Leather_Secondary: {r: 0.372549, g: 0.3294118, b: 0.2784314, a: 0}
+    - _Color_Leather_Secondary: {r: 0, g: 0, b: 0, a: 0}
     - _Color_Metal_Dark: {r: 0.1660359, g: 0.21904722, b: 0.27205884, a: 1}
-    - _Color_Metal_Primary: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 0}
+    - _Color_Metal_Primary: {r: 0, g: 0, b: 0, a: 0}
     - _Color_Metal_Secondary: {r: 0.3921569, g: 0.4039216, b: 0.41176474, a: 0}
-    - _Color_Primary: {r: 0.48235297, g: 0.4156863, b: 0.3529412, a: 0}
+    - _Color_Primary: {r: 0, g: 0, b: 0, a: 0}
     - _Color_Scar: {r: 0.9294118, g: 0.6862745, b: 0.5921569, a: 0}
     - _Color_Secondary: {r: 0.2392157, g: 0.2509804, b: 0.18823531, a: 0}
     - _Color_Skin: {r: 1, g: 0.8000001, b: 0.68235296, a: 0}

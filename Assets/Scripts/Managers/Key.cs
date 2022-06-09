@@ -3,36 +3,33 @@ using UnityEngine;
 [System.Serializable]
 public class Key
 {
-    public string keyName;
-
-    public int intValueee; 
-
-    public int intValue
+    public string KeyName { get; set; }
+    public int IntValue
     {
-        get => PlayerPrefs.GetInt(keyName);
-        set => PlayerPrefs.SetInt(keyName, value);
+        get => PlayerPrefs.GetInt(KeyName);
+        set => PlayerPrefs.SetInt(KeyName, value);
     }
 
-    public string stringValue
+    public string StringValue
     {
-        get => PlayerPrefs.GetString(keyName);
-        set => PlayerPrefs.SetString(keyName , value);
+        get => PlayerPrefs.GetString(KeyName);
+        set => PlayerPrefs.SetString(KeyName, value);
     }
 
-    public string description;
+    public string Description { get; set; }
 
-    public Key(string keyName , int intValue, string description)
+    public Key(string keyName, int intValue, string description)
     {
-        this.keyName = keyName;
-        this.intValue = intValue;
-        this.description = description;
-        intValueee = this.intValue;
+        KeyName = keyName;
+        IntValue = intValue;
+        Description = description;
+        intValue = IntValue;
     }
 
     public Key(string keyName, string stringValue, string description)
     {
-        this.keyName = keyName;
-        this.stringValue = stringValue;
-        this.description = description;
+        KeyName = keyName;
+        StringValue = stringValue;
+        Description = description;
     }
 }
