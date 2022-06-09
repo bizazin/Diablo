@@ -8,9 +8,9 @@ public class InventorySlot : MonoBehaviour
     [SerializeField] private Image _icon;
     [SerializeField] Button _removeButton;
 
-    private Item _item;
+    private IteM _item;
 
-    public void AddItem(Item newItem)
+    public void AddItem(IteM newItem)
     {
         _item = newItem;
        _icon.sprite = _item.Icon;

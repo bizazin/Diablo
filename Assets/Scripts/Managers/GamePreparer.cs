@@ -15,14 +15,10 @@ public class GamePreparer: MonoBehaviour
     {
         Debug.Log("Setuup");
         if (startConfig.ClearPrefs)
-        {
             PlayerPrefs.DeleteAll();
-        }
 
         if (startConfig.ClearCache)
-        {
             Caching.ClearCache();
-        }
         
         Application.targetFrameRate = startConfig.TargetFrameRate;
     }

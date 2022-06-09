@@ -5,31 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class CheatWindow : MonoBehaviour
 {
-    [SerializeField] private Button startButton;
-    [SerializeField] private Button closeButton;
-    [SerializeField] private GameObject container;
+    [SerializeField] private Button _startButton;
+    [SerializeField] private Button _closeButton;
+    [SerializeField] private GameObject _container;
     
-    private bool opened;
+    private bool _opened;
 
     private void Awake()
     {
-        opened = true;
-        UpdateView(opened);
-        
+        _opened = true;
+        UpdateView(_opened);
     }
     
     public void SetActive(bool value)
     {
-        if (container != null)
-        {
-            container.SetActive(value);
-        }
+        if (_container != null)
+            _container.SetActive(value);
     }
     
     private void SwitchState()
     {
-        opened = !opened;
-        UpdateView(opened);
+        _opened = !_opened;
+        UpdateView(_opened);
     }
     
     private void UpdateView(bool value)
@@ -44,30 +41,19 @@ public class CheatWindow : MonoBehaviour
     
     private void OnEnable()
     {
-        if (startButton != null)
-        {
-            startButton.onClick.AddListener(StartGame);
-        }
+        if (_startButton != null)
+            _startButton.onClick.AddListener(StartGame);
 
-        if (closeButton != null)
-        {
-            closeButton.onClick.AddListener(SwitchState);
-        }
+        if (_closeButton != null)
+            _closeButton.onClick.AddListener(SwitchState);
     }
 
     private void OnDisable()
     {
-        if(startButton != null)
-        {
-            startButton.onClick.RemoveListener(StartGame);
-        }
+        if(_startButton != null)
+            _startButton.onClick.RemoveListener(StartGame);
 
-        if (closeButton != null)
-        {
-            closeButton.onClick.RemoveListener(SwitchState);
-        }
+        if (_closeButton != null)
+            _closeButton.onClick.RemoveListener(SwitchState);
     }
-
-
-    
 }

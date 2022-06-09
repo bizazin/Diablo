@@ -5,12 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Storage", menuName = "Remote")]
 public class RemoteConfigStorage : ScriptableObject
 {
-    [SerializeField] RemoteConfigData[] configs;
+    [SerializeField] private RemoteConfigData[] _configs;
 
     public RemoteConfigData[] Configs
     {
-        get { return configs;}
-        set { configs = value; }
+        get { return _configs;}
+        set { _configs = value; }
     }
     
     public RemoteConfigData GetConfig(RemoteConfigs type)
@@ -18,9 +18,7 @@ public class RemoteConfigStorage : ScriptableObject
         for (int i = 0; i < Configs.Length; i++)
         {
             if (Configs[i].Type == type)
-            {
                 return Configs[i];
-            }
         }
         return null;
     }

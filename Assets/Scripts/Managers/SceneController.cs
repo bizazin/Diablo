@@ -12,15 +12,16 @@ public class SceneController : MonoBehaviour
     {
         OnGameStarted?.Invoke();
     }
+
     public void StartGame()
     {
         SceneManager.LoadScene("SampleScene");
     }
+
     private void OnEnable()
     {
         DontDestroyOnLoad(gameObject);
         OnGameStarted += StartGame;
-        
     }
 
     private void OnDisable()

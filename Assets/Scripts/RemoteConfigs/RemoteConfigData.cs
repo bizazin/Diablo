@@ -4,21 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class RemoteConfigData{
-    [SerializeField] private string name;
-    [SerializeField] private RemoteConfigs type;
-    [SerializeField] private string defaultValue;
+public class RemoteConfigData
+{
+    [SerializeField] private string _name;
+    [SerializeField] private RemoteConfigs _type;
+    [SerializeField] private string _defaultValue;
 
-    private string remoteValue;
+    private string _remoteValue;
 
-    public string Name => name;
-    public RemoteConfigs Type => type;
-    public string DefaultValue => defaultValue;
+    public string Name => _name;
+    public RemoteConfigs Type => _type;
+    public string DefaultValue => _defaultValue;
     
     public string Value
     {
-        get => string.IsNullOrEmpty(remoteValue) ? defaultValue : remoteValue;
-        set => remoteValue = value;
+        get => string.IsNullOrEmpty(_remoteValue) ? _defaultValue : _remoteValue;
+        set => _remoteValue = value;
     }
     
 }

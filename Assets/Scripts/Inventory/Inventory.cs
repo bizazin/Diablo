@@ -19,46 +19,43 @@ public class Inventory : MonoBehaviour
             Debug.LogWarning("More than one instance of Inventory found!");
             return;
         }
-
         Instance = this;
     }
 
     #endregion
-
     public delegate void OnItemChanged();
     public OnItemChanged OnItemChangedCallback;
-    [JsonProperty] public List<Item> Items = new List<Item>();
+    [JsonProperty] public List<IteM> Items = new List<IteM>();
     [JsonProperty] public List<string> JsonItems = new List<string>();
 
     public List<Equipment> itemsStock;
 
     [SerializeField] private int _space;
     public RemoteConfigStorage rem;
-    public Item item;
+    public IteM item;
     private void OnEnable()
     {
         rem = Resources.Load<RemoteConfigStorage>("Storage");
-        LoadFromFile();
-        AvailableItems();
-        LoadSavesFromConfig();
+        SaveManager.Instance.LoadFromFile("Inventory");
+        
+        itemsStock = SaveManager.Instance.LoadDatabase().Equipment;
+        JsonItems = LoadFromRemoteConfig.Instance.LoadJsonList(RemoteConfigs.Inventory, RemoteConfigs.EnableCustomInventory, JsonItems);
+        FillList();
     }
-    public bool Add(Item item)
+    public bool Add(IteM item)
     {
-        if (!item.IsDefaultItem)
+        if (Items.Count >= _space)
         {
-            if (Items.Count >= _space)
-            {
-                Debug.Log("Not enough room");
-                return false;
-            }
-            Items.Add(item);
-            JsonItems.Add(item.Name);
-             if (OnItemChangedCallback != null) OnItemChangedCallback.Invoke();
+            Debug.Log("Not enough room");
+            return false;
         }
+        Items.Add(item);
+        JsonItems.Add(item.Name);
+        if (OnItemChangedCallback != null) OnItemChangedCallback.Invoke();
+       
         return true;
     }
-    
-    public void Remove(Item item)
+    public void Remove(IteM item)
     {
         if (Items.Contains(item))
         {
@@ -67,37 +64,8 @@ public class Inventory : MonoBehaviour
         }
         if (OnItemChangedCallback != null) OnItemChangedCallback.Invoke();
     }
-    
-    private void AvailableItems()
+    public void FillList()
     {
-        itemsStock.Add(Resources.Load<Equipment>("Hood"));
-        itemsStock.Add(Resources.Load<Equipment>("KnightArmor"));
-        itemsStock.Add(Resources.Load<Equipment>("KnightBoots"));
-        itemsStock.Add(Resources.Load<Equipment>("KnightHelmet"));
-        itemsStock.Add(Resources.Load<Equipment>("LeatherBoots"));
-        itemsStock.Add(Resources.Load<Equipment>("LeatherArmor"));
-    }
-    private void LoadSavesFromConfig()
-    {
-        string inventoryJson = "";
-        if (rem.GetConfig(RemoteConfigs.EnableCustomInventory).Value=="1")
-        {
-            inventoryJson = rem.GetConfig(RemoteConfigs.Inventory).DefaultValue;
-        }
-        else
-        { 
-            inventoryJson = rem.GetConfig(RemoteConfigs.Inventory).Value;
-        }
-        if (inventoryJson!=null)
-        {
-            List<string> temp = JsonConvert.DeserializeObject<List<string>>(inventoryJson);
-            JsonItems = temp;
-        }
-        else{
-            inventoryJson = rem.GetConfig(RemoteConfigs.Inventory).DefaultValue;
-            List<string> temp = JsonConvert.DeserializeObject<List<string>>(inventoryJson);
-            JsonItems = temp;
-        }
         if (JsonItems != null)
             for (int i = 0; i < JsonItems.Count; i++)
             {
@@ -111,21 +79,8 @@ public class Inventory : MonoBehaviour
             }
     }
 
-    public void LoadFromFile()
-    {
-        string path = Application.streamingAssetsPath+"/Inventory.json";
-        string fileData = File.ReadAllText(path);
-        rem.GetConfig(RemoteConfigs.Inventory).Value = fileData;
-    }
-    public void SaveToFile()
-    {
-        string path = Application.streamingAssetsPath+"/Inventory.json";
-        string str = JsonConvert.SerializeObject(JsonItems);
-        File.WriteAllText(path,str);
-    }
-    
     private void OnDisable()
     {
-        SaveToFile();
+        SaveManager.Instance.SaveToFile("Inventory",JsonItems);
     }
 }

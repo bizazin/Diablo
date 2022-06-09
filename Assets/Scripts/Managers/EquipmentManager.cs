@@ -5,11 +5,11 @@ using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
 
-public class EquipmentManager : MonoBehaviour
+public class EquipmentManageR : MonoBehaviour
 {
     #region Singleton
 
-    public static EquipmentManager Instance;
+    public static EquipmentManageR Instance;
 
     private void Awake()
     {
@@ -94,25 +94,24 @@ public class EquipmentManager : MonoBehaviour
             UnequipAll();
     }
 
-    
     public void SaveToFile(string[] saveEquipToJson)
     {
-        string path = Application.streamingAssetsPath+"/test.json";
+        string path = Application.streamingAssetsPath+"/Equipment.json";
         string str = JsonConvert.SerializeObject(saveEquipToJson);
         File.WriteAllText(path,str);
     }
+
     private string[] SaveEquipToJson()
     {
         var jsonEquip = new string[6];
         for (int i = 0; i < _currentEquipment.Length; i++)
         {
             if (_currentEquipment[i]!=null)
-            {
                 jsonEquip[i] = _currentEquipment[i].Name;
-            }
         }
         return jsonEquip;
     }
+
     private void OnDisable()
     {
         SaveToFile(SaveEquipToJson());
