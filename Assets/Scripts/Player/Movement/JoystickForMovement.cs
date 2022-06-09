@@ -30,8 +30,4 @@ public class JoystickForMovement : MonoBehaviour
         }
         else animator.Idle();
     }
-
-  
-
-   
 }
