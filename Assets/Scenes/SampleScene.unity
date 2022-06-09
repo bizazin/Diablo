@@ -34851,6 +34851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1223781622}
   attackButton: {fileID: 159046844}
+  i: 0
 --- !u!1001 &1223865916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60574,8 +60575,9 @@ GameObject:
   - component: {fileID: 2121990398}
   - component: {fileID: 2121990397}
   - component: {fileID: 2121990399}
+  - component: {fileID: 2121990400}
   m_Layer: 0
-  m_Name: Game Manager
+  m_Name: Game Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60626,6 +60628,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetMesh: {fileID: 1824163243}
+--- !u!114 &2121990400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121990396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eedef23e0fe5c1f44b84410d79c52108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allPrefs:
+    m_keys: []
+    m_values: []
 --- !u!1001 &2122497447
 PrefabInstance:
   m_ObjectHideFlags: 0
