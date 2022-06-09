@@ -27,9 +27,17 @@ public class PlayerAnimationController : MonoBehaviour
     {
         string randomNumber = Random.Range(1, 4).ToString();
         Debug.Log("layerIndex: "+animator.GetLayerIndex(attack));
+        Debug.Log(animator.GetCurrentAnimatorStateInfo(1).IsName(attack));
+        
+        if (animator.GetCurrentAnimatorStateInfo(1).IsName(attack))
+        {
             animator.SetBool(run,false);
             animator.SetBool(idle,false);
-            animator.SetTrigger(attack + randomNumber);
+            animator.SetTrigger(attack + randomNumber); 
+        }
+            
+        
+            
     }
 
     public void Die()
