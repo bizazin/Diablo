@@ -153,9 +153,9 @@ namespace BattleDrakeStudios.ModularCharacters {
         }
 
         private void SetMaterialColorsToExisting() {
-            foreach (var armorColor in existingArmor.armorColors) {
+            /*foreach (var armorColor in existingArmor.armorColors) {
                 previewMaterial.SetColor(armorColor.property, armorColor.color);
-            }
+            }*/
         }
 
         private void OnGUI() {
@@ -332,9 +332,9 @@ namespace BattleDrakeStudios.ModularCharacters {
 
             newArmor.armorType = armorTypes[armorTypeIndex];
 
-            foreach (var armorColor in newArmor.armorColors) {
+           /* foreach (var armorColor in newArmor.armorColors) {
                 armorColor.color = previewMaterial.GetColor(armorColor.property);
-            }
+            }*/
 
             newArmor.armorParts = armorParts.ToArray();
             for (int i = 0; i < newArmor.armorParts.Length; i++) {

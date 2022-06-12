@@ -1,3 +1,4 @@
+using BattleDrakeStudios.ModularCharacters;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,4 +25,6 @@ public class EventManager : MonoBehaviour
     #endregion
 
     public UnityEvent OnDefaultEvent;
+
+    public UnityEvent<Item> OnItemPickedUp;
 }
