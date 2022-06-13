@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52b8a0014ecdaff40a66b09ce2f9c397, type: 3}
-  m_Name: Hand
+  m_Name: Chest 25
   m_EditorClassIdentifier: 
-  itemName: Cuirass
-  modularArmor: {fileID: 11400000, guid: f41d42fe56039d54d9e9177ff394e3cd, type: 2}
+  itemName: Torso
+  modularArmor: {fileID: 11400000, guid: aaba7792b7d76c949ba3c4692fb3b170, type: 2}

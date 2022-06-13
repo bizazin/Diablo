@@ -14,5 +14,6 @@
             this.bodyType = bodyType;
             this.partID = partID;
         }
+        BodyPartLinker() {}
     }
 }

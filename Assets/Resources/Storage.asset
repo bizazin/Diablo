@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb92226e9cd970b43bd11ea929aeeab7, type: 3}
   m_Name: Storage
   m_EditorClassIdentifier: 
-  configs:
-  - name: inventory
-    type: 0
-    defaultValue: '["KnightBoots","KnightArmor","Hood"]'
-  - name: enable_custom_inventory
-    type: 1
-    defaultValue: 0
+  _configs:
+  - _name: inventory
+    _type: 0
+    _defaultValue: '[]'
+  - _name: enable_custom_inventory
+    _type: 1
+    _defaultValue: 0

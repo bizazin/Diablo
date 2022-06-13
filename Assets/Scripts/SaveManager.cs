@@ -6,19 +6,19 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
-    #region Singleton
-    public static SaveManager Instance;
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            return;
-        }
-        Instance = this;
-
-        DontDestroyOnLoad(gameObject);
-    }
-    #endregion
+    // #region Singleton
+    // public static SaveManager Instance;
+    // private void Awake()
+    // {
+    //     if (Instance != null)
+    //     {
+    //         return;
+    //     }
+    //     Instance = this;
+    //
+    //     DontDestroyOnLoad(gameObject);
+    // }
+    // #endregion
 
     public RemoteConfigStorage rem;
 
@@ -33,14 +33,14 @@ public class SaveManager : MonoBehaviour
         return db;
     }
 
-    public void LoadFromFile(string filePath)
+    public void LoadFromFile(string filePath, RemoteConfigs type)
     {
         string path = Application.streamingAssetsPath + "/" + filePath + ".json";
         string fileData = File.ReadAllText(path);
-        rem.GetConfig(RemoteConfigs.Inventory).Value = fileData;
+        rem.GetConfig(type).Value = fileData;
     }
 
-    public void SaveToFile<T>(string filePath, T data)
+    public void SaveToFile<T>(string filePath, T[] data)
     {
         string path = Application.streamingAssetsPath + "/" + filePath + ".json";
         if (!File.Exists(path)) File.Create(path);
@@ -49,10 +49,11 @@ public class SaveManager : MonoBehaviour
         File.WriteAllText(path, str);
     }
 
-    public List<T> LoadJsonList<T>(string filePath, List<T> jsonList)
+    public T[] LoadJsonArray<T>(string filePath, T[] jsonList)
     {
-
-        jsonList = JsonConvert.DeserializeObject<List<T>>(filePath);
+        string path = Application.streamingAssetsPath + "/" + filePath + ".json";
+        var str = File.ReadAllText(path);
+        jsonList = JsonConvert.DeserializeObject<T[]>(str);
         return jsonList;
     }
 }

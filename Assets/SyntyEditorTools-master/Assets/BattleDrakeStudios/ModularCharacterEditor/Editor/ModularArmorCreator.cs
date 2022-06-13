@@ -392,7 +392,7 @@ namespace BattleDrakeStudios.ModularCharacters {
         private List<BodyPartLinker> GetArmorParts(ModularArmorType armorType) {
             List<BodyPartLinker> armorParts = new List<BodyPartLinker>();
             switch (armorType) {
-                case ModularArmorType.Helmet:
+                case ModularArmorType.Head:
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.HeadAttachment));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.Helmet));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.HeadCovering));

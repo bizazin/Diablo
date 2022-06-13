@@ -36,11 +36,11 @@ public class Inventory : MonoBehaviour
     private void OnEnable()
     {
         rem = Resources.Load<RemoteConfigStorage>("Storage");
-        SaveManager.Instance.LoadFromFile("Inventory");
-        
-        itemsStock = SaveManager.Instance.LoadDatabase().Equipment;
-        JsonItems = LoadFromRemoteConfig.Instance.LoadJsonList(RemoteConfigs.Inventory, RemoteConfigs.EnableCustomInventory, JsonItems);
-        FillList();
+        // SaveManager.Instance.LoadFromFile("Inventory");
+        //
+        // itemsStock = SaveManager.Instance.LoadDatabase().Equipment;
+        // JsonItems = LoadFromRemoteConfig.Instance.LoadJsonList(RemoteConfigs.Inventory, RemoteConfigs.EnableCustomInventory, JsonItems);
+        // FillList();
     }
     public bool Add(IteM item)
     {
@@ -81,6 +81,6 @@ public class Inventory : MonoBehaviour
 
     private void OnDisable()
     {
-        SaveManager.Instance.SaveToFile("Inventory",JsonItems);
+       // SaveManager.Instance.SaveToFile("Inventory",JsonItems);
     }
 }
