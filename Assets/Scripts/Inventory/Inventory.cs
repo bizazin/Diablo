@@ -28,19 +28,13 @@ public class Inventory : MonoBehaviour
     [JsonProperty] public List<IteM> Items = new List<IteM>();
     [JsonProperty] public List<string> JsonItems = new List<string>();
 
-    public List<Equipment> itemsStock;
-
     [SerializeField] private int _space;
     public RemoteConfigStorage rem;
     public IteM item;
     private void OnEnable()
     {
         rem = Resources.Load<RemoteConfigStorage>("Storage");
-        // SaveManager.Instance.LoadFromFile("Inventory");
-        //
-        // itemsStock = SaveManager.Instance.LoadDatabase().Equipment;
-        // JsonItems = LoadFromRemoteConfig.Instance.LoadJsonList(RemoteConfigs.Inventory, RemoteConfigs.EnableCustomInventory, JsonItems);
-        // FillList();
+
     }
     public bool Add(IteM item)
     {
@@ -64,20 +58,7 @@ public class Inventory : MonoBehaviour
         }
         if (OnItemChangedCallback != null) OnItemChangedCallback.Invoke();
     }
-    public void FillList()
-    {
-        if (JsonItems != null)
-            for (int i = 0; i < JsonItems.Count; i++)
-            {
-                for (int j = 0; j < itemsStock.Count; j++)
-                {
-                    if (itemsStock[j].name == JsonItems[i])
-                    {
-                        Items.Add(itemsStock[j]);
-                    }
-                }
-            }
-    }
+
 
     private void OnDisable()
     {

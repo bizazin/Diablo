@@ -9,6 +9,5 @@ public class ConfigsManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
-        
     }
 }

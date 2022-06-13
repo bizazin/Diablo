@@ -35,9 +35,6 @@ public class PlayerAnimationController : MonoBehaviour
             animator.SetBool(idle,false);
             animator.SetTrigger(attack + randomNumber); 
         }
-            
-        
-            
     }
 
     public void Die()
