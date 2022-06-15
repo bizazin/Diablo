@@ -34,6 +34,8 @@ public class Inventory : MonoBehaviour
     private void OnEnable()
     {
         rem = Resources.Load<RemoteConfigStorage>("Storage");
+        
+       
 
     }
     public bool Add(IteM item)
