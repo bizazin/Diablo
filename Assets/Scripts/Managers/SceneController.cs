@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     public static Action OnGameStarted;
-    
+
+    [SerializeField] private int sceneIndex; 
+
     public static void GameStarter()
     {
         OnGameStarted?.Invoke();
@@ -15,7 +17,7 @@ public class SceneController : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene(sceneIndex);
     }
 
     private void OnEnable()

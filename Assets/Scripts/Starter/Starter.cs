@@ -11,7 +11,7 @@ public class Starter : MonoBehaviour
     private void Awake()
     {
         if (!_startConfig.ShowCheats) 
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene(1);
 
         Rem = Resources.Load<RemoteConfigStorage>("Storage");
     }
