@@ -32,7 +32,7 @@ public class EquipmentManager : MonoBehaviour
 
     private void EquipItem(Item itemToEquip)
     {
-        foreach (var part in itemToEquip.modularArmor.armorParts)
+        foreach (var part in itemToEquip.equipment.armorParts)
         {
             if (part.partID > -1)
             {
@@ -47,7 +47,7 @@ public class EquipmentManager : MonoBehaviour
 
     private void OnItemAdded(Item itemToPickedUp)
     {
-        int i = (int)itemToPickedUp.modularArmor.armorType;
+        int i = (int)itemToPickedUp.equipment.armorType;
         equipmentSlots[i] = itemToPickedUp;
         EquipItem(itemToPickedUp);
     }

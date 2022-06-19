@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Chest 25
   m_EditorClassIdentifier: 
   itemName: Torso
-  modularArmor: {fileID: 11400000, guid: aaba7792b7d76c949ba3c4692fb3b170, type: 2}
+  _icon: {fileID: 21300000, guid: c6372abae4e0907439fea38a0d9a8ef0, type: 3}
+  equipment: {fileID: 0}

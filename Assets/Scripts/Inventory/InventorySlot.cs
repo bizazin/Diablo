@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using BattleDrakeStudios.ModularCharacters;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,9 +9,9 @@ public class InventorySlot : MonoBehaviour
     [SerializeField] private Image _icon;
     [SerializeField] Button _removeButton;
 
-    private IteM _item;
+    private Item _item;
 
-    public void AddItem(IteM newItem)
+    public void AddItem(Item newItem)
     {
         _item = newItem;
        _icon.sprite = _item.Icon;

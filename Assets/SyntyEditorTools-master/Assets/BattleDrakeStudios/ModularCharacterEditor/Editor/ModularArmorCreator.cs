@@ -27,7 +27,7 @@ namespace BattleDrakeStudios.ModularCharacters {
 
         private IconCreatorWindow iconWindow;
 
-        private ModularArmor existingArmor;
+        private Equipment existingArmor;
 
         private string armorName = "New Armor Item";
         private string assetPath = "Assets/BattleDrakeStudios/ModularCharacterEditor/ScriptableObjects/ModularArmor";
@@ -209,7 +209,7 @@ namespace BattleDrakeStudios.ModularCharacters {
             GUILayout.Label("Existing Modular Armor Asset");
 
             EditorGUI.BeginChangeCheck();
-            existingArmor = EditorGUILayout.ObjectField(existingArmor, typeof(ModularArmor), false) as ModularArmor;
+            existingArmor = EditorGUILayout.ObjectField(existingArmor, typeof(Equipment), false) as Equipment;
             if (EditorGUI.EndChangeCheck()) {
                 if (existingArmor != null) {
                     armorName = existingArmor.name;
@@ -328,7 +328,7 @@ namespace BattleDrakeStudios.ModularCharacters {
         }
 
         private void SaveDataToAsset(bool isNew) {
-            ModularArmor newArmor = ScriptableObject.CreateInstance<ModularArmor>();
+            Equipment newArmor = ScriptableObject.CreateInstance<Equipment>();
 
             newArmor.armorType = armorTypes[armorTypeIndex];
 

@@ -10,8 +10,9 @@ public class ItemPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Picking up " + _item.itemName);
-        EventsManager.OnItemPickedUp?.Invoke(_item);
+        Debug.Log("Picking up " + _item.ItemName);
+        
+        Inventory.Instance.Add(_item);
         Destroy(gameObject);
     }
 }

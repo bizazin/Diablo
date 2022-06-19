@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using BattleDrakeStudios.ModularCharacters;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -25,20 +26,18 @@ public class Inventory : MonoBehaviour
     #endregion
     public delegate void OnItemChanged();
     public OnItemChanged OnItemChangedCallback;
-    [JsonProperty] public List<IteM> Items = new List<IteM>();
+    [JsonProperty] public List<Item> Items = new List<Item>();
+    
     [JsonProperty] public List<string> JsonItems = new List<string>();
 
     [SerializeField] private int _space;
     public RemoteConfigStorage rem;
-    public IteM item;
+    public Item item;
     private void OnEnable()
     {
         rem = Resources.Load<RemoteConfigStorage>("Storage");
-        
-       
-
     }
-    public bool Add(IteM item)
+    public bool Add(Item item)
     {
         if (Items.Count >= _space)
         {
@@ -46,17 +45,17 @@ public class Inventory : MonoBehaviour
             return false;
         }
         Items.Add(item);
-        JsonItems.Add(item.Name);
+        JsonItems.Add(item.ItemName);
         if (OnItemChangedCallback != null) OnItemChangedCallback.Invoke();
        
         return true;
     }
-    public void Remove(IteM item)
+    public void Remove(Item item)
     {
         if (Items.Contains(item))
         {
             Items.Remove(item);
-            JsonItems.Remove(item.Name);
+            JsonItems.Remove(item.ItemName);
         }
         if (OnItemChangedCallback != null) OnItemChangedCallback.Invoke();
     }

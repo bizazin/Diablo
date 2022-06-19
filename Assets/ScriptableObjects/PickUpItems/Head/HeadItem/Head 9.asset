@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Head 9
   m_EditorClassIdentifier: 
   itemName: Head
-  modularArmor: {fileID: 11400000, guid: 6807e94024e3f894685b194d58d7b332, type: 2}
+  _icon: {fileID: 21300000, guid: fc476c862eab60d4da1e9e2879fcd844, type: 3}
+  equipment: {fileID: 11400000, guid: 6807e94024e3f894685b194d58d7b332, type: 2}
