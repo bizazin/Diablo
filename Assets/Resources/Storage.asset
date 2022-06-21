@@ -15,7 +15,7 @@ MonoBehaviour:
   _configs:
   - _name: inventory
     _type: 0
-    _defaultValue: '[]'
+    _defaultValue: '[null,null,null,null,null,null,null]'
   - _name: enable_custom_inventory
     _type: 1
     _defaultValue: 0
