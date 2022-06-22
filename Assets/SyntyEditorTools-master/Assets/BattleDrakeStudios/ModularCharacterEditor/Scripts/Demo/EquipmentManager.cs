@@ -1,6 +1,7 @@
 ﻿using System;
 using BattleDrakeStudios.ModularCharacters;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class EquipmentManager : MonoBehaviour
 
     [SerializeField] private ModularCharacterManager characterManager;
 
+    [SerializeField] private RemoteConfigStorage rem;
     private SaveManager save;
     
 
@@ -17,7 +19,14 @@ public class EquipmentManager : MonoBehaviour
     {
         
         save = GetComponent<SaveManager>();
-        equipmentSlots = save.LoadJsonArray("EquipmentList", equipmentSlots);
+        if (rem.GetConfig(RemoteConfigs.EnableCustomInventory).Value == "1")
+        {
+            equipmentSlots = JsonConvert.DeserializeObject<Item[]>(rem.GetConfig(RemoteConfigs.Inventory).DefaultValue);
+        }
+        else
+        {
+            equipmentSlots = save.LoadJsonArray("EquipmentList", equipmentSlots);
+        }
         
         EventsManager.OnItemPickedUp+= OnItemAdded;
 
