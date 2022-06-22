@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using BattleDrakeStudios.ModularCharacters;
+using bizazin;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -17,7 +15,7 @@ public class Inventory : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogWarning("More than one instance of Inventory found!");
+            Debug.LogWarning("More than one instance of Inventory is found!");
             return;
         }
         Instance = this;
@@ -32,22 +30,27 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private int _space;
     public RemoteConfigStorage rem;
-    public Item item;
+ //   public Item item;
     private void OnEnable()
     {
         rem = Resources.Load<RemoteConfigStorage>("Storage");
     }
+
     public bool Add(Item item)
     {
-        if (Items.Count >= _space)
+        if (!item.IsDefaultItem)
         {
-            Debug.Log("Not enough room");
-            return false;
+            if (Items.Count >= _space)
+            {
+                Debug.Log("Not enough room");
+                return false;
+            }
+            Items.Add(item);
+            JsonItems.Add(item.ItemName);
+
+            if (OnItemChangedCallback != null)
+                OnItemChangedCallback.Invoke();
         }
-        Items.Add(item);
-        JsonItems.Add(item.ItemName);
-        if (OnItemChangedCallback != null) OnItemChangedCallback.Invoke();
-       
         return true;
     }
     public void Remove(Item item)
@@ -57,12 +60,7 @@ public class Inventory : MonoBehaviour
             Items.Remove(item);
             JsonItems.Remove(item.ItemName);
         }
-        if (OnItemChangedCallback != null) OnItemChangedCallback.Invoke();
-    }
-
-
-    private void OnDisable()
-    {
-       // SaveManager.Instance.SaveToFile("Inventory",JsonItems);
+        if (OnItemChangedCallback != null) 
+            OnItemChangedCallback.Invoke();
     }
 }
