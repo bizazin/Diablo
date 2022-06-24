@@ -11,10 +11,22 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Text dialogueText;
     [SerializeField] private Animator animator;
     private Queue<string> sentences;
+    public QuestData questData;
     private void Start()
     {
         sentences = new Queue<string>();
     }
+
+    public void AddQuest()
+    {
+        EventsManager.NewQuestAdded.Invoke(questData);
+    }
+    
+    public void AddPointQuest()
+    {
+        EventsManager.QuestProgressIncreased.Invoke(questData);
+    }
+    
 
     public void StartDialogue(Dialogue dialogue)
     {
@@ -48,6 +60,8 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(FadeSentence(sentence));
     }
 
+    
+    
     public void CurrentSentence()
     {
         string sentence = sentences.Peek();
