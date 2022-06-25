@@ -3,19 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestsManager : MonoBehaviour
+public class LocalQuestsManager : MonoBehaviour
 {
-    public List<QuestData> questsDatas;
-    public List<QuestUI> questsUI;
-    public QuestUI questPrefab;
-    public GameObject questsContainer;
+    #region Singleton
 
+    public static LocalQuestsManager Instance;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            return;
+        }
+        Instance = this;
+    }
+
+    #endregion
+    
+    [SerializeField]private List<QuestData> questsDatas;
+    [SerializeField]private List<QuestUI> questsUI;
+    [SerializeField]private QuestUI questPrefab;
+    [SerializeField]private GameObject questsContainer;
+    public int currentMainQuestIndex { get; }
     private void Start()
     {
         EventsManager.NewQuestAdded += AddQuest;
         EventsManager.QuestProgressIncreased +=QuestProgressIncreased;
         EventsManager.OnRewardClaimed += ClaimReward;
-        //EventsManager.OnQuestCompleted += QuestCompleted;
     }
 
     public void AddQuest(QuestData quest)
@@ -24,17 +38,6 @@ public class QuestsManager : MonoBehaviour
         questsUI.Add(questPrefab);
         Instantiate(questPrefab,questsContainer.transform);
     }
-    // public void QuestCompleted()
-    // {
-    //     foreach (var i in questsUI)
-    //     {
-    //         if (i.quest.completed)
-    //         {
-    //             i.ShowQuestCompleted();
-    //         }
-    //     }
-    // }
-
     public void QuestProgressIncreased(QuestData quest)
     {
         quest.currentProgress++;
@@ -44,7 +47,6 @@ public class QuestsManager : MonoBehaviour
         }
     }
 
-    
     public void ClaimReward(QuestData questData, QuestUI questUI)
     {
         questData.rewardClaimed = true;

@@ -7,11 +7,27 @@ using UnityEngine.UI;
 [Serializable]
 public class DialogueManager : MonoBehaviour
 {
+    #region Singleton
+
+    public static DialogueManager Instance;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            return;
+        }
+        Instance = this;
+    }
+
+    #endregion
+    
     [SerializeField] private Text name;
     [SerializeField] private Text dialogueText;
     [SerializeField] private Animator animator;
     private Queue<string> sentences;
     public QuestData questData;
+    
     private void Start()
     {
         sentences = new Queue<string>();
