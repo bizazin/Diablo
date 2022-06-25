@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using UnityEngine;
+using bizazin;
 
 namespace BattleDrakeStudios.ModularCharacters {
     [CreateAssetMenu(fileName = "NewItem", menuName = "Items/Base")]
@@ -23,12 +24,12 @@ namespace BattleDrakeStudios.ModularCharacters {
         public virtual void Use()
         {
             Debug.Log("Using " + itemName);
-            EventsManager.OnItemPickedUp?.Invoke(this);
+            EventsManager.OnItemPickedUp?.Invoke(equipment);
         }
 
         public void RemoveFromInventory()
         {
-            Inventory.Instance.Remove(this);
+            Inventory.Instance.Remove(equipment);
         }
     }
     

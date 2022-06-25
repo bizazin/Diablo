@@ -28,7 +28,10 @@ public class Inventory : MonoBehaviour
     
     [JsonProperty] public List<string> JsonItems = new List<string>();
 
+
+
     [SerializeField] private int _space;
+
     public RemoteConfigStorage rem;
  //   public Item item;
     private void OnEnable()
