@@ -1,59 +1,68 @@
 ﻿using System;
 using BattleDrakeStudios.ModularCharacters;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine;
+using bizazin;
 
 public class EquipmentManager : MonoBehaviour
 {
-
-    [SerializeField] private Item[] equipmentSlots;
+    [SerializeField] private Equipment[] equipmentSlots;
 
     [SerializeField] private ModularCharacterManager characterManager;
 
+    [SerializeField] private RemoteConfigStorage rem;
     private SaveManager save;
-    
+
+    private void OnEnable()
+    {
+        EventsManager.OnItemPickedUp += OnEquipmentAdded;
+        EventsManager.OnItemEquipped += EquipItem;
+    }
 
     private void Start()
     {
         
         save = GetComponent<SaveManager>();
-        equipmentSlots = save.LoadJsonArray("EquipmentList", equipmentSlots);
-        
-        EventsManager.OnItemPickedUp+= OnItemAdded;
+        if (rem.GetConfig(RemoteConfigs.EnableCustomInventory).Value == "1")
+        {
+            equipmentSlots = JsonConvert.DeserializeObject<Equipment[]>(rem.GetConfig(RemoteConfigs.Inventory).DefaultValue);
+        }
+        else
+        {
+            equipmentSlots = save.LoadJsonArray("EquipmentList", equipmentSlots);
+        }
+
 
         foreach (var item in equipmentSlots)
         {
-            if (item!=null)
-            {
+            if (item != null)
                 EquipItem(item);
-            }
         }
     }
 
-    private void EquipItem(Item itemToEquip)
+    public void EquipItem(Equipment itemToEquip)
     {
-        foreach (var part in itemToEquip.equipment.armorParts)
+        foreach (var part in itemToEquip.armorParts)
         {
             if (part.partID > -1)
-            {
                 characterManager.ActivatePart(part.bodyType, part.partID);
-            }
             else
-            {
                 characterManager.DeactivatePart(part.bodyType);
-            }
         }
     }
 
-    private void OnItemAdded(Item itemToPickedUp)
+    private void OnEquipmentAdded(Equipment itemToPickedUp)
     {
-        int i = (int)itemToPickedUp.equipment.armorType;
+        int i = (int)itemToPickedUp.armorType;
         equipmentSlots[i] = itemToPickedUp;
         EquipItem(itemToPickedUp);
     }
 
     private void OnDisable()
     {
+        EventsManager.OnItemPickedUp -= OnEquipmentAdded;
+        EventsManager.OnItemEquipped -= EquipItem;
         save.SaveToFile("EquipmentList", equipmentSlots);
     }
 
