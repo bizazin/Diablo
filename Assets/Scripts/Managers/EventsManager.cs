@@ -9,6 +9,7 @@ public class EventsManager : MonoBehaviour
     
     public static Action<QuestData> NewQuestAdded;
     public static Action<QuestData> QuestProgressIncreased;
-    public static Action OnQuestCompleted;
-    public static Action<QuestData,QuestUI> OnRewardClaimed;
+    public static Action<QuestData> OnQuestCompleted;
+    public static Action<QuestData,LocalQuestUI> OnRewardClaimed;
+    public static Action<QuestData,MainQuestUI> OnMainQuestClaimed;
 }
