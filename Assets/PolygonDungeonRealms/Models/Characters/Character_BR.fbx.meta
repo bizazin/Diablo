@@ -1,146 +1,416 @@
 fileFormatVersion: 2
 guid: 792e61d487156d94db0fd45793a62d76
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Ankle_L
-    100002: Ankle_R
-    100004: Ball_L
-    100006: Ball_R
-    100008: //RootNode
-    100010: Chr_Dwarf_Worker_01
-    100012: Clavicle_L
-    100014: Clavicle_R
-    100016: Elbow_L
-    100018: Elbow_R
-    100020: Eyebrows
-    100022: Eyes
-    100024: Finger_01
-    100026: Finger_01 1
-    100028: Finger_02
-    100030: Finger_02 1
-    100032: Finger_03
-    100034: Finger_03 1
-    100036: Finger_04
-    100038: Finger_04 1
-    100040: Hand_L
-    100042: Hand_R
-    100044: Head
-    100046: Hips
-    100048: IndexFinger_01
-    100050: IndexFinger_01 1
-    100052: IndexFinger_02
-    100054: IndexFinger_02 1
-    100056: IndexFinger_03
-    100058: IndexFinger_03 1
-    100060: IndexFinger_04
-    100062: IndexFinger_04 1
-    100064: LowerLeg_L
-    100066: LowerLeg_R
-    100068: Neck
-    100070: Root
-    100072: Shoulder_L
-    100074: Shoulder_R
-    100076: Spine_01
-    100078: Spine_02
-    100080: Spine_03
-    100082: Thumb_01
-    100084: Thumb_01 1
-    100086: Thumb_02
-    100088: Thumb_02 1
-    100090: Thumb_03
-    100092: Thumb_03 1
-    100094: Toes_L
-    100096: Toes_R
-    100098: UpperLeg_L
-    100100: UpperLeg_R
-    100102: Chr_Dwarf_Soldier_Male_01
-    100104: Chr_Demon_01
-    100106: Chr_Dwarf_Casual_Female_01
-    100108: Chr_Dwarf_Casual_Male_01
-    100110: Chr_Dwarf_King_01
-    100112: Chr_Dwarf_Miner_01
-    100114: Chr_Dwarf_Soldier_Female_01
-    400000: Ankle_L
-    400002: Ankle_R
-    400004: Ball_L
-    400006: Ball_R
-    400008: //RootNode
-    400010: Chr_Dwarf_Worker_01
-    400012: Clavicle_L
-    400014: Clavicle_R
-    400016: Elbow_L
-    400018: Elbow_R
-    400020: Eyebrows
-    400022: Eyes
-    400024: Finger_01
-    400026: Finger_01 1
-    400028: Finger_02
-    400030: Finger_02 1
-    400032: Finger_03
-    400034: Finger_03 1
-    400036: Finger_04
-    400038: Finger_04 1
-    400040: Hand_L
-    400042: Hand_R
-    400044: Head
-    400046: Hips
-    400048: IndexFinger_01
-    400050: IndexFinger_01 1
-    400052: IndexFinger_02
-    400054: IndexFinger_02 1
-    400056: IndexFinger_03
-    400058: IndexFinger_03 1
-    400060: IndexFinger_04
-    400062: IndexFinger_04 1
-    400064: LowerLeg_L
-    400066: LowerLeg_R
-    400068: Neck
-    400070: Root
-    400072: Shoulder_L
-    400074: Shoulder_R
-    400076: Spine_01
-    400078: Spine_02
-    400080: Spine_03
-    400082: Thumb_01
-    400084: Thumb_01 1
-    400086: Thumb_02
-    400088: Thumb_02 1
-    400090: Thumb_03
-    400092: Thumb_03 1
-    400094: Toes_L
-    400096: Toes_R
-    400098: UpperLeg_L
-    400100: UpperLeg_R
-    400102: Chr_Dwarf_Soldier_Male_01
-    400104: Chr_Demon_01
-    400106: Chr_Dwarf_Casual_Female_01
-    400108: Chr_Dwarf_Casual_Male_01
-    400110: Chr_Dwarf_King_01
-    400112: Chr_Dwarf_Miner_01
-    400114: Chr_Dwarf_Soldier_Female_01
-    4300000: Chr_Dwarf_Worker_01
-    4300002: Chr_Dwarf_Soldier_Male_01
-    4300004: Chr_Demon_01
-    4300006: Chr_Dwarf_Casual_Female_01
-    4300008: Chr_Dwarf_Casual_Male_01
-    4300010: Chr_Dwarf_King_01
-    4300012: Chr_Dwarf_Miner_01
-    4300014: Chr_Dwarf_Soldier_Female_01
-    7400000: Take 001
-    9500000: //RootNode
-    13700000: Chr_Dwarf_Worker_01
-    13700002: Chr_Dwarf_Soldier_Male_01
-    13700004: Chr_Demon_01
-    13700006: Chr_Dwarf_Casual_Female_01
-    13700008: Chr_Dwarf_Casual_Male_01
-    13700010: Chr_Dwarf_King_01
-    13700012: Chr_Dwarf_Miner_01
-    13700014: Chr_Dwarf_Soldier_Female_01
-    2186277476908879412: ImportLogs
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Ankle_L
+  - first:
+      1: 100002
+    second: Ankle_R
+  - first:
+      1: 100004
+    second: Ball_L
+  - first:
+      1: 100006
+    second: Ball_R
+  - first:
+      1: 100008
+    second: //RootNode
+  - first:
+      1: 100010
+    second: Chr_Dwarf_Worker_01
+  - first:
+      1: 100012
+    second: Clavicle_L
+  - first:
+      1: 100014
+    second: Clavicle_R
+  - first:
+      1: 100016
+    second: Elbow_L
+  - first:
+      1: 100018
+    second: Elbow_R
+  - first:
+      1: 100020
+    second: Eyebrows
+  - first:
+      1: 100022
+    second: Eyes
+  - first:
+      1: 100024
+    second: Finger_01
+  - first:
+      1: 100026
+    second: Finger_01 1
+  - first:
+      1: 100028
+    second: Finger_02
+  - first:
+      1: 100030
+    second: Finger_02 1
+  - first:
+      1: 100032
+    second: Finger_03
+  - first:
+      1: 100034
+    second: Finger_03 1
+  - first:
+      1: 100036
+    second: Finger_04
+  - first:
+      1: 100038
+    second: Finger_04 1
+  - first:
+      1: 100040
+    second: Hand_L
+  - first:
+      1: 100042
+    second: Hand_R
+  - first:
+      1: 100044
+    second: Head
+  - first:
+      1: 100046
+    second: Hips
+  - first:
+      1: 100048
+    second: IndexFinger_01
+  - first:
+      1: 100050
+    second: IndexFinger_01 1
+  - first:
+      1: 100052
+    second: IndexFinger_02
+  - first:
+      1: 100054
+    second: IndexFinger_02 1
+  - first:
+      1: 100056
+    second: IndexFinger_03
+  - first:
+      1: 100058
+    second: IndexFinger_03 1
+  - first:
+      1: 100060
+    second: IndexFinger_04
+  - first:
+      1: 100062
+    second: IndexFinger_04 1
+  - first:
+      1: 100064
+    second: LowerLeg_L
+  - first:
+      1: 100066
+    second: LowerLeg_R
+  - first:
+      1: 100068
+    second: Neck
+  - first:
+      1: 100070
+    second: Root
+  - first:
+      1: 100072
+    second: Shoulder_L
+  - first:
+      1: 100074
+    second: Shoulder_R
+  - first:
+      1: 100076
+    second: Spine_01
+  - first:
+      1: 100078
+    second: Spine_02
+  - first:
+      1: 100080
+    second: Spine_03
+  - first:
+      1: 100082
+    second: Thumb_01
+  - first:
+      1: 100084
+    second: Thumb_01 1
+  - first:
+      1: 100086
+    second: Thumb_02
+  - first:
+      1: 100088
+    second: Thumb_02 1
+  - first:
+      1: 100090
+    second: Thumb_03
+  - first:
+      1: 100092
+    second: Thumb_03 1
+  - first:
+      1: 100094
+    second: Toes_L
+  - first:
+      1: 100096
+    second: Toes_R
+  - first:
+      1: 100098
+    second: UpperLeg_L
+  - first:
+      1: 100100
+    second: UpperLeg_R
+  - first:
+      1: 100102
+    second: Chr_Dwarf_Soldier_Male_01
+  - first:
+      1: 100104
+    second: Chr_Demon_01
+  - first:
+      1: 100106
+    second: Chr_Dwarf_Casual_Female_01
+  - first:
+      1: 100108
+    second: Chr_Dwarf_Casual_Male_01
+  - first:
+      1: 100110
+    second: Chr_Dwarf_King_01
+  - first:
+      1: 100112
+    second: Chr_Dwarf_Miner_01
+  - first:
+      1: 100114
+    second: Chr_Dwarf_Soldier_Female_01
+  - first:
+      4: 400000
+    second: Ankle_L
+  - first:
+      4: 400002
+    second: Ankle_R
+  - first:
+      4: 400004
+    second: Ball_L
+  - first:
+      4: 400006
+    second: Ball_R
+  - first:
+      4: 400008
+    second: //RootNode
+  - first:
+      4: 400010
+    second: Chr_Dwarf_Worker_01
+  - first:
+      4: 400012
+    second: Clavicle_L
+  - first:
+      4: 400014
+    second: Clavicle_R
+  - first:
+      4: 400016
+    second: Elbow_L
+  - first:
+      4: 400018
+    second: Elbow_R
+  - first:
+      4: 400020
+    second: Eyebrows
+  - first:
+      4: 400022
+    second: Eyes
+  - first:
+      4: 400024
+    second: Finger_01
+  - first:
+      4: 400026
+    second: Finger_01 1
+  - first:
+      4: 400028
+    second: Finger_02
+  - first:
+      4: 400030
+    second: Finger_02 1
+  - first:
+      4: 400032
+    second: Finger_03
+  - first:
+      4: 400034
+    second: Finger_03 1
+  - first:
+      4: 400036
+    second: Finger_04
+  - first:
+      4: 400038
+    second: Finger_04 1
+  - first:
+      4: 400040
+    second: Hand_L
+  - first:
+      4: 400042
+    second: Hand_R
+  - first:
+      4: 400044
+    second: Head
+  - first:
+      4: 400046
+    second: Hips
+  - first:
+      4: 400048
+    second: IndexFinger_01
+  - first:
+      4: 400050
+    second: IndexFinger_01 1
+  - first:
+      4: 400052
+    second: IndexFinger_02
+  - first:
+      4: 400054
+    second: IndexFinger_02 1
+  - first:
+      4: 400056
+    second: IndexFinger_03
+  - first:
+      4: 400058
+    second: IndexFinger_03 1
+  - first:
+      4: 400060
+    second: IndexFinger_04
+  - first:
+      4: 400062
+    second: IndexFinger_04 1
+  - first:
+      4: 400064
+    second: LowerLeg_L
+  - first:
+      4: 400066
+    second: LowerLeg_R
+  - first:
+      4: 400068
+    second: Neck
+  - first:
+      4: 400070
+    second: Root
+  - first:
+      4: 400072
+    second: Shoulder_L
+  - first:
+      4: 400074
+    second: Shoulder_R
+  - first:
+      4: 400076
+    second: Spine_01
+  - first:
+      4: 400078
+    second: Spine_02
+  - first:
+      4: 400080
+    second: Spine_03
+  - first:
+      4: 400082
+    second: Thumb_01
+  - first:
+      4: 400084
+    second: Thumb_01 1
+  - first:
+      4: 400086
+    second: Thumb_02
+  - first:
+      4: 400088
+    second: Thumb_02 1
+  - first:
+      4: 400090
+    second: Thumb_03
+  - first:
+      4: 400092
+    second: Thumb_03 1
+  - first:
+      4: 400094
+    second: Toes_L
+  - first:
+      4: 400096
+    second: Toes_R
+  - first:
+      4: 400098
+    second: UpperLeg_L
+  - first:
+      4: 400100
+    second: UpperLeg_R
+  - first:
+      4: 400102
+    second: Chr_Dwarf_Soldier_Male_01
+  - first:
+      4: 400104
+    second: Chr_Demon_01
+  - first:
+      4: 400106
+    second: Chr_Dwarf_Casual_Female_01
+  - first:
+      4: 400108
+    second: Chr_Dwarf_Casual_Male_01
+  - first:
+      4: 400110
+    second: Chr_Dwarf_King_01
+  - first:
+      4: 400112
+    second: Chr_Dwarf_Miner_01
+  - first:
+      4: 400114
+    second: Chr_Dwarf_Soldier_Female_01
+  - first:
+      43: 4300000
+    second: Chr_Dwarf_Worker_01
+  - first:
+      43: 4300002
+    second: Chr_Dwarf_Soldier_Male_01
+  - first:
+      43: 4300004
+    second: Chr_Demon_01
+  - first:
+      43: 4300006
+    second: Chr_Dwarf_Casual_Female_01
+  - first:
+      43: 4300008
+    second: Chr_Dwarf_Casual_Male_01
+  - first:
+      43: 4300010
+    second: Chr_Dwarf_King_01
+  - first:
+      43: 4300012
+    second: Chr_Dwarf_Miner_01
+  - first:
+      43: 4300014
+    second: Chr_Dwarf_Soldier_Female_01
+  - first:
+      74: 7400000
+    second: Take 001
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Chr_Dwarf_Worker_01
+  - first:
+      137: 13700002
+    second: Chr_Dwarf_Soldier_Male_01
+  - first:
+      137: 13700004
+    second: Chr_Demon_01
+  - first:
+      137: 13700006
+    second: Chr_Dwarf_Casual_Female_01
+  - first:
+      137: 13700008
+    second: Chr_Dwarf_Casual_Male_01
+  - first:
+      137: 13700010
+    second: Chr_Dwarf_King_01
+  - first:
+      137: 13700012
+    second: Chr_Dwarf_Miner_01
+  - first:
+      137: 13700014
+    second: Chr_Dwarf_Soldier_Female_01
+  - first:
+      41386430: 2186277476908879412
+    second: ImportLogs
   externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -173,25 +443,32 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 0
     importBlendShapes: 0
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 0
     keepQuads: 0
     weldVertices: 0
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: 1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 0
     normalImportMode: 1
@@ -200,10 +477,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 0
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human:
     - boneName: Root
       humanName: Hips
@@ -788,13 +1065,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
