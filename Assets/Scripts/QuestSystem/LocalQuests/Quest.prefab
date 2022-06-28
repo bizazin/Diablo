@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 7038333667626807314}
   - component: {fileID: 7038333667626807317}
   - component: {fileID: 7038333667626807316}
-  - component: {fileID: 1903600767395283460}
+  - component: {fileID: 2649077896209573462}
   m_Layer: 0
   m_Name: Quest
   m_TagString: Untagged
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1903600767395283460
+--- !u!114 &2649077896209573462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7038333667626807318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c93d73c4b7499d94ebe43ec918c13ba5, type: 3}
+  m_Script: {fileID: 11500000, guid: 506fb03be762ebd4bb215ecfa3be13b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sliderProgress: {fileID: 7038333667626807316}
