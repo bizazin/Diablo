@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class MainQuestUI : MonoBehaviour
 {
-   public Slider sliderProgress;
-   public Button questCompleted;
+   [SerializeField] private Slider sliderProgress;
+   [SerializeField] private Button questCompleted;
    public QuestData questData;
 
    private void Start()
@@ -29,7 +29,7 @@ public class MainQuestUI : MonoBehaviour
 
    public void ClaimReward()
    {
-      EventsManager.OnMainQuestClaimed.Invoke(questData,this);
+      EventsManager.OnMainRewardClaimed.Invoke(questData,this);
       Destroy(gameObject);
    }
 

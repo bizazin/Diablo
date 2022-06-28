@@ -5,11 +5,14 @@ using UnityEngine;
 public class EventsManager : MonoBehaviour
 {
     public static Action<Item> OnItemPickedUp;
-
     
-    public static Action<QuestData> NewQuestAdded;
-    public static Action<QuestData> QuestProgressIncreased;
+    //quests
+    public static Action<QuestData> OnNewQuestAdded;
     public static Action<QuestData> OnQuestCompleted;
-    public static Action<QuestData,LocalQuestUI> OnRewardClaimed;
-    public static Action<QuestData,MainQuestUI> OnMainQuestClaimed;
+    
+    public static Action<QuestData> LocalQuestProgressIncreased;
+    public static Action<QuestData,LocalQuestUI> OnLocalQuestRewardClaimed;
+    
+    public static Action<QuestData> MainQuestProgressIncreased;
+    public static Action<QuestData,MainQuestUI> OnMainRewardClaimed;
 }

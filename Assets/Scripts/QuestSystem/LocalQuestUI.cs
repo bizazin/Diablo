@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LocalQuestUI : MonoBehaviour
 {
-   public Slider sliderProgress;
-   public Button questCompleted;
+   [SerializeField] private Slider sliderProgress;
+   [SerializeField] private Button questCompleted;
    public QuestData questData;
 
    private void Start()
@@ -32,7 +29,7 @@ public class LocalQuestUI : MonoBehaviour
 
    public void ClaimReward()
    {
-      EventsManager.OnRewardClaimed.Invoke(questData,this);
+      EventsManager.OnLocalQuestRewardClaimed.Invoke(questData,this);
       Destroy(gameObject);
    }
 

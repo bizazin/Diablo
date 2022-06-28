@@ -7,24 +7,10 @@ using UnityEngine.UI;
 [Serializable]
 public class DialogueManager : MonoBehaviour
 {
-    #region Singleton
-
-    public static DialogueManager Instance;
-
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            return;
-        }
-        Instance = this;
-    }
-
-    #endregion
-    
     [SerializeField] private Text name;
     [SerializeField] private Text dialogueText;
     [SerializeField] private Animator animator;
+    private string isOpen = "isOpen";
     private Queue<string> sentences;
     public QuestData questData;
     
@@ -35,18 +21,16 @@ public class DialogueManager : MonoBehaviour
 
     public void AddQuest()
     {
-        EventsManager.NewQuestAdded.Invoke(questData);
+        EventsManager.OnNewQuestAdded.Invoke(questData);
     }
     
     public void AddPointQuest()
     {
-        EventsManager.QuestProgressIncreased.Invoke(questData);
+        EventsManager.LocalQuestProgressIncreased.Invoke(questData);
     }
-    
 
     public void StartDialogue(Dialogue dialogue)
     {
-       
         if (sentences.Count>0)
         {
             CurrentSentence();
@@ -60,7 +44,7 @@ public class DialogueManager : MonoBehaviour
             CurrentSentence();
         }
         
-        animator.SetBool("IsOpen", true);
+        animator.SetBool(isOpen, true);
         name.text = dialogue.name;
     }
     public void DisplayNextSentence()
@@ -76,8 +60,6 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(FadeSentence(sentence));
     }
 
-    
-    
     public void CurrentSentence()
     {
         string sentence = sentences.Peek();
@@ -96,7 +78,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
-        animator.SetBool("IsOpen", false);
+        animator.SetBool(isOpen, false);
         StopAllCoroutines();
     }
 }

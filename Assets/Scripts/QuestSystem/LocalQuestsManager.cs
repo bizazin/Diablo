@@ -1,16 +1,13 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LocalQuestsManager : MonoBehaviour
 {
-    [SerializeField]private List<QuestData> questsDatasPool;
-    [SerializeField]private List<LocalQuestUI> questsUI;
-    [SerializeField]private LocalQuestUI localQuestPrefab;
-    [SerializeField]private GameObject npcQuestsContainer;
+    [SerializeField] private List<QuestData> questsDatasPool;
+    [SerializeField] private List<LocalQuestUI> questsUI;
+    [SerializeField] private LocalQuestUI localQuestPrefab;
+    [SerializeField] private GameObject npcQuestsContainer;
     private Queue<QuestData> questsData;
-    public int currentMainQuestIndex { get; }
     private void Start()
     {
         questsData = new Queue<QuestData>();
@@ -18,20 +15,24 @@ public class LocalQuestsManager : MonoBehaviour
         {
             questsData.Enqueue(questData);
         }
-        
-        EventsManager.NewQuestAdded += AddQuest;
-        EventsManager.QuestProgressIncreased +=QuestProgressIncreased;
-        EventsManager.OnRewardClaimed += ClaimReward;
     }
 
-    public void AddQuest(QuestData quest)
+    private void OnEnable()
+    {        
+        EventsManager.OnNewQuestAdded += AddQuest;
+        EventsManager.LocalQuestProgressIncreased +=QuestProgressIncreased;
+        EventsManager.OnLocalQuestRewardClaimed += ClaimReward;
+    }
+
+    private void AddQuest(QuestData quest)
     {
         var nextQuest = questsData.Dequeue();
         localQuestPrefab.questData = nextQuest;
         questsUI.Add(localQuestPrefab);
         Instantiate(localQuestPrefab,npcQuestsContainer.transform);
     }
-    public void QuestProgressIncreased(QuestData quest)
+
+    private void QuestProgressIncreased(QuestData quest)
     {
         quest.currentProgress++;
         if (quest.currentProgress>=quest.goal)
@@ -40,10 +41,17 @@ public class LocalQuestsManager : MonoBehaviour
         }
     }
 
-    public void ClaimReward(QuestData questData, LocalQuestUI localQuestUI)
+    private void ClaimReward(QuestData questData, LocalQuestUI localQuestUI)
     {
         questData.rewardClaimed = true;
         questsUI.Remove(localQuestUI);
         KeyManager.SetPrefsValue(KeyManager.Coins,questData.rewardCoins);
+    }
+
+    private void OnDisable()
+    {
+        EventsManager.OnNewQuestAdded -= AddQuest;
+        EventsManager.LocalQuestProgressIncreased -=QuestProgressIncreased;
+        EventsManager.OnLocalQuestRewardClaimed -= ClaimReward;
     }
 }

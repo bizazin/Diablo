@@ -1,52 +1,44 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MainQuestsManager : MonoBehaviour
 {
-    #region Singleton
-
-    public static MainQuestsManager Instance;
-
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            return;
-        }
-        Instance = this;
-    }
-
-    #endregion
-    
-    [SerializeField]private List<QuestData> questsDatasPool;
-    [SerializeField]private List<LocalQuestUI> questsUI;
-    [SerializeField]private LocalQuestUI mainQuestPrefab;
-    [SerializeField]private GameObject questsContainer;
-    private Queue<QuestData> questsData;
-    public int currentMainQuestIndex { get; }
+    [SerializeField] private List<QuestData> mainQuestsDatasPool;
+    [SerializeField] private List<MainQuestUI> questsUI;
+    [SerializeField] private MainQuestUI mainQuestPrefab;
+    [SerializeField] private GameObject questsContainer;
+    [SerializeField] private QuestData currentQuest;
+    private Queue<QuestData> mainQuestsData;
+ 
     private void Start()
     {
-        questsData = new Queue<QuestData>();
-        foreach (var questData in questsDatasPool)
+        mainQuestsData = new Queue<QuestData>();
+        foreach (var questData in mainQuestsDatasPool)
         {
-            questsData.Enqueue(questData);
+            mainQuestsData.Enqueue(questData);
         }
-        
-        // EventsManager.NewQuestAdded += AddQuest;
-        EventsManager.QuestProgressIncreased +=QuestProgressIncreased;
-        EventsManager.OnRewardClaimed += ClaimReward;
+        TakeNextQuest();
     }
 
-    public void ChangeQuest(QuestData quest)
+    private void OnEnable()
     {
-        var nextQuest = questsData.Dequeue();
-        mainQuestPrefab.questData = nextQuest;
+        EventsManager.MainQuestProgressIncreased +=QuestProgressIncreased;
+        EventsManager.OnMainRewardClaimed += ClaimReward;
+    }
+
+    private void TakeNextQuest()
+    {
+        currentQuest = mainQuestsData.Dequeue();
+        mainQuestPrefab.questData = currentQuest;
         questsUI.Add(mainQuestPrefab);
         Instantiate(mainQuestPrefab,questsContainer.transform);
+    
     }
-    public void QuestProgressIncreased(QuestData quest)
+    public void AddPoint()
+    {
+        EventsManager.MainQuestProgressIncreased.Invoke(currentQuest);
+    }
+    private void QuestProgressIncreased(QuestData quest)
     {
         quest.currentProgress++;
         if (quest.currentProgress>=quest.goal)
@@ -55,10 +47,17 @@ public class MainQuestsManager : MonoBehaviour
         }
     }
 
-    public void ClaimReward(QuestData questData, LocalQuestUI localQuestUI)
+    private void ClaimReward(QuestData questData, MainQuestUI mainQuestUI)
     {
         questData.rewardClaimed = true;
-        questsUI.Remove(localQuestUI);
+        questsUI.Remove(mainQuestUI);
         KeyManager.SetPrefsValue(KeyManager.Coins,questData.rewardCoins);
+        TakeNextQuest();
+    }
+
+    private void OnDisable()
+    {
+        EventsManager.MainQuestProgressIncreased -=QuestProgressIncreased;
+        EventsManager.OnMainRewardClaimed -= ClaimReward;
     }
 }
