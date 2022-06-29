@@ -29,6 +29,7 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        EventsManager.OnDeath += BlockMovement;
     }
 
     private void LateUpdate()
@@ -59,4 +60,11 @@ public class Movement : MonoBehaviour
         else
             velocityDirection.y = -0.5f;
     }
+
+    public void BlockMovement()
+    {
+        _moveSpeed = 0;
+        _rotateSpeed = 0;
+    }
+    
 }
