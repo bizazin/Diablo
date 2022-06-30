@@ -33,7 +33,6 @@ public class Inventory : MonoBehaviour
     [SerializeField] private int _space;
 
     public RemoteConfigStorage rem;
- //   public Item item;
     private void OnEnable()
     {
         rem = Resources.Load<RemoteConfigStorage>("Storage");

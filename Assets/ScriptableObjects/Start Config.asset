@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c909e92f0ae19e45aa4238636cd692c, type: 3}
   m_Name: Start Config
   m_EditorClassIdentifier: 
-  ClearPrefs: 0
-  ClearCache: 0
-  ShowCheats: 0
+  ClearPrefs: 1
+  ClearCache: 1
+  ShowCheats: 1
   TargetFrameRate: 30

@@ -16,6 +16,7 @@ public class KeyManager : MonoBehaviour
     
     public static Action<string> OnPrefsChanged;
     public static string Name { get => "Name";}
+    public static string Coins { get => "Coins";}
 
     private void Awake()
     {
@@ -26,6 +27,7 @@ public class KeyManager : MonoBehaviour
     {
         //example
         allPrefs.Add(Name,GetValue(Name));
+        allPrefs.Add(Coins,GetValue(Coins));
     }
     
     public static void SetPrefsValue(string name, int value)
@@ -38,6 +40,19 @@ public class KeyManager : MonoBehaviour
         
         OnPrefsChanged?.Invoke(name);
     }
+    
+    public static void AddToPrefsValue(string name, int value)
+    {
+        int curValue = PlayerPrefs.GetInt(name);
+        curValue += value;
+        if (value!=curValue)
+        {
+            PlayerPrefs.SetInt(name,value);
+        }
+        
+        OnPrefsChanged?.Invoke(name);
+    }
+    
     public static int GetPrefsValue(string name)
     {
         return PlayerPrefs.GetInt(name);

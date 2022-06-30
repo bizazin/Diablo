@@ -1,24 +1,38 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 [Serializable]
 public class DialogueManager : MonoBehaviour
 {
-    [SerializeField] private Text name;
-    [SerializeField] private Text dialogueText;
+    [SerializeField] private TextMeshProUGUI name;
+    [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private Animator animator;
+    private string isOpen = "IsOpen";
     private Queue<string> sentences;
+    public QuestData questData;
+    
     private void Start()
     {
         sentences = new Queue<string>();
     }
 
+    public void AddQuest()
+    {
+        EventsManager.OnNewQuestAdded.Invoke(questData);
+    }
+    
+    public void AddPointQuest()
+    {
+        EventsManager.LocalQuestProgressIncreased.Invoke(questData);
+    }
+
     public void StartDialogue(Dialogue dialogue)
     {
-       
+        
         if (sentences.Count>0)
         {
             CurrentSentence();
@@ -31,8 +45,8 @@ public class DialogueManager : MonoBehaviour
             }
             CurrentSentence();
         }
-        
-        animator.SetBool("IsOpen", true);
+        Debug.Log("Dialogue started" );
+        animator.SetBool(isOpen, true);
         name.text = dialogue.name;
     }
     public void DisplayNextSentence()
@@ -66,7 +80,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
-        animator.SetBool("IsOpen", false);
+        animator.SetBool(isOpen, false);
         StopAllCoroutines();
     }
 }
