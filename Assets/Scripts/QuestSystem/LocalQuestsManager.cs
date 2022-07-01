@@ -3,11 +3,27 @@ using UnityEngine;
 
 public class LocalQuestsManager : MonoBehaviour
 {
+    
+    #region Singleton
+    public static LocalQuestsManager Instance;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogWarning("More than one instance of Inventory is found!");
+            return;
+        }
+        Instance = this;
+    }
+    #endregion
+    
     [SerializeField] private List<QuestData> questsDatasPool;
     [SerializeField] private List<LocalQuestUI> questsUI;
     [SerializeField] private LocalQuestUI localQuestPrefab;
     [SerializeField] private GameObject npcQuestsContainer;
     private Queue<QuestData> questsData;
+    public LocalQuestUI selectedQuest;
     private void Start()
     {
         questsData = new Queue<QuestData>();
@@ -22,9 +38,10 @@ public class LocalQuestsManager : MonoBehaviour
         EventsManager.OnNewQuestAdded += AddQuest;
         EventsManager.LocalQuestProgressIncreased +=QuestProgressIncreased;
         EventsManager.OnLocalQuestRewardClaimed += ClaimReward;
+       // EventsManager.OnQuestSelected += UnselectQuest;
     }
 
-    private void AddQuest(QuestData quest)
+    public void AddQuest(QuestData quest)
     {
         var nextQuest = questsData.Dequeue();
         localQuestPrefab.questData = nextQuest;
@@ -46,6 +63,36 @@ public class LocalQuestsManager : MonoBehaviour
         questData.rewardClaimed = true;
         questsUI.Remove(localQuestUI);
         KeyManager.SetPrefsValue(KeyManager.Coins,questData.rewardCoins);
+    }
+
+    public void ChangeSelectedQuest(LocalQuestUI currentQuest)
+    {
+      //  EventsManager.OnQuestSelected.Invoke();
+        if (selectedQuest != null && selectedQuest.questData == currentQuest.questData)
+        {
+            selectedQuest.ToggleSelect();
+            selectedQuest = null;
+        }
+        else if(selectedQuest!=null)
+        {
+            selectedQuest.ToggleSelect();
+            selectedQuest = currentQuest;
+            selectedQuest.ToggleSelect();
+        }
+        else
+        {
+            selectedQuest = currentQuest;
+            selectedQuest.ToggleSelect();
+        }
+    }
+
+    public void UnselectQuest()
+    {
+        if (selectedQuest != null)
+        {
+            selectedQuest.UnselectQuest();
+            selectedQuest = null;
+        }
     }
 
     private void OnDisable()

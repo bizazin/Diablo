@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731d4eb8b6e858b4d9996ddc9aa9d09d, type: 3}
   m_Name: MainQuest 2
   m_EditorClassIdentifier: 
-  name: Main2
+  name: Buy a weapon
   goal: 6
   currentProgress: 0
-  description: main
+  description: Find a dealer and buy a gun
   completed: 0
   rewardClaimed: 0
   rewardCoins: 40
+  target: {fileID: 4039287397729257012, guid: 6a8024ff879a622409c2a4a6250f8b9e, type: 3}

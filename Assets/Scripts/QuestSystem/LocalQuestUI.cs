@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,14 +6,28 @@ public class LocalQuestUI : MonoBehaviour
 {
    [SerializeField] private Slider sliderProgress;
    [SerializeField] private Button questCompleted;
+   [SerializeField] private Button questSelected;
+   [SerializeField] private GameObject imageSelected;
+   
+   [SerializeField] private TextMeshProUGUI questName;
+   [SerializeField] private TextMeshProUGUI questText;
    public QuestData questData;
 
    private void Start()
    {
-      sliderProgress.maxValue = questData.goal;
+      SetValues();
       EventsManager.OnQuestCompleted += ShowQuestCompleted;
       questCompleted.onClick.AddListener(ClaimReward);
+      questSelected.onClick.AddListener(SelectQuestTarget);
    }
+   
+   private void SetValues()
+   {
+      sliderProgress.maxValue = questData.goal;
+      questName.text = questData.name;
+      questText.text = questData.description;
+   }
+
 
    private void Update()
    {
@@ -21,13 +36,35 @@ public class LocalQuestUI : MonoBehaviour
       if (questData.completed)
          questCompleted.gameObject.SetActive(true);
    }
-   
-   public void ShowQuestCompleted(QuestData quest)
+
+   private void ShowQuestCompleted(QuestData quest)
    {
       quest.completed = true;
    }
 
-   public void ClaimReward()
+   private void SelectQuestTarget()
+   {
+      
+      //ToggleSelect();
+      MainQuestsManager.Instance.UnselectQuest();
+      LocalQuestsManager.Instance.ChangeSelectedQuest(this);
+      TargetPointer.Instance.Target = questData.target;
+      //LocalQuestsManager.Instance.ChangeSelectedQuest(this);
+     // EventsManager.OnQuestSelected.Invoke(this);
+   }
+   public void ToggleSelect()
+   {
+      bool state = imageSelected.activeSelf;
+      imageSelected.SetActive(!state);
+      TargetPointer.Instance.ToggleTarget(!state);
+   }
+
+   public void UnselectQuest()
+   {
+      imageSelected.SetActive(false);
+   }
+
+   private void ClaimReward()
    {
       EventsManager.OnLocalQuestRewardClaimed.Invoke(questData,this);
       Destroy(gameObject);
@@ -35,6 +72,8 @@ public class LocalQuestUI : MonoBehaviour
 
    private void OnDestroy()
    {
+      UnselectQuest();
       questCompleted.onClick.RemoveListener(ClaimReward);
+      questSelected.onClick.RemoveListener(SelectQuestTarget);
    }
 }

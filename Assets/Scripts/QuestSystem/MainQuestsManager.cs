@@ -3,11 +3,26 @@ using UnityEngine;
 
 public class MainQuestsManager : MonoBehaviour
 {
+        
+    #region Singleton
+    public static MainQuestsManager Instance;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogWarning("More than one instance of Inventory is found!");
+            return;
+        }
+        Instance = this;
+    }
+    #endregion
+    
     [SerializeField] private List<QuestData> mainQuestsDatasPool;
     [SerializeField] private List<MainQuestUI> questsUI;
     [SerializeField] private MainQuestUI mainQuestPrefab;
     [SerializeField] private GameObject questsContainer;
-    [SerializeField] private QuestData currentQuest;
+    [SerializeField] private QuestData currentQuestData;
     private Queue<QuestData> mainQuestsData;
  
     private void Start()
@@ -22,23 +37,24 @@ public class MainQuestsManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventsManager.MainQuestProgressIncreased +=QuestProgressIncreased;
+        EventsManager.MainQuestProgressIncreased +=IncreaseQuestProgress;
         EventsManager.OnMainRewardClaimed += ClaimReward;
+        //EventsManager.OnQuestSelected += UnselectQuest;
     }
 
     private void TakeNextQuest()
     {
-        currentQuest = mainQuestsData.Dequeue();
-        mainQuestPrefab.questData = currentQuest;
+        currentQuestData = mainQuestsData.Dequeue();
+        mainQuestPrefab.questData = currentQuestData;
         questsUI.Add(mainQuestPrefab);
         Instantiate(mainQuestPrefab,questsContainer.transform);
     
     }
     public void AddPoint()
     {
-        EventsManager.MainQuestProgressIncreased.Invoke(currentQuest);
+        EventsManager.MainQuestProgressIncreased.Invoke(currentQuestData);
     }
-    private void QuestProgressIncreased(QuestData quest)
+    private void IncreaseQuestProgress(QuestData quest)
     {
         quest.currentProgress++;
         if (quest.currentProgress>=quest.goal)
@@ -54,10 +70,21 @@ public class MainQuestsManager : MonoBehaviour
         KeyManager.SetPrefsValue(KeyManager.Coins,questData.rewardCoins);
         TakeNextQuest();
     }
+    
+    public void ChangeSelectedQuest(MainQuestUI currentQuest)
+    {
+      //  EventsManager.OnQuestSelected.Invoke();
+      
+        currentQuest.ToggleSelect();
+    }
 
+    public void UnselectQuest()
+    {
+       questsContainer.transform.GetChild(0).GetComponent<MainQuestUI>().UnselectQuest();
+    }
     private void OnDisable()
     {
-        EventsManager.MainQuestProgressIncreased -=QuestProgressIncreased;
+        EventsManager.MainQuestProgressIncreased -=IncreaseQuestProgress;
         EventsManager.OnMainRewardClaimed -= ClaimReward;
     }
 }

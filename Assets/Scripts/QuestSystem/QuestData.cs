@@ -10,4 +10,6 @@ public class QuestData : ScriptableObject
     public bool completed;
     public bool rewardClaimed;
     public int rewardCoins;
+
+    public Transform target;
 }

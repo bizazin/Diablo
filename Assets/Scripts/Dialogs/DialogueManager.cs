@@ -22,7 +22,8 @@ public class DialogueManager : MonoBehaviour
 
     public void AddQuest()
     {
-        EventsManager.OnNewQuestAdded.Invoke(questData);
+        //EventsManager.OnNewQuestAdded.Invoke(questData);
+        LocalQuestsManager.Instance.AddQuest(questData);
     }
     
     public void AddPointQuest()

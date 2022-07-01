@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Quest1
   m_EditorClassIdentifier: 
   name: Warrior
-  goal: 3
+  goal: 4
   currentProgress: 0
   description: Pick up a sword
   completed: 0
   rewardClaimed: 0
   rewardCoins: 111
+  target: {fileID: 7493679806028298752, guid: f59e7803ae42f5b44a2f1dcab0f671c4, type: 3}

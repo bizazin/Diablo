@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731d4eb8b6e858b4d9996ddc9aa9d09d, type: 3}
   m_Name: Quest2
   m_EditorClassIdentifier: 
-  name: Two
-  goal: 2
+  name: MotherFucker
+  goal: 6
   currentProgress: 0
-  description: second
+  description: Smash all the orcs
   completed: 0
   rewardClaimed: 0
   rewardCoins: 111
+  target: {fileID: 558643276566789676, guid: 73d79f3405a621a4f9132ebbde8dc0c7, type: 3}

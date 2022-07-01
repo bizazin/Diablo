@@ -4,23 +4,34 @@ using System.Collections;
 
 public class TargetPointer : MonoBehaviour
 {
+	public static TargetPointer Instance;
+
 	public Transform Target; // цель
-	public RectTransform PointerUI; // объект Image UI
-	public Sprite PointerIcon; // иконка когда цель в поле видимости
-	public Sprite OutOfScreenIcon; // иконка когда цель за приделами экрана	
-	public float InterfaceScale = 100; // масштаб интерфейса
+	[SerializeField] private RectTransform PointerUI; // объект Image UI
+	[SerializeField] private Sprite PointerIcon; // иконка когда цель в поле видимости
+	[SerializeField] private Sprite OutOfScreenIcon; // иконка когда цель за приделами экрана	
+	[SerializeField] private float InterfaceScale = 100; // масштаб интерфейса
 
 	private Vector3 startPointerSize;
 	private Camera mainCamera;
 	
-
 	private void Awake()
 	{
+		if (Instance != null)
+		{
+			Debug.LogWarning("More than one instance of Inventory is found!");
+			return;
+		}
+		Instance = this;
+		
 		startPointerSize = PointerUI.sizeDelta;
 		mainCamera = Camera.main;		
 	}
 	private void LateUpdate()
 	{
+		if (Target==null)
+			return;
+		
 		Vector3 realPos = mainCamera.WorldToScreenPoint(Target.position); // получениее экранных координат объекта
 		Rect rect = new Rect(0, 0, Screen.width, Screen.height);
 
@@ -69,6 +80,22 @@ public class TargetPointer : MonoBehaviour
 	{		
 		float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 		PointerUI.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+	}
+
+	public void ToggleTarget(bool state)
+	{
+		var image = GetComponent<Image>();
+		var tempColor = image.color;
+		if (state)
+		{
+			tempColor.a = 1f;
+		}
+		else
+		{
+			tempColor.a = 0f;
+		}
+		image.color = tempColor;
+		PointerUI.GetComponent<Image>().color = tempColor;
 	}
 	
 	
