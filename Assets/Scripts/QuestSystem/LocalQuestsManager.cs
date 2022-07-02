@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine;
 
-public class LocalQuestsManager : MonoBehaviour
+public class LocalQuestsManager : MonoBehaviour, ICanBeSaved
 {
     
     #region Singleton
@@ -19,14 +20,16 @@ public class LocalQuestsManager : MonoBehaviour
     #endregion
     
     [SerializeField] private List<QuestData> questsDatasPool;
-    [SerializeField] private List<LocalQuestUI> questsUI;
+    [JsonProperty][SerializeField] private List<LocalQuestUI> questsUI;
     [SerializeField] private LocalQuestUI localQuestPrefab;
     [SerializeField] private GameObject npcQuestsContainer;
     private Queue<QuestData> questsData;
     public LocalQuestUI selectedQuest;
+    public RemoteConfigStorage rem;
     private void Start()
     {
         questsData = new Queue<QuestData>();
+       // questsUI = SaveManager.Instance.LoadJsonList<LocalQuestUI>("Quests");
         foreach (var questData in questsDatasPool)
         {
             questsData.Enqueue(questData);
@@ -38,7 +41,6 @@ public class LocalQuestsManager : MonoBehaviour
         EventsManager.OnNewQuestAdded += AddQuest;
         EventsManager.LocalQuestProgressIncreased +=QuestProgressIncreased;
         EventsManager.OnLocalQuestRewardClaimed += ClaimReward;
-       // EventsManager.OnQuestSelected += UnselectQuest;
     }
 
     public void AddQuest(QuestData quest)
@@ -57,7 +59,6 @@ public class LocalQuestsManager : MonoBehaviour
             EventsManager.OnQuestCompleted.Invoke(quest);
         }
     }
-
     private void ClaimReward(QuestData questData, LocalQuestUI localQuestUI)
     {
         questData.rewardClaimed = true;
@@ -100,5 +101,7 @@ public class LocalQuestsManager : MonoBehaviour
         EventsManager.OnNewQuestAdded -= AddQuest;
         EventsManager.LocalQuestProgressIncreased -=QuestProgressIncreased;
         EventsManager.OnLocalQuestRewardClaimed -= ClaimReward;
+        //LoadFromRemoteConfig.Instance.SaveJsonListToRem(questsUI, RemoteConfigs.LocalQuests);
+        //SaveManager.Instance.SaveListToFile("Quests",questsUI);
     }
 }

@@ -1,17 +1,21 @@
+using System;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Serializable]
 public class LocalQuestUI : MonoBehaviour
 {
-   [SerializeField] private Slider sliderProgress;
-   [SerializeField] private Button questCompleted;
-   [SerializeField] private Button questSelected;
-   [SerializeField] private GameObject imageSelected;
+   [JsonIgnore][SerializeField] private Slider sliderProgress;
+   [JsonIgnore][SerializeField] private Button questCompleted;
+   [JsonIgnore][SerializeField] private Button questSelected;
+   [JsonIgnore][SerializeField] private GameObject imageSelected;
    
-   [SerializeField] private TextMeshProUGUI questName;
-   [SerializeField] private TextMeshProUGUI questText;
-   public QuestData questData;
+   [JsonIgnore][SerializeField] private TextMeshProUGUI questName;
+   [JsonIgnore][SerializeField] private TextMeshProUGUI questText;
+   [JsonProperty] public QuestData questData;
 
    private void Start()
    {

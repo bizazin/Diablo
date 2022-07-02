@@ -21,7 +21,13 @@ public class LoadFromRemoteConfig : MonoBehaviour
     
     private RemoteConfigStorage rem;
     
-    public List<T> LoadJsonList<T>(RemoteConfigs type, RemoteConfigs typeToEnable, List<T> jsonList)
+    public void SaveJsonListToRem<T>(List<T> list,RemoteConfigs remoteConfig)
+    {
+        string jsonString = JsonConvert.SerializeObject(list);
+        rem.GetConfig(remoteConfig).Value = jsonString;
+    }
+    
+    public List<T> LoadJsonListCustom<T>(RemoteConfigs type, RemoteConfigs typeToEnable, List<T> jsonList)
     {
     
         string configJson = CheckEnabled(type,typeToEnable);
@@ -32,10 +38,17 @@ public class LoadFromRemoteConfig : MonoBehaviour
         }
         else
         {
-            configJson = rem.GetConfig(RemoteConfigs.Inventory).DefaultValue;
+            configJson = rem.GetConfig(type).DefaultValue;
             jsonList = JsonConvert.DeserializeObject<List<T>>(configJson);
         }
 
+        return jsonList;
+    }
+    
+    public List<T> LoadJsonList<T>(RemoteConfigs type)
+    {
+        string configJson = rem.GetConfig(type).Value;
+        var jsonList = JsonConvert.DeserializeObject<List<T>>(configJson);
         return jsonList;
     }
     
