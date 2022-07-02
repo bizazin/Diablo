@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Warrior
   goal: 4
-  currentProgress: 0
+  currentProgress: 4
   description: Pick up a sword
+  questTaken: 0
   completed: 0
   rewardClaimed: 0
   rewardCoins: 111

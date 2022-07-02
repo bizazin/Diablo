@@ -13,7 +13,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
  
     [SerializeField] private List<DialogueData> allDialogues;
-    [SerializeField] private List<DialogueData> currentDialogues;
+    [SerializeField] private Queue<DialogueData> currentDialogues;
     
     private string isOpen = "IsOpen";
     private Queue<string> sentences;
@@ -23,6 +23,7 @@ public class DialogueManager : MonoBehaviour
     private void Start()
     {
         sentences = new Queue<string>();
+        currentDialogues = new Queue<DialogueData>();
     }
 
     public void AddQuest()
@@ -39,7 +40,7 @@ public class DialogueManager : MonoBehaviour
     {
         foreach (var dialogue in allDialogues)
             if(dialogue.character == character && !dialogue.quest.completed)
-                currentDialogues.Add(dialogue);
+                currentDialogues.Enqueue(dialogue);
     }
 
     public void StartDialogue(DialogueData.Character character)
@@ -54,7 +55,7 @@ public class DialogueManager : MonoBehaviour
         else
         {
             //добавляем предложения только из первого, незавершенного диалога
-            foreach (var sentence in currentDialogues[0].sentences)
+            foreach (var sentence in currentDialogues.Peek().sentences)
             {
                 sentences.Enqueue(sentence);
             }
@@ -62,15 +63,17 @@ public class DialogueManager : MonoBehaviour
         }
         Debug.Log("Dialogue started" );
         animator.SetBool(isOpen, true);
-        //name.text = allDialogues.name;
+        name.text = currentDialogues.Peek().name;
     }
     public void DisplayNextSentence()
     {
+        var currentDialogue =  currentDialogues.Peek();
         if (allDialogues!=null)
         {
             sentences.Dequeue();
             if (sentences.Count == 0)
             {
+                TakeQuest(currentDialogue);
                 EndDialogue();
                 return;
             }
@@ -80,6 +83,15 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public void TakeQuest(DialogueData currentDialogue)
+    {
+        if (!currentDialogue.quest.questTaken)
+        {
+            LocalQuestsManager.Instance.AddQuest(currentDialogues.Peek().quest);
+            currentDialogue.quest.questTaken = true;
+        }
+        
+    }
     public void CurrentSentence()
     {
         string sentence = sentences.Peek();
@@ -98,6 +110,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+       
         animator.SetBool(isOpen, false);
         StopAllCoroutines();
         currentDialogues.Clear();

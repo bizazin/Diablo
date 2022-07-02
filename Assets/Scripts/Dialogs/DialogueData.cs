@@ -14,6 +14,5 @@ public class DialogueData: ScriptableObject
     public Character character;
     public string[] sentences;
     public string name;
-    public bool questTaken;
 
 }

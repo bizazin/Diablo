@@ -7,6 +7,7 @@ public class QuestData : ScriptableObject
     public int goal;
     public int currentProgress;
     public string description;
+    public bool questTaken;
     public bool completed;
     public bool rewardClaimed;
     public int rewardCoins;

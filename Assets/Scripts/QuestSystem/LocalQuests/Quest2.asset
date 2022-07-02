@@ -16,6 +16,7 @@ MonoBehaviour:
   goal: 6
   currentProgress: 0
   description: Smash all the orcs
+  questTaken: 0
   completed: 0
   rewardClaimed: 0
   rewardCoins: 111
