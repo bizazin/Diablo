@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -20,7 +21,7 @@ public class LocalQuestsManager : MonoBehaviour, ICanBeSaved
     #endregion
     
     [SerializeField] private List<QuestData> questsDatasPool;
-    [JsonProperty][SerializeField] private List<LocalQuestUI> questsUI;
+    [SerializeField] private List<LocalQuestUI> questsUI;
     [SerializeField] private LocalQuestUI localQuestPrefab;
     [SerializeField] private GameObject npcQuestsContainer;
     private Queue<QuestData> questsData;
@@ -28,11 +29,25 @@ public class LocalQuestsManager : MonoBehaviour, ICanBeSaved
     public RemoteConfigStorage rem;
     private void Start()
     {
-        questsData = new Queue<QuestData>();
-       // questsUI = SaveManager.Instance.LoadJsonList<LocalQuestUI>("Quests");
-        foreach (var questData in questsDatasPool)
+        LoadQuests();
+    }
+
+    private void LoadQuests()
+    {
+        List<int> loadedJson = SaveManager.Instance.LoadJsonList<int>("Quests");
+        questsUI = new List<LocalQuestUI>();
+        if (loadedJson != null)
         {
-            questsData.Enqueue(questData);
+            for (int i=0; i<questsDatasPool.Count;i++)
+            {
+                for (int j = 0; j < loadedJson.Count; j++)
+                {
+                    if (questsDatasPool[i].idQuest == loadedJson[j])
+                    {
+                        AddQuest(questsDatasPool[i]);
+                    };
+                }
+            }
         }
     }
 
@@ -45,8 +60,7 @@ public class LocalQuestsManager : MonoBehaviour, ICanBeSaved
 
     public void AddQuest(QuestData quest)
     {
-        var nextQuest = questsData.Dequeue();
-        localQuestPrefab.questData = nextQuest;
+        localQuestPrefab.questData = quest;
         questsUI.Add(localQuestPrefab);
         Instantiate(localQuestPrefab,npcQuestsContainer.transform);
     }
@@ -101,7 +115,19 @@ public class LocalQuestsManager : MonoBehaviour, ICanBeSaved
         EventsManager.OnNewQuestAdded -= AddQuest;
         EventsManager.LocalQuestProgressIncreased -=QuestProgressIncreased;
         EventsManager.OnLocalQuestRewardClaimed -= ClaimReward;
-        //LoadFromRemoteConfig.Instance.SaveJsonListToRem(questsUI, RemoteConfigs.LocalQuests);
-        //SaveManager.Instance.SaveListToFile("Quests",questsUI);
+        SaveQuests();
     }
+    private void SaveQuests()
+    {
+        List<int> questIDs = new List<int>();
+        foreach (var quest in questsDatasPool)
+        {
+            if (quest.questTaken && !quest.rewardClaimed)
+            {
+                questIDs.Add(quest.idQuest);
+            }
+        }
+        SaveManager.Instance.SaveListToFile("Quests", questIDs);
+    }
+    
 }

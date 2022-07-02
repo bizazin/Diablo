@@ -15,7 +15,8 @@ public class LocalQuestUI : MonoBehaviour
    
    [JsonIgnore][SerializeField] private TextMeshProUGUI questName;
    [JsonIgnore][SerializeField] private TextMeshProUGUI questText;
-   [JsonProperty] public QuestData questData;
+   [JsonIgnore]public QuestData questData;
+   [JsonProperty] public int i = 012;
 
    private void Start()
    {

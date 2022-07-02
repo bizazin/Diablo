@@ -58,11 +58,11 @@ public class SaveManager : MonoBehaviour
     }
     
     
-    public List<LocalQuestUI> LoadJsonList<T>(string filePath)
+    public List<int> LoadJsonList<T>(string filePath)
     {
         string path = Application.streamingAssetsPath + "/" + filePath + ".json";
         var str = File.ReadAllText(path);
-        var jsonList = JsonConvert.DeserializeObject<List<LocalQuestUI>>(str,
+        var jsonList = JsonConvert.DeserializeObject<List<int>>(str,
             new JsonSerializerSettings()
             { 
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore

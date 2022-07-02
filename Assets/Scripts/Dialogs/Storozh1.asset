@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b11b74b1d4b0dfd409fc3517ae1c6010, type: 3}
   m_Name: Storozh1
   m_EditorClassIdentifier: 
-  questTaken: 0
-  completed: 0
   quest: {fileID: 11400000, guid: f8316ab0b70777843981f0d37eabf748, type: 2}
   character: 0
-  name: Warrior
   sentences:
   - Pidor
   - Not you
-  - dfgfdsa sfdgh
+  - PIDORRRRRRRRRRRR
+  name: Warrior

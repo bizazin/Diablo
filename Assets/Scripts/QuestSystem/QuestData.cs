@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewQuest", menuName = "Quests")]
 public class QuestData : ScriptableObject
 {
+    public int idQuest;
     public string name;
     public int goal;
     public int currentProgress;

@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731d4eb8b6e858b4d9996ddc9aa9d09d, type: 3}
   m_Name: MainQuest 1
   m_EditorClassIdentifier: 
+  idQuest: 0
   name: Lets talk
   goal: 7
   currentProgress: 0
   description: Talk to the guard at the gate
+  questTaken: 0
   completed: 0
   rewardClaimed: 0
   rewardCoins: 40

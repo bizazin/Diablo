@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731d4eb8b6e858b4d9996ddc9aa9d09d, type: 3}
   m_Name: Quest1
   m_EditorClassIdentifier: 
+  idQuest: 0
   name: Warrior
   goal: 4
   currentProgress: 0
   description: Pick up a sword
-  questTaken: 1
+  questTaken: 0
   completed: 0
   rewardClaimed: 0
   rewardCoins: 111
