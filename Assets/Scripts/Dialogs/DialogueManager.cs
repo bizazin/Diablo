@@ -3,17 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 [Serializable]
 public class DialogueManager : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
+    
     [SerializeField] private TextMeshProUGUI name;
     [SerializeField] private TextMeshProUGUI dialogueText;
-    [SerializeField] private Animator animator;
+ 
+    [SerializeField] private List<DialogueData> allDialogues;
+    [SerializeField] private List<DialogueData> currentDialogues;
+    
     private string isOpen = "IsOpen";
     private Queue<string> sentences;
     public QuestData questData;
+    
     
     private void Start()
     {
@@ -22,7 +27,6 @@ public class DialogueManager : MonoBehaviour
 
     public void AddQuest()
     {
-        //EventsManager.OnNewQuestAdded.Invoke(questData);
         LocalQuestsManager.Instance.AddQuest(questData);
     }
     
@@ -31,16 +35,26 @@ public class DialogueManager : MonoBehaviour
         EventsManager.LocalQuestProgressIncreased.Invoke(questData);
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void SortDialogues(DialogueData.Character character)
     {
-        
+        foreach (var dialogue in allDialogues)
+            if(dialogue.character == character && !dialogue.quest.completed)
+                currentDialogues.Add(dialogue);
+    }
+
+    public void StartDialogue(DialogueData.Character character)
+    {
+       // allDialogues = dialogue;
+        SortDialogues(character);
+       
         if (sentences.Count>0)
         {
             CurrentSentence();
         }
         else
         {
-            foreach (var sentence in dialogue.sentences)
+            //добавляем предложения только из первого, незавершенного диалога
+            foreach (var sentence in currentDialogues[0].sentences)
             {
                 sentences.Enqueue(sentence);
             }
@@ -48,19 +62,22 @@ public class DialogueManager : MonoBehaviour
         }
         Debug.Log("Dialogue started" );
         animator.SetBool(isOpen, true);
-        name.text = dialogue.name;
+        //name.text = allDialogues.name;
     }
     public void DisplayNextSentence()
     {
-        sentences.Dequeue();
-        if (sentences.Count == 0)
+        if (allDialogues!=null)
         {
-            EndDialogue();
-            return;
+            sentences.Dequeue();
+            if (sentences.Count == 0)
+            {
+                EndDialogue();
+                return;
+            }
+            string sentence = sentences.Peek();
+            StopAllCoroutines();
+            StartCoroutine(FadeSentence(sentence));
         }
-        string sentence = sentences.Peek();
-        StopAllCoroutines();
-        StartCoroutine(FadeSentence(sentence));
     }
 
     public void CurrentSentence()
@@ -83,6 +100,8 @@ public class DialogueManager : MonoBehaviour
     {
         animator.SetBool(isOpen, false);
         StopAllCoroutines();
+        currentDialogues.Clear();
+        sentences.Clear();
     }
 }
 
