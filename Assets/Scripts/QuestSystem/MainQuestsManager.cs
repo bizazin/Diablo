@@ -30,9 +30,17 @@ public class MainQuestsManager : MonoBehaviour
         mainQuestsData = new Queue<QuestData>();
         foreach (var questData in mainQuestsDatasPool)
         {
-            mainQuestsData.Enqueue(questData);
+            if (!questData.rewardClaimed)
+            {
+                mainQuestsData.Enqueue(questData);
+            }
         }
         TakeNextQuest();
+    }
+    
+    private void LoadQuests()
+    {
+        
     }
 
     private void OnEnable()
@@ -47,6 +55,7 @@ public class MainQuestsManager : MonoBehaviour
         currentQuestData = mainQuestsData.Dequeue();
         mainQuestPrefab.questData = currentQuestData;
         questsUI.Add(mainQuestPrefab);
+        currentQuestData.questTaken = true;
         Instantiate(mainQuestPrefab,questsContainer.transform);
     
     }

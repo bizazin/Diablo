@@ -19,3 +19,9 @@ MonoBehaviour:
   - _name: enable_custom_inventory
     _type: 1
     _defaultValue: 1
+  - _name: enable_custom_inventory
+    _type: 1
+    _defaultValue: 1
+  - _name: enable_custom_inventory
+    _type: 1
+    _defaultValue: 1
