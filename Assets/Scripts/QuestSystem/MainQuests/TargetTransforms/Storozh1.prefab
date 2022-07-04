@@ -3199,7 +3199,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5311811899658562608}
-  - component: {fileID: 5311811899658562611}
   m_Layer: 0
   m_Name: DialogManager
   m_TagString: Untagged
@@ -3221,23 +3220,6 @@ Transform:
   m_Father: {fileID: 5307052176055067876}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5311811899658562611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5311811899658562610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e198616776215b41be5a7a3184f0bf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  name: {fileID: 0}
-  dialogueText: {fileID: 0}
-  allDialogues: []
-  questData: {fileID: 11400000, guid: f8316ab0b70777843981f0d37eabf748, type: 2}
 --- !u!1 &5311811900129754939
 GameObject:
   m_ObjectHideFlags: 0
