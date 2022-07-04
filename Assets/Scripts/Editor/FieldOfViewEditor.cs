@@ -21,9 +21,11 @@ public class FieldOfViewEditor : Editor
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngleB * fov.ViewRadius);
 
         Handles.color = Color.red;
-        
-        Handles.DrawLine(fov.transform.position, fov.visibleTarget.position);
-        
+
+        if (fov.visibleTarget != null)
+        {
+            Handles.DrawLine(fov.transform.position, fov.visibleTarget.position);
+        }
     }
 }
 #endif
