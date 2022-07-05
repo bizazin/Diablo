@@ -116,11 +116,11 @@ namespace BattleDrakeStudios.ModularCharacters {
 
         private void SetupPartsFromExisting() {
             if (existingArmor != null) {
-                armorTypeIndex = (int)existingArmor.armorType;
+                armorTypeIndex = (int)existingArmor.ArmorType;
                 armorParts = GetArmorParts(armorTypes[armorTypeIndex]);
                 activePartID = new int[armorParts.Count];
                 for (int i = 0; i < activePartID.Length; i++) {
-                    activePartID[i] = existingArmor.armorParts[i].partID;
+                    activePartID[i] = existingArmor.ArmorParts[i].partID;
                     armorParts[i].partID = activePartID[i];
                     if (armorParts[i].partID > -1)
                         characterManager.ActivatePart(armorParts[i].bodyType, armorParts[i].partID);
@@ -331,15 +331,15 @@ namespace BattleDrakeStudios.ModularCharacters {
         private void SaveDataToAsset(bool isNew) {
             Equipment newArmor = ScriptableObject.CreateInstance<Equipment>();
 
-            newArmor.armorType = armorTypes[armorTypeIndex];
+            newArmor.ArmorType = armorTypes[armorTypeIndex];
 
            /* foreach (var armorColor in newArmor.armorColors) {
                 armorColor.color = previewMaterial.GetColor(armorColor.property);
             }*/
 
-            newArmor.armorParts = armorParts.ToArray();
-            for (int i = 0; i < newArmor.armorParts.Length; i++) {
-                newArmor.armorParts[i].partID = activePartID[i];
+            newArmor.ArmorParts = armorParts.ToArray();
+            for (int i = 0; i < newArmor.ArmorParts.Length; i++) {
+                newArmor.ArmorParts[i].partID = activePartID[i];
             }
 
             if (isNew) {

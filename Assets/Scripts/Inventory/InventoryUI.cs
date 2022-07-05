@@ -1,84 +1,71 @@
-using System.Collections;
-using System.Collections.Generic;
 using bizazin;
-using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    [SerializeField] private Transform _itemsParent;
-    [SerializeField] private InventorySlot _slot;
-    [SerializeField] private GameObject _contents;
-    [SerializeField] private Button _removeButton;
-    [SerializeField] private Button _equipButton;
-    [SerializeField] private InventorySlot _focusedSlot;
+    [SerializeField] private Transform ñontents;
+    [SerializeField] private InventorySlot slot;
+    [SerializeField] private Button removeButton;
+    [SerializeField] private Button equipButton;
+    [SerializeField] private InventorySlot selectedSlot;
+    [SerializeField] private ConfirmSellWindow confirmDeleteWindow;
 
-    private Inventory _inventory;
-    private InventorySlot[] _slots;
+    private Inventory inventory;
+    private InventorySlot[] slots;
 
     private void Start()
     {
-        _inventory = Inventory.Instance;
-        _inventory.OnItemChangedCallback += UpdateUI;
-        _removeButton.onClick.AddListener(RemoveFocusedSlot);
-        _equipButton.onClick.AddListener(EquipItem);
-        EventsManager.OnInventorySlotFocused += ChangeFocusedSlot;
-       
+        inventory = Inventory.Instance;
+        inventory.OnItemChangedCallback += UpdateUI;
+
+        equipButton.onClick.AddListener(EquipItem);
+        EventsManager.OnItemClicked += ChangeSelectedSlot;
+        removeButton.onClick.AddListener(ConfirmDeleteItem);
     }
 
     private void UpdateUI()
     {
         CreateFrameForItem();
-        _slots = _itemsParent.GetComponentsInChildren<InventorySlot>();
-        for (int i = 0; i < _slots.Length; i++)
+        slots = ñontents.GetComponentsInChildren<InventorySlot>();
+        for (int i = 0; i < slots.Length; i++)
         {
-            if (i < _inventory.Items.Count)
-                _slots[i].AddItem(_inventory.Items[i]);
+            if (i < inventory.Items.Count)
+                slots[i].AddItem(inventory.Items[i]);
             else
-                _slots[i].ClearSlot();
+                slots[i].DeleteSlot();
         }
     }
 
     public void EquipItem()
     {
-        if (_focusedSlot.Item is Equipment currentEquipment)
+        if (selectedSlot.Item is Equipment currentEquipment)
             EventsManager.OnItemEquipped?.Invoke(currentEquipment);
     }
 
     private void CreateFrameForItem()
     {
-        Instantiate(_slot, _contents.transform);
+        Instantiate(slot, ñontents);
     }
 
-    private void RemoveFocusedSlot()
+    private void ConfirmDeleteItem()
     {
-        if (_focusedSlot != null)
+        if (selectedSlot != null)
         {
-            _focusedSlot.DeleteSlotFromUI();
-
-            Inventory.Instance.Items.Remove(_focusedSlot.Item);
+            confirmDeleteWindow.Initialize(selectedSlot);
+            confirmDeleteWindow.Open();
         }
     }
 
-    public void ChangeFocusedSlot(InventorySlot inventorySlot)
+    public void ChangeSelectedSlot(InventorySlot currentSlot)
     {
-        if (_focusedSlot!=null)
+        InventorySlot previousSlot = null;
+        if (currentSlot.IsSelected)
         {
-            _focusedSlot.ChangeFocusedItem();
-            _focusedSlot = inventorySlot;
+            previousSlot = selectedSlot?.Deselect();
+            selectedSlot = currentSlot?.Select();
         }
         else
-            _focusedSlot = inventorySlot;
-    }
-
-    private void FocusedSlot()
-    {
-        foreach (var slot in _slots)
-        {
-            if (slot.IsFocused)
-                _focusedSlot = slot;
-        }
-       // return _focusedSlot;
+            selectedSlot = currentSlot?.Deselect();
     }
 }
