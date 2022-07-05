@@ -7,11 +7,11 @@ namespace bizazin
     [CreateAssetMenu(fileName = "NewItem", menuName = "Inventory/Item")]
     public class Item : ScriptableObject
     {
-        [SerializeField] private string _itemName;
-        [SerializeField] private Sprite _icon;
-        [SerializeField] private bool _isDefaultItem;
-        public string ItemName { get { return _itemName; } set { _itemName = value; } }
-        public Sprite Icon { get { return _icon; } set { _icon = value; } }
-        public bool IsDefaultItem { get { return _isDefaultItem; } set { _isDefaultItem = value; } }
+        [SerializeField] private string name;
+        [SerializeField] private Sprite icon;
+        [SerializeField] private bool isDefaultItem;
+        public string Name { get { return name; } set { name = value; } }
+        public Sprite Icon { get { return icon; } set { icon = value; } }
+        public bool IsDefaultItem { get { return isDefaultItem; } set { isDefaultItem = value; } }
     }
 }

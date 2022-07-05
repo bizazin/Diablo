@@ -29,7 +29,7 @@ namespace BattleDrakeStudios.ModularCharacters {
 
         public void RemoveFromInventory()
         {
-            Inventory.Instance.Remove(equipment);
+            Inventory.Instance.RemoveItem(equipment);
         }
     }
     

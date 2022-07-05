@@ -43,7 +43,7 @@ public class EquipmentManager : MonoBehaviour
 
     public void EquipItem(Equipment itemToEquip)
     {
-        foreach (var part in itemToEquip.armorParts)
+        foreach (var part in itemToEquip.ArmorParts)
         {
             if (part.partID > -1)
                 characterManager.ActivatePart(part.bodyType, part.partID);
@@ -54,7 +54,7 @@ public class EquipmentManager : MonoBehaviour
 
     private void OnEquipmentAdded(Equipment itemToPickedUp)
     {
-        int i = (int)itemToPickedUp.armorType;
+        int i = (int)itemToPickedUp.ArmorType;
         equipmentSlots[i] = itemToPickedUp;
         EquipItem(itemToPickedUp);
     }

@@ -48,11 +48,9 @@ public class MainQuestUI : MonoBehaviour
    
    private void SelectQuestTarget()
    {
-      
       ToggleSelect();
       LocalQuestsManager.Instance.UnselectQuest();
       TargetPointer.Instance.Target = questData.target;
-      // EventsManager.OnQuestSelected.Invoke(this);
    }
    public void ToggleSelect()
    {
