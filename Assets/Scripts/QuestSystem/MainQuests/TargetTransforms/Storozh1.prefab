@@ -2077,7 +2077,6 @@ Transform:
   - {fileID: 5311811899658562608}
   - {fileID: 5311811900129754936}
   - {fileID: 5311811900495398286}
-  - {fileID: 5311811900053536987}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3200,7 +3199,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5311811899658562608}
-  - component: {fileID: 5311811899658562611}
   m_Layer: 0
   m_Name: DialogManager
   m_TagString: Untagged
@@ -3222,72 +3220,6 @@ Transform:
   m_Father: {fileID: 5307052176055067876}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5311811899658562611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5311811899658562610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e198616776215b41be5a7a3184f0bf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: {fileID: 0}
-  dialogueText: {fileID: 0}
-  animator: {fileID: 0}
-  questData: {fileID: 11400000, guid: f8316ab0b70777843981f0d37eabf748, type: 2}
---- !u!1 &5311811900053536986
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5311811900053536987}
-  - component: {fileID: 5311811900053536984}
-  m_Layer: 0
-  m_Name: LocalQuestsManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5311811900053536987
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5311811900053536986}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5307052176055067876}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5311811900053536984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5311811900053536986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 755394acd3212d84f9d03534943f0e38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questsDatasPool:
-  - {fileID: 11400000, guid: f8316ab0b70777843981f0d37eabf748, type: 2}
-  - {fileID: 11400000, guid: 12a5685d054a6d441889a9ed79ab08c8, type: 2}
-  questsUI: []
-  localQuestPrefab: {fileID: 7677034242358797620, guid: 0a052bbf16725554dbe56bb2f19a4bb2, type: 3}
-  npcQuestsContainer: {fileID: 0}
-  selectedQuest: {fileID: 0}
 --- !u!1 &5311811900129754939
 GameObject:
   m_ObjectHideFlags: 0
@@ -3374,7 +3306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f892d7a8a81b3e439c68e9701661f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 0}
+  character: 0
 --- !u!65 &5311811900495398284
 BoxCollider:
   m_ObjectHideFlags: 0

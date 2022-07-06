@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine;
 
-public class LocalQuestsManager : MonoBehaviour
+public class LocalQuestsManager : MonoBehaviour, ICanBeSaved
 {
     
     #region Singleton
@@ -10,10 +12,7 @@ public class LocalQuestsManager : MonoBehaviour
     private void Awake()
     {
         if (Instance != null)
-        {
-            Debug.LogWarning("More than one instance of Inventory is found!");
             return;
-        }
         Instance = this;
     }
     #endregion
@@ -24,12 +23,28 @@ public class LocalQuestsManager : MonoBehaviour
     [SerializeField] private GameObject npcQuestsContainer;
     private Queue<QuestData> questsData;
     public LocalQuestUI selectedQuest;
+    public RemoteConfigStorage rem;
     private void Start()
     {
-        questsData = new Queue<QuestData>();
-        foreach (var questData in questsDatasPool)
+        LoadQuests();
+    }
+
+    private void LoadQuests()
+    {
+        List<int> loadedJson = SaveManager.Instance.LoadJsonList<int>("Quests");
+        questsUI = new List<LocalQuestUI>();
+        if (loadedJson != null)
         {
-            questsData.Enqueue(questData);
+            for (int i=0; i<questsDatasPool.Count;i++)
+            {
+                for (int j = 0; j < loadedJson.Count; j++)
+                {
+                    if (questsDatasPool[i].idQuest == loadedJson[j])
+                    {
+                        AddQuest(questsDatasPool[i]);
+                    };
+                }
+            }
         }
     }
 
@@ -38,13 +53,11 @@ public class LocalQuestsManager : MonoBehaviour
         EventsManager.OnNewQuestAdded += AddQuest;
         EventsManager.LocalQuestProgressIncreased +=QuestProgressIncreased;
         EventsManager.OnLocalQuestRewardClaimed += ClaimReward;
-       // EventsManager.OnQuestSelected += UnselectQuest;
     }
 
     public void AddQuest(QuestData quest)
     {
-        var nextQuest = questsData.Dequeue();
-        localQuestPrefab.questData = nextQuest;
+        localQuestPrefab.questData = quest;
         questsUI.Add(localQuestPrefab);
         Instantiate(localQuestPrefab,npcQuestsContainer.transform);
     }
@@ -57,7 +70,6 @@ public class LocalQuestsManager : MonoBehaviour
             EventsManager.OnQuestCompleted.Invoke(quest);
         }
     }
-
     private void ClaimReward(QuestData questData, LocalQuestUI localQuestUI)
     {
         questData.rewardClaimed = true;
@@ -100,5 +112,19 @@ public class LocalQuestsManager : MonoBehaviour
         EventsManager.OnNewQuestAdded -= AddQuest;
         EventsManager.LocalQuestProgressIncreased -=QuestProgressIncreased;
         EventsManager.OnLocalQuestRewardClaimed -= ClaimReward;
+        SaveQuests();
     }
+    private void SaveQuests()
+    {
+        List<int> questIDs = new List<int>();
+        foreach (var quest in questsDatasPool)
+        {
+            if (quest.questTaken && !quest.rewardClaimed)
+            {
+                questIDs.Add(quest.idQuest);
+            }
+        }
+        SaveManager.Instance.SaveListToFile("Quests", questIDs);
+    }
+    
 }

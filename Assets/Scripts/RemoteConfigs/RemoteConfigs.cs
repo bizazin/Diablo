@@ -7,4 +7,7 @@ using UnityEngine;
     {
         Inventory= 0,
         EnableCustomInventory = 1,
+        LocalQuests = 2,
+        EnableCustomLocalQuest = 3,
+        
     }

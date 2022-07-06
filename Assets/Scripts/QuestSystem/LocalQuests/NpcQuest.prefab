@@ -584,7 +584,8 @@ MonoBehaviour:
   imageSelected: {fileID: 4032353261925577430}
   questName: {fileID: 3954582149174793548}
   questText: {fileID: 7462871564844950026}
-  questData: {fileID: 11400000, guid: f8316ab0b70777843981f0d37eabf748, type: 2}
+  questData: {fileID: 0}
+  i: 12
 --- !u!1 &3954582150525257550
 GameObject:
   m_ObjectHideFlags: 0
