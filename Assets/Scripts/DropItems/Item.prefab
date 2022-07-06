@@ -20,12 +20,56 @@ MonoBehaviour:
   - {fileID: 5173896850918873045}
   - {fileID: 5173951173272018235}
   newColors:
-  - {r: 0.764151, g: 0.764151, b: 0.764151, a: 0.2}
+  - {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 0.2}
   - {r: 0.3622641, g: 1, b: 0.57211053, a: 0.45490196}
   - {r: 0.1830188, g: 0.34688374, b: 1, a: 0.41960785}
   - {r: 0.7216928, g: 0.11698109, b: 1, a: 0.34117648}
-  - {r: 1, g: 0.66389066, b: 0.22075468, a: 0.3764706}
+  - {r: 0.8584906, g: 0.4874846, b: 0, a: 0.3764706}
   alphas: 28000000ff0000001e000000ff0000001e000000ff000000
+--- !u!1 &5051793743522808010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 111220469780460742}
+  - component: {fileID: 2150510617603490668}
+  m_Layer: 9
+  m_Name: Body
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &111220469780460742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5051793743522808010}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7081282840312082509}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2150510617603490668
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5051793743522808010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.45
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7081282840312082502
 GameObject:
   m_ObjectHideFlags: 0
@@ -37,7 +81,6 @@ GameObject:
   - component: {fileID: 7081282840312082509}
   - component: {fileID: 7081282840312082498}
   - component: {fileID: 7081282840312082496}
-  - component: {fileID: 3400835060452963656}
   - component: {fileID: 331562602}
   - component: {fileID: 7081282840312082497}
   - component: {fileID: 7241679521081556584}
@@ -60,6 +103,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4980249624328551245}
+  - {fileID: 111220469780460742}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -83,19 +127,6 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &3400835060452963656
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7081282840312082502}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.45
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &331562602
 Rigidbody:
@@ -264,6 +295,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 198951959689354048, guid: 1e00a4340f4ae8a4b8253da4ffaa7c82, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 198951959689354048, guid: 1e00a4340f4ae8a4b8253da4ffaa7c82, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0.7169812
       objectReference: {fileID: 0}
@@ -274,6 +309,18 @@ PrefabInstance:
     - target: {fileID: 198951959689354048, guid: 1e00a4340f4ae8a4b8253da4ffaa7c82, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
       value: 0.18533282
+      objectReference: {fileID: 0}
+    - target: {fileID: 198951959689354048, guid: 1e00a4340f4ae8a4b8253da4ffaa7c82, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime1
+      value: 32189
+      objectReference: {fileID: 0}
+    - target: {fileID: 198951959689354048, guid: 1e00a4340f4ae8a4b8253da4ffaa7c82, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.a
+      value: 0.6901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 199293778347593414, guid: 1e00a4340f4ae8a4b8253da4ffaa7c82, type: 3}
+      propertyPath: m_MaxParticleSize
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 199740422434755458, guid: 1e00a4340f4ae8a4b8253da4ffaa7c82, type: 3}
       propertyPath: m_Materials.Array.size
