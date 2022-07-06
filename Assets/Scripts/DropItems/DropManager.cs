@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using bizazin;
 using UnityEngine;
@@ -19,10 +18,12 @@ public class DropManager : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] private Item[] container;
+    [SerializeField] private ItemsContainer container;
     [SerializeField] private Item itemToDrop;
     [SerializeField] private ItemStats stats;
     [SerializeField] private StatsValuesContainer statsValues;
+
+    private int currentItemID;
     
     public Item SetupItem()
     {
@@ -32,14 +33,37 @@ public class DropManager : MonoBehaviour
         
         SetRare();
         RandomStats();
+        MultiplyStats(currentItemID);
         itemToDrop.Stats = stats;
         return itemToDrop;
     }
 
     private void ChooseItemType()
     {
-        int idItem = Random.Range(0, container.Length);
-        itemToDrop = container[idItem];
+        int idType = Random.Range(0,5);
+        switch (idType)
+        {
+            case 0: 
+                currentItemID = Random.Range(0,container.weapon.Length);
+                itemToDrop = container.weapon[currentItemID];
+                break;
+            case 1:
+                currentItemID = Random.Range(0,container.helmet.Length);
+                itemToDrop = container.helmet[currentItemID];
+                break;
+            case 2:
+                currentItemID = Random.Range(0,container.chest.Length);
+                itemToDrop = container.chest[currentItemID];
+                break;
+            case 3:
+                currentItemID = Random.Range(0,container.arms.Length);
+                itemToDrop = container.arms[currentItemID];
+                break;
+            case 4:
+                currentItemID = Random.Range(0,container.legs.Length);
+                itemToDrop = container.legs[currentItemID];
+                break;
+        }
     }
     private void SetRare()
     {
