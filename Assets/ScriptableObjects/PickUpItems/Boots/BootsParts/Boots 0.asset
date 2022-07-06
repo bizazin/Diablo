@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2823cab264e989448ae0ac1a156539d7, type: 3}
   m_Name: Boots 0
   m_EditorClassIdentifier: 
-  armorType: 6
-  armorParts:
-  - bodyType: 24
-    partID: 0
-  - bodyType: 25
-    partID: 0
-  - bodyType: 26
-    partID: 0
-  - bodyType: 27
-    partID: 0
+  name: Boots
+  icon: {fileID: 21300000, guid: 82b8b2544f0ce4164a31119e70601d03, type: 3}
+  _isDefaultItem: 0
+  stats:
+    damage: 3
+    defence: 4
+    criticalDamage: 5
+    criticalChance: 3
+    speed: 0
+    rarity: 0
+  ArmorType: 6
+  ArmorParts: []

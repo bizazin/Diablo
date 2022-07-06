@@ -29,7 +29,7 @@ public class ItemPickup : Interectable
     private void PickUp()
     {
 
-        Debug.Log("Picking up " + item.ItemName);
+        Debug.Log("Picking up " + item.Name);
         bool wasPickedUp = Inventory.Instance.Add(item);
         if (wasPickedUp)
             Destroy(gameObject);

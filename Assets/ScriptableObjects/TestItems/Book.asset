@@ -13,5 +13,12 @@ MonoBehaviour:
   m_Name: Book
   m_EditorClassIdentifier: 
   name: Book
-  icon: {fileID: 21300000, guid: a4ffdf3090d844d40856024a95e484bf, type: 3}
-  isDefaultItem: 0
+  _icon: {fileID: 21300000, guid: a4ffdf3090d844d40856024a95e484bf, type: 3}
+  _isDefaultItem: 0
+  stats:
+    damage: 0
+    defence: 0
+    criticalDamage: 0
+    criticalChance: 0
+    speed: 0
+    rarity: 0

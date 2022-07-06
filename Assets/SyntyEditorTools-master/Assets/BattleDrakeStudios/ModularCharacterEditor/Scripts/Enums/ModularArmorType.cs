@@ -1,5 +1,7 @@
-﻿namespace BattleDrakeStudios.ModularCharacters {
-    public enum ModularArmorType {
+﻿namespace BattleDrakeStudios.ModularCharacters 
+{
+    public enum ModularArmorType 
+    {
         Head,
         Shoulders,
         Cloak,
