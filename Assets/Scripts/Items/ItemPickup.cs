@@ -6,9 +6,11 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class ItemPickup : Interectable
 {
-    [SerializeField] private Item item;
     [SerializeField] private ItemStats stats;
     private Rigidbody rb;
+
+    public Item item;
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
