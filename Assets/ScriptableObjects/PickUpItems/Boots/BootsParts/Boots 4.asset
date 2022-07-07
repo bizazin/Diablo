@@ -17,12 +17,12 @@ MonoBehaviour:
   _isDefaultItem: 0
   stats:
     damage: 3
-    defence: 4
+    defence: 3
     criticalDamage: 5
     criticalChance: 3
     speed: 0
     rarity: 0
-  ArmorType: 6
+  ArmorType: 4
   ArmorParts:
   - bodyType: 26
     partID: 4

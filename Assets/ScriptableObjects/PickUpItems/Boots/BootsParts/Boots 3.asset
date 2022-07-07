@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boots 3
   m_EditorClassIdentifier: 
   name: Boots
-  icon: {fileID: 21300000, guid: 82b8b2544f0ce4164a31119e70601d03, type: 3}
+  icon: {fileID: 21300000, guid: d0b7d06d7d7254936b0dabd12641e865, type: 3}
   _isDefaultItem: 0
   stats:
     damage: 3
@@ -22,7 +22,7 @@ MonoBehaviour:
     criticalChance: 3
     speed: 0
     rarity: 0
-  ArmorType: 6
+  ArmorType: 4
   ArmorParts:
   - bodyType: 26
     partID: 3

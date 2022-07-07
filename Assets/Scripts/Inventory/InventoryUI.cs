@@ -1,4 +1,5 @@
 using bizazin;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,9 +11,11 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Button equipButton;
     [SerializeField] private InventorySlot selectedSlot;
     [SerializeField] private ConfirmSellWindow confirmDeleteWindow;
+    [SerializeField] private EquipmentSlot[] equipmentSlots;
 
     private Inventory inventory;
-    private InventorySlot[] slots;
+    private InventorySlot[] inventorySlots;
+    
 
     private void Start()
     {
@@ -21,32 +24,85 @@ public class InventoryUI : MonoBehaviour
 
         equipButton.onClick.AddListener(EquipItem);
         EventsManager.OnItemClicked += ChangeSelectedSlot;
+        EventsManager.OnEquipmentClicked += ChangeEquipmentSlot;
         removeButton.onClick.AddListener(ConfirmDeleteItem);
+    }
+
+    private void ChangeEquipmentSlot(EquipmentSlot currentSlot)
+    {
+        if (currentSlot.IsFilled)
+        {
+            Unequip(currentSlot.RecievedEquipment);
+            ReturnEquipmentToSlots(currentSlot.RecievedEquipment);
+            currentSlot.Empty();
+        }
+    }
+
+    private void ReturnEquipmentToSlots(Equipment equipment)
+    {
+        if (equipment != null)
+        {
+            InventorySlot newSlot = CreateFrameForItem();
+            newSlot.AddItem(equipment);
+        }
+    }
+
+    private void ChangeSelectedSlot(InventorySlot currentSlot)
+    {
+        InventorySlot previousSlot = null;
+        if (!currentSlot.IsSelected)
+        {
+            previousSlot = selectedSlot?.Deselect();
+            selectedSlot = currentSlot?.Select();
+        }
+        else
+            selectedSlot = currentSlot?.Deselect();
     }
 
     private void UpdateUI()
     {
         CreateFrameForItem();
-        slots = ñontents.GetComponentsInChildren<InventorySlot>();
-        for (int i = 0; i < slots.Length; i++)
+        inventorySlots = ñontents.GetComponentsInChildren<InventorySlot>();
+        for (int i = 0; i < inventorySlots.Length; i++)
         {
             if (i < inventory.Items.Count)
-                slots[i].AddItem(inventory.Items[i]);
+                inventorySlots[i].AddItem(inventory.Items[i]);
             else
-                slots[i].DeleteSlot();
+                inventorySlots[i].DeleteSlot();
         }
+    }
+
+    private InventorySlot CreateFrameForItem()
+    {
+        InventorySlot inventorySlot = Instantiate(slot, ñontents);
+        return inventorySlot;
     }
 
     public void EquipItem()
     {
-        if (selectedSlot.Item is Equipment currentEquipment)
+        if (selectedSlot?.Item is Equipment currentEquipment)
+        {
             EventsManager.OnItemEquipped?.Invoke(currentEquipment);
+            ChangeCurrentEquipmentImage(currentEquipment);
+            Destroy(selectedSlot.gameObject);
+        }
     }
 
-    private void CreateFrameForItem()
+    private void Unequip(Equipment equipment)
     {
-        Instantiate(slot, ñontents);
+        EventsManager.OnItemUnequipped?.Invoke(equipment);
     }
+
+    private void ChangeCurrentEquipmentImage(Equipment equipment)
+    {
+        foreach (var slot in equipmentSlots)
+            if (slot.ArmorType == equipment.ArmorType)
+            {
+                ReturnEquipmentToSlots(slot.RecievedEquipment);
+                slot.AddEquipment(equipment);
+            }
+    }
+
 
     private void ConfirmDeleteItem()
     {
@@ -55,17 +111,5 @@ public class InventoryUI : MonoBehaviour
             confirmDeleteWindow.Initialize(selectedSlot);
             confirmDeleteWindow.Open();
         }
-    }
-
-    public void ChangeSelectedSlot(InventorySlot currentSlot)
-    {
-        InventorySlot previousSlot = null;
-        if (currentSlot.IsSelected)
-        {
-            previousSlot = selectedSlot?.Deselect();
-            selectedSlot = currentSlot?.Select();
-        }
-        else
-            selectedSlot = currentSlot?.Deselect();
     }
 }

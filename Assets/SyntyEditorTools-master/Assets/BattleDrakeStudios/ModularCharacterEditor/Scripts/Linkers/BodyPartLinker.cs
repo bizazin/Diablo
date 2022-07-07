@@ -7,7 +7,7 @@
 
         public BodyPartLinker(ModularBodyPart bodyType) {
             this.bodyType = bodyType;
-            this.partID = 0;
+            partID = 0;
         }
 
         public BodyPartLinker(ModularBodyPart bodyType, int partID) {

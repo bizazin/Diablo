@@ -6,7 +6,10 @@ public class EventsManager : MonoBehaviour
 {
     public static Action<Equipment> OnItemPickedUp;
     public static Action<InventorySlot> OnItemClicked;
+    public static Action<EquipmentSlot> OnEquipmentClicked;
     public static Action<Equipment> OnItemEquipped;
+    public static Action<Equipment> OnItemUnequipped;
+
 
     //quests
     public static Action<QuestData> OnNewQuestAdded;

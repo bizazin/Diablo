@@ -12,12 +12,16 @@ public class EquipmentManager : MonoBehaviour
     [SerializeField] private ModularCharacterManager characterManager;
 
     [SerializeField] private RemoteConfigStorage rem;
+
+    [SerializeField] private Equipment[] defaultEquipment;
+ 
     private SaveManager save;
 
     private void OnEnable()
     {
         EventsManager.OnItemPickedUp += OnEquipmentAdded;
         EventsManager.OnItemEquipped += EquipItem;
+        EventsManager.OnItemUnequipped += Unequip;
     }
 
     private void Start()
@@ -41,15 +45,21 @@ public class EquipmentManager : MonoBehaviour
         }
     }
 
-    public void EquipItem(Equipment itemToEquip)
+    public void EquipItem(Equipment equipment)
     {
-        foreach (var part in itemToEquip.ArmorParts)
+        foreach (var part in equipment.ArmorParts)
         {
             if (part.partID > -1)
                 characterManager.ActivatePart(part.bodyType, part.partID);
             else
                 characterManager.DeactivatePart(part.bodyType);
         }
+    }
+
+    public void Unequip(Equipment unequip)
+    {
+        foreach (var part in unequip.ArmorParts)
+            characterManager.ActivatePart(part.bodyType, 0);
     }
 
     private void OnEquipmentAdded(Equipment itemToPickedUp)

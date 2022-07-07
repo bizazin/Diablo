@@ -6,7 +6,8 @@ namespace bizazin
     [CreateAssetMenu(fileName = "NewItem", menuName = "Inventory/Equipment")]
     public class Equipment : Item
     {
-        public ModularArmorType ArmorType;
+        public EquipmentType ArmorType;
         public BodyPartLinker[] ArmorParts;
+        public bool IsBodyPart;
     }
 }

@@ -1,13 +1,13 @@
 ﻿namespace BattleDrakeStudios.ModularCharacters 
 {
-    public enum ModularArmorType 
+    public enum EquipmentType 
     {
-        Head,
-        Shoulders,
+        Helmet,
         Cloak,
         Chest,
-        Gloves,
+        Arms,
         Legs,
-        Boots
+        Sword,
+        Potion
     }
 }

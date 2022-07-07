@@ -34,7 +34,7 @@ namespace BattleDrakeStudios.ModularCharacters {
         private string assetPath = "Assets/BattleDrakeStudios/ModularCharacterEditor/ScriptableObjects/ModularArmor";
 
         private int armorTypeIndex;
-        private ModularArmorType[] armorTypes;
+        private EquipmentType[] armorTypes;
 
         private List<BodyPartLinker> armorParts;
         private int[] activePartID;
@@ -83,7 +83,7 @@ namespace BattleDrakeStudios.ModularCharacters {
 
             currentGender = Gender.Male;
 
-            armorTypes = (ModularArmorType[])System.Enum.GetValues(typeof(ModularArmorType));
+            armorTypes = (EquipmentType[])System.Enum.GetValues(typeof(EquipmentType));
 
             armorTypeIndex = 0;
             SetupParts();
@@ -230,7 +230,7 @@ namespace BattleDrakeStudios.ModularCharacters {
                 armorOptionsRect.width - windowPadding.x, armorOptionsRect.height - windowPadding.y));
 
             EditorGUI.BeginChangeCheck();
-            armorTypeIndex = EditorGUILayout.Popup(armorTypeIndex, Array.ConvertAll<ModularArmorType, string>(armorTypes, x => x.ToString()), GUILayout.Width(340));
+            armorTypeIndex = EditorGUILayout.Popup(armorTypeIndex, Array.ConvertAll<EquipmentType, string>(armorTypes, x => x.ToString()), GUILayout.Width(340));
             if (EditorGUI.EndChangeCheck()) {
                 ResetParts();
                 armorParts = GetArmorParts(armorTypes[armorTypeIndex]);
@@ -390,29 +390,31 @@ namespace BattleDrakeStudios.ModularCharacters {
             }
         }
 
-        private List<BodyPartLinker> GetArmorParts(ModularArmorType armorType) {
+        private List<BodyPartLinker> GetArmorParts(EquipmentType armorType) {
             List<BodyPartLinker> armorParts = new List<BodyPartLinker>();
             switch (armorType) {
-                case ModularArmorType.Head:
+                case EquipmentType.Helmet:
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.HeadAttachment));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.Helmet));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.HeadCovering));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.Hat));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.Mask));
                     break;
-                case ModularArmorType.Shoulders:
+/*                case ModularArmorType.Shoulders:
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.ShoulderAttachmentLeft));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.ShoulderAttachmentRight));
-                    break;
-                case ModularArmorType.Cloak:
+                    break;*/
+/*                case EquipmentType.Cloak:
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.BackAttachment));
-                    break;
-                case ModularArmorType.Chest:
+                    break;*/
+                case EquipmentType.Chest:
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.Torso));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.ArmUpperLeft));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.ArmUpperRight));
                     break;
-                case ModularArmorType.Gloves:
+                case EquipmentType.Arms:
+                    armorParts.Add(new BodyPartLinker(ModularBodyPart.ShoulderAttachmentLeft));
+                    armorParts.Add(new BodyPartLinker(ModularBodyPart.ShoulderAttachmentRight));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.ElbowAttachmentLeft));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.ElbowAttachmentRight));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.ArmLowerLeft));
@@ -420,16 +422,20 @@ namespace BattleDrakeStudios.ModularCharacters {
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.HandLeft));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.HandRight));
                     break;
-                case ModularArmorType.Legs:
+                case EquipmentType.Legs:
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.Hips));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.HipsAttachment));
-                    break;
-                case ModularArmorType.Boots:
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.KneeAttachmentLeft));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.KneeAttachmentRight));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.LegLeft));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.LegRight));
                     break;
+/*                case ModularArmorType.Boots:
+                    armorParts.Add(new BodyPartLinker(ModularBodyPart.KneeAttachmentLeft));
+                    armorParts.Add(new BodyPartLinker(ModularBodyPart.KneeAttachmentRight));
+                    armorParts.Add(new BodyPartLinker(ModularBodyPart.LegLeft));
+                    armorParts.Add(new BodyPartLinker(ModularBodyPart.LegRight));
+                    break;*/
             }
             return armorParts;
         }

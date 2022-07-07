@@ -18,7 +18,6 @@ public class InventorySlot : MonoBehaviour
     private void Start()
     {
         button = GetComponent<Button>();
-        button.onClick.AddListener(ChangeSelectedItem);
         button.onClick.AddListener(OnPointerClick);
     }
 
@@ -39,13 +38,6 @@ public class InventorySlot : MonoBehaviour
         return null;
     }
 
-    public void ChangeSelectedItem()
-    {
-        IsSelected = focus.activeSelf;
-        focus.SetActive(!IsSelected);
-        IsSelected = !IsSelected;
-    }
-
     public void OnPointerClick()
     {
         EventsManager.OnItemClicked?.Invoke(this);
@@ -55,17 +47,12 @@ public class InventorySlot : MonoBehaviour
     {
         Item = newItem;
         icon.sprite = Item.Icon;
+
         icon.enabled = true;
     }
 
     public void DeleteSlot()
     {
         Destroy(gameObject);
-    }
-
-    private void OnDestroy()
-    {
-//        button.onClick.RemoveListener(ChangeSelectedItem);
-//        button.onClick.RemoveListener(OnPointerClick);
     }
 }
