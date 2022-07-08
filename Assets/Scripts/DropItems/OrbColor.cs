@@ -8,7 +8,6 @@ public class OrbColor : MonoBehaviour
 
     public ParticleSystem[] myColors;
     public Color[] newColors;
-    public int[] alphas;
     private void Start()
     {
         var rarity = GetComponentInParent<ItemPickup>().item.Stats.rarity;
@@ -19,14 +18,5 @@ public class OrbColor : MonoBehaviour
             var tempTransparent = settings.startColor.color.a;
             settings.startColor = new ParticleSystem.MinMaxGradient(newColors[idColor]);
         }
-
-        for (int i = 0; i < myColors.Length; i++)
-        {
-            
-        }
-        
-        
-        // ParticleSystem.MainModule settings = GetComponent<ParticleSystem>().main;
-       // settings.startColor = new ParticleSystem.MinMaxGradient( Color.blue );
     }
 }
