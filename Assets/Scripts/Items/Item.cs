@@ -8,6 +8,7 @@ namespace bizazin
         [SerializeField] private string _itemName;
         [SerializeField] private Sprite _icon;
         [SerializeField] private bool _isDefaultItem;
+        [SerializeField] private bool isPotion;
         [SerializeField] private ItemStats stats; 
         public string ItemName { get { return _itemName; } set { _itemName = value; } }
         public Sprite Icon { get { return _icon; } set { _icon = value; } }
