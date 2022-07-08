@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b94bd53d1ac94042b9cd16b4216dc4f, type: 3}
+<<<<<<<< HEAD:Assets/ScriptableObjects/TestItems/Book.asset
   m_Name: Book
   m_EditorClassIdentifier: 
   name: Book
@@ -22,3 +23,10 @@ MonoBehaviour:
     criticalChance: 0
     speed: 0
     rarity: 0
+========
+  m_Name: Apple
+  m_EditorClassIdentifier: 
+  name: Apple
+  icon: {fileID: 21300000, guid: 0deefdab8771447e48d3546de6b8626e, type: 3}
+  isDefaultItem: 0
+>>>>>>>> 5a30f30415466cfdb290192cc023c05f1fc3ff50:Assets/ScriptableObjects/TestItems/Apple.asset

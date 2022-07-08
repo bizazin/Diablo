@@ -53,6 +53,8 @@ public class InventorySlot : MonoBehaviour
 
     public void DeleteSlot()
     {
-        Destroy(gameObject);
+        Item = newItem;
+        icon.sprite = Item.Icon;
+        icon.enabled = true;
     }
 }
