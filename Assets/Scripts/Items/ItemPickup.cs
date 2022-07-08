@@ -1,5 +1,6 @@
 using bizazin;
 using System;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,11 +9,12 @@ public class ItemPickup : Interectable
 {
     [SerializeField] private ItemStats stats;
     private Rigidbody rb;
-
     public Item item;
+    private bool canPickUp;
     
     private void Start()
     {
+        StartCoroutine(PickUpDelay());
         rb = GetComponent<Rigidbody>();
         var pos = transform.position;
         rb.AddForce(new Vector3(Random.Range(-.5f,.5f), 2, Random.Range(-.5f,.5f)), ForceMode.Impulse);
@@ -22,8 +24,17 @@ public class ItemPickup : Interectable
 
     public override void Interact()
     {
-        base.Interact();
-        PickUp();
+        if (canPickUp)
+        {
+            base.Interact();
+            PickUp();
+        }
+    }
+
+    private IEnumerator PickUpDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        canPickUp = true;
     }
 
     private void PickUp()
