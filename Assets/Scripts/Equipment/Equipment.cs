@@ -8,6 +8,5 @@ namespace bizazin
     {
         public EquipmentType ArmorType;
         public BodyPartLinker[] ArmorParts;
-        public bool IsBodyPart;
     }
 }
