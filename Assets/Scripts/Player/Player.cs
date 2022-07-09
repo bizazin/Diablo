@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] private int _maxHealth = 100;
     [SerializeField] private int _currentHealth;
@@ -24,6 +24,17 @@ public class Player : MonoBehaviour
         _currentHealth -= damage;
         _healthBar.SetHealth(_currentHealth);
         if (_currentHealth<=0)
+        {
+            animator.Die();
+            EventsManager.OnDeath.Invoke();
+        }
+    }
+
+    public void ApplyDamage(int damageValue)
+    {
+        _currentHealth -= damageValue;
+        _healthBar.SetHealth(_currentHealth);
+        if (_currentHealth <= 0)
         {
             animator.Die();
             EventsManager.OnDeath.Invoke();

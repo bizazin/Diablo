@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WalkSpeed: 1.5
   RunSpeed: 3
-  AttackRate: 4
+  AttackRate: 1
   Damage: 4
   SearchDuration: 8
   SearchingTurnSpeed: 120
