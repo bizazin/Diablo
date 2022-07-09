@@ -1,64 +1,58 @@
 using bizazin;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
-    [SerializeField] private Image _icon;
-    [SerializeField] private GameObject _focus;
-    
-    private Button _button;
+    [SerializeField] private Image icon;
+    [SerializeField] private GameObject focus;
+    [SerializeField] private TMP_Text quantityText;
+
+    private Button button;
 
     public Item Item;
-    public bool IsFocused { get; private set; }
+    public bool IsSelected { get; private set; }
 
 
     private void Start()
     {
-        _button = GetComponent<Button>();
-        _button.onClick.AddListener(ChangeFocusedItem);
-        _button.onClick.AddListener(ChangeFocusedItemInventory);
+        button = GetComponent<Button>();
+        button.onClick.AddListener(OnPointerClick);
     }
 
-    public void ChangeFocusedItem()
+    public InventorySlot Select()
     {
-        IsFocused = _focus.activeSelf;
-        _focus.SetActive(!IsFocused);
-        IsFocused = !IsFocused;
+        focus.SetActive(true);
+        IsSelected = true;
+        return this;
     }
 
-    public void ChangeFocusedItemInventory()
+    public InventorySlot Deselect()
     {
-        EventsManager.OnInventorySlotFocused.Invoke(this);
+        if (this != null)
+        {
+            focus.SetActive(false);
+            IsSelected = false;
+        }
+        return null;
+    }
+
+    public void OnPointerClick()
+    {
+        EventsManager.OnItemClicked?.Invoke(this);
     }
 
     public void AddItem(Item newItem)
     {
         Item = newItem;
-        _icon.sprite = Item.Icon;
-        _icon.enabled = true;
+        icon.sprite = Item.Icon;
+
+        icon.enabled = true;
     }
 
-    public void ClearSlot()
-    {
-        Item = null;
-        _icon.sprite = null;
-        _icon.enabled = false;
-    }
-
-    public void DeleteSlotFromUI()
+    public void DeleteSlot()
     {
         Destroy(gameObject);
-    }
-
-    public void UseItem()
-    {
-//        if (_item != null) _item.Use();
-    }
-
-    private void OnDestroy()
-    {
-        _button.onClick.RemoveListener(ChangeFocusedItem);
-        _button.onClick.RemoveListener(ChangeFocusedItemInventory);
     }
 }

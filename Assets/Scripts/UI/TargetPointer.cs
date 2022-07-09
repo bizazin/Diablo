@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class TargetPointer : MonoBehaviour
 {
@@ -86,14 +87,7 @@ public class TargetPointer : MonoBehaviour
 	{
 		var image = GetComponent<Image>();
 		var tempColor = image.color;
-		if (state)
-		{
-			tempColor.a = 1f;
-		}
-		else
-		{
-			tempColor.a = 0f;
-		}
+		tempColor.a = Convert.ToInt32(state);
 		image.color = tempColor;
 		PointerUI.GetComponent<Image>().color = tempColor;
 	}

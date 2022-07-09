@@ -34,7 +34,7 @@ namespace BattleDrakeStudios.ModularCharacters {
         private string assetPath = "Assets/BattleDrakeStudios/ModularCharacterEditor/ScriptableObjects/ModularArmor";
 
         private int armorTypeIndex;
-        private ModularArmorType[] armorTypes;
+        private EquipmentType[] armorTypes;
 
         private List<BodyPartLinker> armorParts;
         private int[] activePartID;
@@ -83,7 +83,7 @@ namespace BattleDrakeStudios.ModularCharacters {
 
             currentGender = Gender.Male;
 
-            armorTypes = (ModularArmorType[])System.Enum.GetValues(typeof(ModularArmorType));
+            armorTypes = (EquipmentType[])System.Enum.GetValues(typeof(EquipmentType));
 
             armorTypeIndex = 0;
             SetupParts();
@@ -116,11 +116,11 @@ namespace BattleDrakeStudios.ModularCharacters {
 
         private void SetupPartsFromExisting() {
             if (existingArmor != null) {
-                armorTypeIndex = (int)existingArmor.armorType;
+                armorTypeIndex = (int)existingArmor.ArmorType;
                 armorParts = GetArmorParts(armorTypes[armorTypeIndex]);
                 activePartID = new int[armorParts.Count];
                 for (int i = 0; i < activePartID.Length; i++) {
-                    activePartID[i] = existingArmor.armorParts[i].partID;
+                    activePartID[i] = existingArmor.ArmorParts[i].partID;
                     armorParts[i].partID = activePartID[i];
                     if (armorParts[i].partID > -1)
                         characterManager.ActivatePart(armorParts[i].bodyType, armorParts[i].partID);
@@ -230,7 +230,7 @@ namespace BattleDrakeStudios.ModularCharacters {
                 armorOptionsRect.width - windowPadding.x, armorOptionsRect.height - windowPadding.y));
 
             EditorGUI.BeginChangeCheck();
-            armorTypeIndex = EditorGUILayout.Popup(armorTypeIndex, Array.ConvertAll<ModularArmorType, string>(armorTypes, x => x.ToString()), GUILayout.Width(340));
+            armorTypeIndex = EditorGUILayout.Popup(armorTypeIndex, Array.ConvertAll<EquipmentType, string>(armorTypes, x => x.ToString()), GUILayout.Width(340));
             if (EditorGUI.EndChangeCheck()) {
                 ResetParts();
                 armorParts = GetArmorParts(armorTypes[armorTypeIndex]);
@@ -331,15 +331,15 @@ namespace BattleDrakeStudios.ModularCharacters {
         private void SaveDataToAsset(bool isNew) {
             Equipment newArmor = ScriptableObject.CreateInstance<Equipment>();
 
-            newArmor.armorType = armorTypes[armorTypeIndex];
+            newArmor.ArmorType = armorTypes[armorTypeIndex];
 
            /* foreach (var armorColor in newArmor.armorColors) {
                 armorColor.color = previewMaterial.GetColor(armorColor.property);
             }*/
 
-            newArmor.armorParts = armorParts.ToArray();
-            for (int i = 0; i < newArmor.armorParts.Length; i++) {
-                newArmor.armorParts[i].partID = activePartID[i];
+            newArmor.ArmorParts = armorParts.ToArray();
+            for (int i = 0; i < newArmor.ArmorParts.Length; i++) {
+                newArmor.ArmorParts[i].partID = activePartID[i];
             }
 
             if (isNew) {
@@ -390,41 +390,30 @@ namespace BattleDrakeStudios.ModularCharacters {
             }
         }
 
-        private List<BodyPartLinker> GetArmorParts(ModularArmorType armorType) {
+        private List<BodyPartLinker> GetArmorParts(EquipmentType armorType) {
             List<BodyPartLinker> armorParts = new List<BodyPartLinker>();
             switch (armorType) {
-                case ModularArmorType.Head:
-                    armorParts.Add(new BodyPartLinker(ModularBodyPart.HeadAttachment));
+                case EquipmentType.Helmet:
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.Helmet));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.HeadCovering));
-                    armorParts.Add(new BodyPartLinker(ModularBodyPart.Hat));
-                    armorParts.Add(new BodyPartLinker(ModularBodyPart.Mask));
+                    armorParts.Add(new BodyPartLinker(ModularBodyPart.Head));
                     break;
-                case ModularArmorType.Shoulders:
+                case EquipmentType.Chest:
+                    armorParts.Add(new BodyPartLinker(ModularBodyPart.Torso));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.ShoulderAttachmentLeft));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.ShoulderAttachmentRight));
+
                     break;
-                case ModularArmorType.Cloak:
-                    armorParts.Add(new BodyPartLinker(ModularBodyPart.BackAttachment));
-                    break;
-                case ModularArmorType.Chest:
-                    armorParts.Add(new BodyPartLinker(ModularBodyPart.Torso));
+                case EquipmentType.Arms:
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.ArmUpperLeft));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.ArmUpperRight));
-                    break;
-                case ModularArmorType.Gloves:
-                    armorParts.Add(new BodyPartLinker(ModularBodyPart.ElbowAttachmentLeft));
-                    armorParts.Add(new BodyPartLinker(ModularBodyPart.ElbowAttachmentRight));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.ArmLowerLeft));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.ArmLowerRight));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.HandLeft));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.HandRight));
                     break;
-                case ModularArmorType.Legs:
+                case EquipmentType.Legs:
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.Hips));
-                    armorParts.Add(new BodyPartLinker(ModularBodyPart.HipsAttachment));
-                    break;
-                case ModularArmorType.Boots:
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.KneeAttachmentLeft));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.KneeAttachmentRight));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.LegLeft));

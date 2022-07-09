@@ -1,0 +1,118 @@
+Look 1
+	Helmet:
+		HeadCovering: 12
+		
+	Chest:
+		Torso: 1
+		ShoulderAttachmentRight: 0
+		ShoulderAttachmentLeft: 0
+	
+	Arms:
+		ArmUpperRight: 9
+		ArmUpperLeft: 9
+		ArmLowerRight: 9
+		ArmLowerLeft: 9
+		HandRight: 4
+		HandLeft: 4
+		
+	Legs:
+		Hips: 1
+		LegRight: 17
+		LegLeft: 17	
+		
+Look 2
+	Helmet:
+		HeadCovering: 1
+		
+	Chest:
+		Torso: 10
+		ShoulderAttachmentRight: 16
+		ShoulderAttachmentLeft: 16
+	
+	Arms:
+		ArmUpperRight: 4
+		ArmUpperLeft: 4
+		ArmLowerRight: 4
+		ArmLowerLeft: 4
+		HandRight: 1
+		HandLeft: 1
+		
+	Legs:
+		Hips: 4
+		LegRight: 18
+		LegLeft: 18	
+		
+Look 3
+	Helmet:
+		Helmet: 5
+		Head: -1
+		
+	Chest:
+		Torso: 20
+		ShoulderAttachmentRight: 20
+		ShoulderAttachmentLeft: 20
+	
+	Arms:
+		ArmUpperRight: 15
+		ArmUpperLeft: 15
+		ArmLowerRight: 16
+		ArmLowerLeft: 16
+		HandRight: 10
+		HandLeft: 10
+		
+	Legs:
+		Hips: 2
+		KneeAttachmentRight: 3
+		KneeAttachmentLeft: 3
+		LegRight: 8
+		LegLeft: 8	
+		
+Look 4
+	Helmet:
+		Helmet: 8
+		Head: -1
+		
+	Chest:
+		Torso: 16
+		ShoulderAttachmentRight: 2
+		ShoulderAttachmentLeft: 2
+	
+	Arms:
+		ArmUpperRight: 13
+		ArmUpperLeft: 13
+		ArmLowerRight: 12
+		ArmLowerLeft: 12
+		HandRight: 7
+		HandLeft: 7
+		
+	Legs:
+		Hips: 11
+		KneeAttachmentRight: 6
+		KneeAttachmentLeft: 6
+		LegRight: 12
+		LegLeft: 12
+		
+Look 5
+	Helmet:
+		HeadCovering: 9
+		
+	Chest:
+		Torso: 15
+		ShoulderAttachmentRight: 11
+		ShoulderAttachmentLeft: 11
+	
+	Arms:
+		ArmUpperRight: 6
+		ArmUpperLeft: 8
+		ArmLowerRight: 7
+		ArmLowerLeft: 7
+		HandRight: 12
+		HandLeft: 12
+		
+	Legs:
+		Hips: 21
+		KneeAttachmentRight: 9
+		KneeAttachmentLeft: 9
+		LegRight: 7
+		LegLeft: 7
+

@@ -8,6 +8,7 @@ public class KeyManager : MonoBehaviour
 {
     [SerializeField]
     StringStringDictionary allPrefs;
+
     public IDictionary<string, string> StringStringDictionary
     {
         get { return allPrefs; }
@@ -17,6 +18,8 @@ public class KeyManager : MonoBehaviour
     public static Action<string> OnPrefsChanged;
     public static string Name { get => "Name";}
     public static string Coins { get => "Coins";}
+    public static string ItemsCount { get => "ItemsCount"; }
+
 
     private void Awake()
     {
@@ -28,6 +31,7 @@ public class KeyManager : MonoBehaviour
         //example
         allPrefs.Add(Name,GetValue(Name));
         allPrefs.Add(Coins,GetValue(Coins));
+        allPrefs.Add(ItemsCount, GetValue(ItemsCount));
     }
     
     public static void SetPrefsValue(string name, int value)

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4080061dfa4b5234182d104f1af1390a, type: 3}
+  m_Name: ItemStatsRange
+  m_EditorClassIdentifier: 
+  rarityChanceRange:
+  - {x: 0, y: 40}
+  - {x: 41, y: 70}
+  - {x: 71, y: 86}
+  - {x: 86, y: 95}
+  - {x: 96, y: 101}
+  statValuesRange:
+  - {x: 5, y: 20}
+  - {x: 10, y: 30}
+  - {x: 15, y: 40}
+  - {x: 25, y: 50}
+  - {x: 40, y: 60}
+  criticalChanceRange:
+  - {x: 5, y: 15}
+  - {x: 8, y: 20}
+  - {x: 10, y: 35}
+  - {x: 25, y: 50}
+  - {x: 60, y: 100}
+  statsMultiplier:
+  - 0.3
+  - 0.4
+  - 0.5
+  - 0.8
+  - 1

@@ -14,23 +14,20 @@ public class Inventory : MonoBehaviour
     private void Awake()
     {
         if (Instance != null)
-        {
-            Debug.LogWarning("More than one instance of Inventory is found!");
             return;
-        }
         Instance = this;
     }
-
     #endregion
+
+
     public delegate void OnItemChanged();
     public OnItemChanged OnItemChangedCallback;
     [JsonProperty] public List<Item> Items = new List<Item>();
     
     [JsonProperty] public List<string> JsonItems = new List<string>();
 
-
-
-    [SerializeField] private int _space;
+    [SerializeField] private int space;
+    public int Space { get { return space; } }
 
     public RemoteConfigStorage rem;
     private void OnEnable()
@@ -42,27 +39,28 @@ public class Inventory : MonoBehaviour
     {
         if (!item.IsDefaultItem)
         {
-            if (Items.Count >= _space)
+            if (Items.Count >= Space)
             {
                 Debug.Log("Not enough room");
                 return false;
             }
             Items.Add(item);
-            JsonItems.Add(item.ItemName);
+            JsonItems.Add(item.Name);
 
-            if (OnItemChangedCallback != null)
-                OnItemChangedCallback.Invoke();
+            OnItemChangedCallback?.Invoke();
+            KeyManager.SetPrefsValue(KeyManager.ItemsCount, Items.Count);
         }
         return true;
     }
-    public void Remove(Item item)
+
+    public void RemoveItem(Item item)
     {
         if (Items.Contains(item))
         {
             Items.Remove(item);
-            JsonItems.Remove(item.ItemName);
+            JsonItems.Remove(item.Name);
         }
-        if (OnItemChangedCallback != null) 
-            OnItemChangedCallback.Invoke();
+        KeyManager.SetPrefsValue(KeyManager.ItemsCount, Items.Count);
+        OnItemChangedCallback?.Invoke();
     }
 }
