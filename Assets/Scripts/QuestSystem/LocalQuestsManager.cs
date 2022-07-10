@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class LocalQuestsManager : MonoBehaviour, ICanBeSaved
 {
-    
     #region Singleton
     public static LocalQuestsManager Instance;
 
@@ -21,9 +20,7 @@ public class LocalQuestsManager : MonoBehaviour, ICanBeSaved
     [SerializeField] private List<LocalQuestUI> questsUI;
     [SerializeField] private LocalQuestUI localQuestPrefab;
     [SerializeField] private GameObject npcQuestsContainer;
-    private Queue<QuestData> questsData;
     public LocalQuestUI selectedQuest;
-    public RemoteConfigStorage rem;
     private void Start()
     {
         LoadQuests();
@@ -79,7 +76,6 @@ public class LocalQuestsManager : MonoBehaviour, ICanBeSaved
 
     public void ChangeSelectedQuest(LocalQuestUI currentQuest)
     {
-      //  EventsManager.OnQuestSelected.Invoke();
         if (selectedQuest != null && selectedQuest.questData == currentQuest.questData)
         {
             selectedQuest.ToggleSelect();
