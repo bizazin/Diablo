@@ -1,6 +1,7 @@
 using bizazin;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EventsManager : MonoBehaviour
 {
@@ -22,4 +23,6 @@ public class EventsManager : MonoBehaviour
     public static Action<QuestData, MainQuestUI> OnMainRewardClaimed;
 
     public static Action OnDeath;
+
+    public static Action<int> OnPlayerApplyDamage;
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "AI/Actions/AttackAction")]
 public class AttackAction : StateAction
 {
+
     public override void Act(StateController controller)
     {
         Attack(controller);
@@ -29,7 +30,7 @@ public class AttackAction : StateAction
                 if (fov.damageableTarget != null && fov.damageableTarget.TryGetComponent(out IDamageable damageable) && controller.HasTimeElapsed(controller.EnemyStats.AttackRate))
                 {
                     controller.GetComponent<EnemyAnimationController>().AnimateAttack(true);
-                    damageable.ApplyDamage(controller.EnemyStats.Damage);
+                    //damageable.ApplyDamage(controller.EnemyStats.Damage);
                 }
             }
         }

@@ -11,6 +11,12 @@ public class Player : MonoBehaviour, IDamageable
     {
         _currentHealth = _maxHealth;
         _healthBar.SetMaxHealth(_maxHealth);
+        EventsManager.OnPlayerApplyDamage += TakeDamage;
+    }
+
+    private void OnDisable()
+    {
+        EventsManager.OnPlayerApplyDamage -= TakeDamage;
     }
 
     private void Update()
