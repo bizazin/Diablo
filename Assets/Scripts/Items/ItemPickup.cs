@@ -17,8 +17,11 @@ public class ItemPickup : Interectable
         rb = GetComponent<Rigidbody>();
         var pos = transform.position;
         rb.AddForce(new Vector3(Random.Range(-.5f,.5f), 2, Random.Range(-.5f,.5f)), ForceMode.Impulse);
-        item = DropManager.Instance.SetupItem();
-        stats = item.Stats;
+        if (item == null)
+        {
+            item = DropManager.Instance.SetupItem();
+            stats = item.Stats;
+        }
     }
 
     public override void Interact()
@@ -38,7 +41,6 @@ public class ItemPickup : Interectable
 
     private void PickUp()
     {
-
         Debug.Log("Picking up " + item.Name);
         bool wasPickedUp = Inventory.Instance.Add(item);
         if (wasPickedUp)
