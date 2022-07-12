@@ -25,7 +25,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     {
         enemyAnimator = GetComponent<EnemyAnimationController>();
         enemyAgent = GetComponent<NavMeshAgent>();
-
+        //EventsManager.OnEnemyDamageTaken += ApplyDamage;
         currentHealth = maxHealth;
     }
 

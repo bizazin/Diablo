@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private int _maxHealth = 100;
-    [SerializeField] private int _currentHealth;
+   // [SerializeField] private int _maxHealth = 100;
+   // [SerializeField] private int _currentHealth;
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private PlayerAnimationController animator;
-
+    public PlayerStats playerStats;
+    
     private void Start()
     {
-        _currentHealth = _maxHealth;
-        _healthBar.SetMaxHealth(_maxHealth);
+        playerStats.CurrentHealth = playerStats.MaxHealth;
+        _healthBar.SetMaxHealth(playerStats.MaxHealth);
     }
 
     private void Update()
@@ -21,9 +22,9 @@ public class Player : MonoBehaviour
 
     private void TakeDamage(int damage)
     {
-        _currentHealth -= damage;
-        _healthBar.SetHealth(_currentHealth);
-        if (_currentHealth<=0)
+        playerStats.CurrentHealth -= damage;
+        _healthBar.SetHealth(playerStats.CurrentHealth);
+        if (playerStats.CurrentHealth<=0)
         {
             animator.Die();
             EventsManager.OnDeath.Invoke();
