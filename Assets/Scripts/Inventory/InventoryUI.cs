@@ -1,5 +1,5 @@
-using bizazin;
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +20,7 @@ public class InventoryUI : MonoBehaviour
     private void Start()
     {
         inventory = Inventory.Instance;
-        inventory.OnItemChangedCallback += UpdateUI;
+        inventory.OnItemChangedCallback += AddItemToUI;
 
         equipButton.onClick.AddListener(EquipItem);
         EventsManager.OnItemClicked += ChangeSelectedSlot;
@@ -59,17 +59,11 @@ public class InventoryUI : MonoBehaviour
             selectedSlot = currentSlot?.Deselect();
     }
 
-    private void UpdateUI()
+    private void AddItemToUI()
     {
         CreateFrameForItem();
         inventorySlots = ñontents.GetComponentsInChildren<InventorySlot>();
-        for (int i = 0; i < inventorySlots.Length; i++)
-        {
-            if (i < inventory.Items.Count)
-                inventorySlots[i].AddItem(inventory.Items[i]);
-            else
-                inventorySlots[i].DeleteSlot();
-        }
+        inventorySlots.Last().AddItem(inventory.Items.Last());
     }
 
     private InventorySlot CreateFrameForItem()

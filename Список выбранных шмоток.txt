@@ -1,6 +1,6 @@
 Look 1
 	Helmet:
-		HeadCovering: 12
+		HeadCovering: 13
 		
 	Chest:
 		Torso: 1
@@ -22,7 +22,7 @@ Look 1
 		
 Look 2
 	Helmet:
-		HeadCovering: 1
+		HeadCovering: 2
 		
 	Chest:
 		Torso: 10
@@ -49,8 +49,8 @@ Look 3
 		
 	Chest:
 		Torso: 20
-		ShoulderAttachmentRight: 20
-		ShoulderAttachmentLeft: 20
+		ShoulderAttachmentRight: 21
+		ShoulderAttachmentLeft: 21
 	
 	Arms:
 		ArmUpperRight: 15
@@ -69,7 +69,7 @@ Look 3
 		
 Look 4
 	Helmet:
-		Helmet: 8
+		Helmet: 9
 		Head: -1
 		
 	Chest:
@@ -94,7 +94,7 @@ Look 4
 		
 Look 5
 	Helmet:
-		HeadCovering: 9
+		HeadCovering: 10
 		
 	Chest:
 		Torso: 15

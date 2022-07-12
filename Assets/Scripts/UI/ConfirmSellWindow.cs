@@ -24,7 +24,6 @@ public class ConfirmSellWindow : MonoBehaviour, IWindow
 
     private void DeleteItem()
     {
-//        slot.DeleteSlotFromUI();
         Inventory.Instance.RemoveItem(slot.Item);
         Close();
     }
