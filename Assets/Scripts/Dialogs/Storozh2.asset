@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b11b74b1d4b0dfd409fc3517ae1c6010, type: 3}
   m_Name: Storozh2
   m_EditorClassIdentifier: 
-  quest: {fileID: 11400000, guid: f8316ab0b70777843981f0d37eabf748, type: 2}
+  quest: {fileID: 11400000, guid: 12a5685d054a6d441889a9ed79ab08c8, type: 2}
   character: 0
   sentences:
   - Pidor222
   - Not you222
   - dfgfdsa sfdgh222
   name: Warrior222
-  questTaken: 0

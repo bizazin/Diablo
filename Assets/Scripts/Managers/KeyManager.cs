@@ -19,6 +19,7 @@ public class KeyManager : MonoBehaviour
     public static string Name { get => "Name";}
     public static string Coins { get => "Coins";}
     public static string ItemsCount { get => "ItemsCount"; }
+    public static string TutorialPassed { get => "TutorialPassed"; }
 
 
     private void Awake()
@@ -32,6 +33,7 @@ public class KeyManager : MonoBehaviour
         allPrefs.Add(Name,GetValue(Name));
         allPrefs.Add(Coins,GetValue(Coins));
         allPrefs.Add(ItemsCount, GetValue(ItemsCount));
+        allPrefs.Add(TutorialPassed, GetValue(TutorialPassed));
     }
     
     public static void SetPrefsValue(string name, int value)

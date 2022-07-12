@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    [SerializeField] private Transform ñontents;
+    [SerializeField] private Transform Ð¡ontents;
     [SerializeField] private InventorySlot slot;
     [SerializeField] private Button removeButton;
     [SerializeField] private Button equipButton;
@@ -62,7 +62,7 @@ public class InventoryUI : MonoBehaviour
     private void UpdateUI()
     {
         CreateFrameForItem();
-        inventorySlots = ñontents.GetComponentsInChildren<InventorySlot>();
+        inventorySlots = Ð¡ontents.GetComponentsInChildren<InventorySlot>();
         for (int i = 0; i < inventorySlots.Length; i++)
         {
             if (i < inventory.Items.Count)
@@ -74,7 +74,7 @@ public class InventoryUI : MonoBehaviour
 
     private InventorySlot CreateFrameForItem()
     {
-        InventorySlot inventorySlot = Instantiate(slot, ñontents);
+        InventorySlot inventorySlot = Instantiate(slot, Ð¡ontents);
         return inventorySlot;
     }
 
