@@ -3,7 +3,6 @@
     public enum EquipmentType 
     {
         Helmet,
-        Cloak,
         Chest,
         Arms,
         Legs,
