@@ -17,11 +17,17 @@ public class EnemyAnimationController : MonoBehaviour
     {
         animator.SetBool("isRunning", isRunning);
         animator.SetBool("isWalking", false);
+        animator.SetBool("isAttacking", false);
     }
 
     public void AnimateWalk(bool isWalking)
     {
         animator.SetBool("isWalking", isWalking);
         animator.SetBool("isRunning", false);
+    }
+
+    public void AnimateAttack(bool isAttacking)
+    {
+        animator.SetBool("isAttacking", isAttacking);
     }
 }
