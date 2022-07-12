@@ -6,7 +6,6 @@ public class EquipmentManager : MonoBehaviour
 {
     public Equipment[] equipmentSlots;
     [SerializeField] private ModularCharacterManager characterManager;
-
     private SaveManager save;
 
     private void OnEnable()
