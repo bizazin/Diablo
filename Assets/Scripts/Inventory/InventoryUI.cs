@@ -1,11 +1,11 @@
-using bizazin;
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    [SerializeField] private Transform Сontents;
+    [SerializeField] private Transform contents;
     [SerializeField] private InventorySlot slot;
     [SerializeField] private Button removeButton;
     [SerializeField] private Button equipButton;
@@ -20,7 +20,7 @@ public class InventoryUI : MonoBehaviour
     private void Start()
     {
         inventory = Inventory.Instance;
-        inventory.OnItemChangedCallback += UpdateUI;
+        inventory.OnItemChangedCallback += AddItemToUI;
 
         equipButton.onClick.AddListener(EquipItem);
         EventsManager.OnItemClicked += ChangeSelectedSlot;
@@ -59,22 +59,16 @@ public class InventoryUI : MonoBehaviour
             selectedSlot = currentSlot?.Deselect();
     }
 
-    private void UpdateUI()
+    private void AddItemToUI()
     {
         CreateFrameForItem();
-        inventorySlots = Сontents.GetComponentsInChildren<InventorySlot>();
-        for (int i = 0; i < inventorySlots.Length; i++)
-        {
-            if (i < inventory.Items.Count)
-                inventorySlots[i].AddItem(inventory.Items[i]);
-            else
-                inventorySlots[i].DeleteSlot();
-        }
+        inventorySlots = contents.GetComponentsInChildren<InventorySlot>();
+        inventorySlots.Last().AddItem(inventory.Items.Last());
     }
 
     private InventorySlot CreateFrameForItem()
     {
-        InventorySlot inventorySlot = Instantiate(slot, Сontents);
+        InventorySlot inventorySlot = Instantiate(slot, contents);
         return inventorySlot;
     }
 

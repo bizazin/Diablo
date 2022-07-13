@@ -1,9 +1,6 @@
-﻿using System;
-using BattleDrakeStudios.ModularCharacters;
-using System.Collections.Generic;
+﻿using BattleDrakeStudios.ModularCharacters;
 using Newtonsoft.Json;
 using UnityEngine;
-using bizazin;
 
 public class EquipmentManager : MonoBehaviour
 {
@@ -20,7 +17,6 @@ public class EquipmentManager : MonoBehaviour
 
     private void Start()
     {
-        
         // save = GetComponent<SaveManager>();
         // if (rem.GetConfig(RemoteConfigs.EnableCustomInventory).Value == "1")
         // {

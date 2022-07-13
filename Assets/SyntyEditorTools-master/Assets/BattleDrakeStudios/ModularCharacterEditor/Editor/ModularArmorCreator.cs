@@ -8,7 +8,6 @@ using System;
 using static BattleDrakeStudios.ModularCharacters.ModularCharacterStatics;
 using BattleDrakeStudios.SimpleIconCreator;
 using System.IO;
-using bizazin;
 
 namespace BattleDrakeStudios.ModularCharacters {
     public class ModularArmorCreator : EditorWindow {
