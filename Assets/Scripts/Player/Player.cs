@@ -13,13 +13,11 @@ public class Player : MonoBehaviour
         playerStats.CurrentHealth = playerStats.MaxHealth;
         _healthBar.SetMaxHealth(playerStats.MaxHealth);
     }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
             TakeDamage(20);
     }
-
     private void TakeDamage(int damage)
     {
         playerStats.CurrentHealth -= damage;

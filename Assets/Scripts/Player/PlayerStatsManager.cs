@@ -20,13 +20,10 @@ public class PlayerStatsManager : MonoBehaviour
     [SerializeField]private EquipmentManager equipmentManager;
     
     [SerializeField] private Player player;
-    
     private void Start()
     {
         EventsManager.OnStatsChanged += ChangeStats;
     }
-    
-
     public void ChangeStats()
     {
         player.playerStats.Damage = 0;
@@ -36,7 +33,6 @@ public class PlayerStatsManager : MonoBehaviour
         player.playerStats.Speed = 0;
         foreach (var slot in equipmentManager.equipmentSlots)
         {
-            
             if (slot != null)
             {
                 player.playerStats.Damage += slot.Stats.damage;
@@ -47,7 +43,6 @@ public class PlayerStatsManager : MonoBehaviour
             }
         }
     }
-
     private void OnDisable()
     {
         EventsManager.OnStatsChanged -= ChangeStats;

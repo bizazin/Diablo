@@ -1,5 +1,3 @@
-
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -12,14 +10,20 @@ using UnityEngine;
 #endif
 public class FieldOfView : MonoBehaviour
 {
-    [Range(0, 360)]
-    [SerializeField] private float viewAngle;
+    [Header("View Settings")]
+    [Range(0, 360)][SerializeField] private float viewAngle;
     [SerializeField] private float viewRadius;
+
+    [Header("Attack Settings")]
+    [Range(0, 360)][SerializeField] private float attackAngle;
+    [SerializeField] private float attackRadius;
 
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private LayerMask obstacleMask;
 
     [SerializeField] private float findTargetsDelay;
+
+    public Transform damageableTarget;
     public Transform visibleTarget;
 
     public float ViewRadius
@@ -31,9 +35,20 @@ public class FieldOfView : MonoBehaviour
         get => viewAngle;
     }
 
+    public float AttackRadius
+    {
+        get => attackRadius;
+    }
+
+    public float AttackAngle
+    {
+        get => attackAngle;
+    }
+
     private void FixedUpdate()
     {
         FindVisibleTargets();
+        FindDamageableTargets();
     }
 
     public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
@@ -59,6 +74,28 @@ public class FieldOfView : MonoBehaviour
                 if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, obstacleMask))
                 {
                     visibleTarget = target;
+                }
+            }
+        }
+    }
+
+    private void FindDamageableTargets()
+    {
+        damageableTarget = null;
+        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, attackRadius, targetMask);
+
+        for (int i = 0; i < targetsInViewRadius.Length; i++)
+        {
+            Transform target = targetsInViewRadius[i].transform;
+            Vector3 dirToTarget = (target.position - transform.position).normalized;
+            if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
+            {
+                float distToTarget = Vector3.Distance(transform.position, target.position);
+
+                // If there are no obstacles on the way to target
+                if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, obstacleMask))
+                {
+                    damageableTarget = target;
                 }
             }
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerAnimationController : MonoBehaviour
 {
     
-    [SerializeField] private Animator animator;
+    public Animator animator;
     
     [Header("States")]
     [SerializeField] private string run = "Run";
@@ -25,7 +25,8 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void Attack()
     {
-        string randomNumber = Random.Range(1, 4).ToString();
+       // animator.GetCurrentAnimatorClipInfo()
+        string randomNumber = Random.Range(1, 3).ToString();
         Debug.Log("layerIndex: "+animator.GetLayerIndex(attack));
         Debug.Log(animator.GetCurrentAnimatorStateInfo(1).IsName(attack));
         
