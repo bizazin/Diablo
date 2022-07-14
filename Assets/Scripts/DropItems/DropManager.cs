@@ -70,12 +70,12 @@ public class DropManager : MonoBehaviour
         ItemStats.Rarity[] rarity = (ItemStats.Rarity[]) Enum.GetValues(typeof(ItemStats.Rarity));
         for (int i = 0; i< rarity.Length;i++)
             if (randomValue >= chance[i].x && randomValue <=chance[i].y )
-                stats.rarity = rarity[i];
+                stats.Rar = rarity[i];
     }
 
     private void RandomStats()
     {
-        int statsID = (int)stats.rarity;
+        int statsID = (int)stats.Rar;
         Vector2Int valuesRange = statsValues.statValuesRange[statsID];
         Vector2Int critRange = statsValues.criticalChanceRange[statsID];
         SetDamage(valuesRange.x,valuesRange.y);
@@ -89,31 +89,31 @@ public class DropManager : MonoBehaviour
     
     private void SetDamage(int min, int max)
     {
-        stats.damage = Random.Range(min, max);
+        stats.Damage = Random.Range(min, max);
     }
     private void SetDefence(int min, int max)
     {
-        stats.defence = Random.Range(min, max);
+        stats.Defence = Random.Range(min, max);
     } 
     private void SetCriticalDamage(int min, int max)
     {
-        stats.criticalDamage = Random.Range(min, max);
+        stats.CriticalDamage = Random.Range(min, max);
     }
     private void SetCriticalChance(int min, int max)
     {
-        stats.criticalChance = Random.Range(min, max);
+        stats.CriticalChance = Random.Range(min, max);
     }
     private void SetSpeed(int min, int max)
     {
-        stats.speed = Random.Range(min, max);
+        stats.Speed = Random.Range(min, max);
     }
     private void MultiplyStats(int idStats)
     {
-        stats.damage = (int)(stats.damage * statsValues.statsMultiplier[idStats]);
-        stats.defence = (int)(stats.defence * statsValues.statsMultiplier[idStats]);
-        stats.criticalDamage = (int)(stats.criticalDamage * statsValues.statsMultiplier[idStats]);
-        stats.criticalChance = (int)(stats.criticalChance * statsValues.statsMultiplier[idStats]);
-        stats.speed = (int)(stats.criticalChance * statsValues.statsMultiplier[idStats]);
+        stats.Damage = (int)(stats.Damage * statsValues.statsMultiplier[idStats]);
+        stats.Defence = (int)(stats.Defence * statsValues.statsMultiplier[idStats]);
+        stats.CriticalDamage = (int)(stats.CriticalDamage * statsValues.statsMultiplier[idStats]);
+        stats.CriticalChance = (int)(stats.CriticalChance * statsValues.statsMultiplier[idStats]);
+        stats.Speed = (int)(stats.CriticalChance * statsValues.statsMultiplier[idStats]);
     }
 
     private void ClearItemSlots()

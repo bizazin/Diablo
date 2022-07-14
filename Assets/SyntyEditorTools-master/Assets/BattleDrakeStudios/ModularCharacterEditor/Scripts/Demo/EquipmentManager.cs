@@ -1,12 +1,14 @@
 ﻿using BattleDrakeStudios.ModularCharacters;
 using Newtonsoft.Json;
+using System;
 using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
 {
-    public Equipment[] equipmentSlots;
+    public Equipment[] EquipmentSlots { get; set; }
+
     [SerializeField] private ModularCharacterManager characterManager;
-    private SaveManager save;
+//    private SaveManager save;
 
     private void OnEnable()
     {
@@ -26,13 +28,12 @@ public class EquipmentManager : MonoBehaviour
         // {
         //     equipmentSlots = save.LoadJsonArray("EquipmentList", equipmentSlots);
         // }
+        EquipmentSlots = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
 
 
-        foreach (var item in equipmentSlots)
-        {
-            if (item != null)
+        foreach (var item in EquipmentSlots)
+            if (item != null) 
                 EquipItem(item);
-        }
     }
 
     public void EquipItem(Equipment equipment)
@@ -46,7 +47,7 @@ public class EquipmentManager : MonoBehaviour
         }
         
         int idEquip = (int)equipment.ArmorType;
-        equipmentSlots[idEquip] = equipment;
+        EquipmentSlots[idEquip] = equipment;
         
         EventsManager.OnStatsChanged.Invoke();
     }
@@ -61,7 +62,7 @@ public class EquipmentManager : MonoBehaviour
     private void OnEquipmentAdded(Equipment itemToPickedUp)
     {
         int i = (int)itemToPickedUp.ArmorType;
-        equipmentSlots[i] = itemToPickedUp;
+        EquipmentSlots[i] = itemToPickedUp;
         EquipItem(itemToPickedUp);
     }
 

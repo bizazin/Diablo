@@ -31,15 +31,15 @@ public class PlayerStatsManager : MonoBehaviour
         player.playerStats.CriticalChance = 0;
         player.playerStats.CriticalDamage = 0;
         player.playerStats.Speed = 0;
-        foreach (var slot in equipmentManager.equipmentSlots)
+        foreach (var slot in equipmentManager.EquipmentSlots)
         {
             if (slot != null)
             {
-                player.playerStats.Damage += slot.Stats.damage;
-                player.playerStats.Defence += slot.Stats.defence;
-                player.playerStats.CriticalChance += slot.Stats.criticalChance;
-                player.playerStats.CriticalDamage += slot.Stats.criticalDamage;
-                player.playerStats.Speed += slot.Stats.speed;
+                player.playerStats.Damage += slot.Stats.Damage;
+                player.playerStats.Defence += slot.Stats.Defence;
+                player.playerStats.CriticalChance += slot.Stats.CriticalChance;
+                player.playerStats.CriticalDamage += slot.Stats.CriticalDamage;
+                player.playerStats.Speed += slot.Stats.Speed;
             }
         }
     }

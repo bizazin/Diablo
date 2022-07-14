@@ -10,7 +10,7 @@ public class OrbColor : MonoBehaviour
     public Color[] newColors;
     private void Start()
     {
-        var rarity = GetComponentInParent<ItemPickup>().item.Stats.rarity;
+        var rarity = GetComponentInParent<ItemPickup>().item.Stats.Rar;
         int idColor = (int)rarity;
         foreach (var color in myColors)
         {

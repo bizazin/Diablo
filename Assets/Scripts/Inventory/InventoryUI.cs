@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    [SerializeField] private Transform contents;
+    [SerializeField] private Transform slotsParent;
     [SerializeField] private InventorySlot slot;
     [SerializeField] private Button removeButton;
     [SerializeField] private Button equipButton;
@@ -14,7 +14,6 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private EquipmentSlot[] equipmentSlots;
 
     private Inventory inventory;
-    private InventorySlot[] inventorySlots;
     
 
     private void Start()
@@ -57,19 +56,26 @@ public class InventoryUI : MonoBehaviour
         }
         else
             selectedSlot = currentSlot?.Deselect();
+
+        ResetSliders();
+
+        EventsManager.OnStatsUIChanged?.Invoke(selectedSlot);
+    }
+
+    private void ResetSliders()
+    {
+        var statsManager = new StatsUIManager();
+        statsManager.SetSlidersToDefault();
     }
 
     private void AddItemToUI()
     {
-        CreateFrameForItem();
-        inventorySlots = contents.GetComponentsInChildren<InventorySlot>();
-        inventorySlots.Last().AddItem(inventory.Items.Last());
+        CreateFrameForItem().AddItem(inventory.Items.Last());
     }
 
     private InventorySlot CreateFrameForItem()
     {
-        InventorySlot inventorySlot = Instantiate(slot, contents);
-        return inventorySlot;
+        return Instantiate(slot, slotsParent);
     }
 
     public void EquipItem()
@@ -77,8 +83,12 @@ public class InventoryUI : MonoBehaviour
         if (selectedSlot?.Item is Equipment currentEquipment)
         {
             EventsManager.OnItemEquipped?.Invoke(currentEquipment);
+
             ChangeCurrentEquipmentImage(currentEquipment);
+
             Destroy(selectedSlot.gameObject);
+
+            
         }
     }
 
@@ -96,7 +106,6 @@ public class InventoryUI : MonoBehaviour
                 slot.AddEquipment(equipment);
             }
     }
-
 
     private void ConfirmDeleteItem()
     {
