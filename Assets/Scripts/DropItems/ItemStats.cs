@@ -4,12 +4,12 @@ using UnityEngine;
 [Serializable]
 public class ItemStats 
 {
-    public int damage;
-    public int defence;
-    public int criticalDamage;
-    public int criticalChance;
-    public int speed;
-    public Rarity rarity;
+    public int Damage;
+    public int Defence;
+    public int CriticalDamage;
+    public int CriticalChance;
+    public int Speed;
+    public Rarity Rar;
     public enum Rarity
     {
         Common = 0,

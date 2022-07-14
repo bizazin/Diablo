@@ -22,6 +22,7 @@ public class EventsManager : MonoBehaviour
     public static Action<QuestData, MainQuestUI> OnMainRewardClaimed;
     
     public static Action OnStatsChanged;
+    public static Action<InventorySlot> OnStatsUIChanged;
     
     public static Action OnDeath;
 

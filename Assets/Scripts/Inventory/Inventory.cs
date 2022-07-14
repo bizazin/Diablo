@@ -18,7 +18,6 @@ public class Inventory : MonoBehaviour
     }
     #endregion
 
-
     public delegate void OnItemChanged();
     public OnItemChanged OnItemChangedCallback;
     [JsonProperty] public List<Item> Items = new List<Item>();
