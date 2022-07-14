@@ -20,7 +20,7 @@ public class StatsUIManager : MonoBehaviour
     private void Start()
     {
         currentEquipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
-        
+        CheckCurrentEquipment();
         defaultSlidersValues = new Dictionary<StatsType, float>();
         currentSlidersValues = new Dictionary<StatsType, float>();
         SetDefaultValues();
@@ -38,9 +38,15 @@ public class StatsUIManager : MonoBehaviour
         if (selectedSlot != null)
         {
             var equipment = selectedSlot.Item as Equipment;
-            int idEquip = (int)equipment.ArmorType;
-            currentEquipment[idEquip] = equipment;
+            AddToEquipment(equipment);
+            SetSliders(equipment);
         }
+    }
+
+    private void AddToEquipment(Equipment equipment)
+    {
+        var idEquip = (int)equipment.ArmorType;
+        currentEquipment[idEquip] = equipment;
     }
 
     private void SetDefaultValues()
