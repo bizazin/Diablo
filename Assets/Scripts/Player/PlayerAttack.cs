@@ -24,9 +24,10 @@ public class PlayerAttack : MonoBehaviour
        // StartCoroutine(CanAttack());
        if (canAttack && fovPlayer.damageableTargets.Count > 0)
        {
-           
+
            foreach (var enemy in fovPlayer.damageableTargets)
-               enemy.GetComponent<Enemy>().ApplyDamage(7);
+               enemy.GetComponent<Enemy>().ApplyDamage(1);
+           
            StartCoroutine(CanAttack());
        }
 
@@ -34,6 +35,7 @@ public class PlayerAttack : MonoBehaviour
       
         //  player.Attack();
     }
+ 
 
     IEnumerator CanAttack()
     {

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e820423be427e9641889aa115b74cf1c, type: 3}
   m_Name: Enemy Stats
   m_EditorClassIdentifier: 
-
-  Damage: 4
-  SearchDuration: 8
+  WalkSpeed: 2
+  RunSpeed: 4
+  AttackRate: 0
+  Damage: 0
+  SearchDuration: 0
   SearchingTurnSpeed: 0

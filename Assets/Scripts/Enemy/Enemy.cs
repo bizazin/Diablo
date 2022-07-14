@@ -15,18 +15,21 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     [Header("Enemy Properties")]
     [SerializeField] protected int maxHealth;
 
+    [SerializeField] protected EnemyHealthBar enemyHealthBar;
     public CurrentState currentState;
+    
     protected int currentHealth;
 
     protected EnemyAnimationController enemyAnimator;
     protected NavMeshAgent enemyAgent;
+    
 
     protected virtual void Start()
     {
         enemyAnimator = GetComponent<EnemyAnimationController>();
         enemyAgent = GetComponent<NavMeshAgent>();
-        //EventsManager.OnEnemyDamageTaken += ApplyDamage;
         currentHealth = maxHealth;
+        enemyHealthBar.UpdateHealthBar(maxHealth,currentHealth);
     }
 
     protected virtual void Update()
@@ -48,18 +51,21 @@ public abstract class Enemy : MonoBehaviour, IDamageable
             }
         }
         else
-        {
             animationController.AnimateRun(false);
-        }
     }
 
     public void ApplyDamage(int damageValue)
     {
+        StartCoroutine(ReducingDelay(damageValue));
+    }
+    IEnumerator ReducingDelay(int damageValue)
+    {
+        yield return new WaitForSeconds(.7f);
         currentHealth -= damageValue;
-
-        if (currentHealth < 0)
+        enemyHealthBar.UpdateHealthBar(maxHealth,currentHealth);
+        if (currentHealth<0)
         {
-            
+            //тут смерть
         }
     }
 }
