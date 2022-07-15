@@ -30,4 +30,22 @@ public class EnemyAnimationController : MonoBehaviour
     {
         animator.SetBool("isAttacking", isAttacking);
     }
+
+    public void AnimateDamage(bool isDamage)
+    {
+        animator.SetBool("isDamage" , isDamage);
+        StartCoroutine(DamageRecount());
+    }
+
+    public void AnimateDie(bool isDie)
+    {
+        animator.SetBool("Die" , isDie);
+    }
+
+    private IEnumerator DamageRecount()
+    {
+        yield return new WaitForSeconds(1f);
+
+        AnimateDamage(false);
+    }
 }
