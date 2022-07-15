@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e820423be427e9641889aa115b74cf1c, type: 3}
-  m_Name: Enemy Stats
+  m_Name: DemonStats
   m_EditorClassIdentifier: 
-  WalkSpeed: 2
-  RunSpeed: 4
-  AttackRate: 0
-  Damage: 0
-  SearchDuration: 0
+  WalkSpeed: 1
+  RunSpeed: 3
+  AttackRate: 1
+  Damage: 5
+  SearchDuration: 3
   SearchingTurnSpeed: 0

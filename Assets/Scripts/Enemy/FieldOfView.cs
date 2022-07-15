@@ -21,8 +21,6 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private LayerMask obstacleMask;
 
-    [SerializeField] private float findTargetsDelay;
-
     public Transform damageableTarget;
     public Transform visibleTarget;
 

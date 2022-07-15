@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class DarkNight : Enemy
 {
     private StateController stateController;
@@ -10,6 +6,7 @@ public class DarkNight : Enemy
     {
         base.Start();
         stateController = GetComponent<StateController>();
+        stateController.InitializeAI(true , this.waypoints);
     }
 
     public void TakePlayerDamage()
