@@ -1,11 +1,14 @@
-﻿using BattleDrakeStudios.ModularCharacters;
+﻿using System;
+using BattleDrakeStudios.ModularCharacters;
+using Newtonsoft.Json;
 using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "NewItem", menuName = "Inventory/Equipment")]
+[JsonObject(MemberSerialization.OptIn)]
 public class Equipment : Item
 {
-    public EquipmentType ArmorType;
-    public BodyPartLinker[] ArmorParts;
+   [JsonProperty]public EquipmentType ArmorType;
+   [JsonProperty]public BodyPartLinker[] ArmorParts;
 }
 

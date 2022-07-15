@@ -9,5 +9,7 @@ using UnityEngine;
         EnableCustomInventory = 1,
         LocalQuests = 2,
         EnableCustomLocalQuest = 3,
+        Equipment= 4,
+        EnableCustomEquipment = 5,
         
     }

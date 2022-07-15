@@ -1,13 +1,16 @@
+using System;
+using Newtonsoft.Json;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewItem", menuName = "Inventory/Item")]
+[JsonObject(MemberSerialization.OptIn)]
 public class Item : ScriptableObject
 {
     [SerializeField] private string name;
     [SerializeField] private Sprite icon;
     [SerializeField] private bool isDefaultItem;
     [SerializeField] private bool isPotion;
-    [SerializeField] private ItemStats stats; 
+   [JsonProperty] [SerializeField] private ItemStats stats; 
 
     public string Name { get { return name; } set { name = value; } }
     public Sprite Icon { get { return icon; } set { icon = value; } }

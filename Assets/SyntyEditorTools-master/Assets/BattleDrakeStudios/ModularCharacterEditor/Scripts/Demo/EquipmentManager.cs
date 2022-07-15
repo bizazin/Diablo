@@ -8,7 +8,9 @@ public class EquipmentManager : MonoBehaviour
     public Equipment[] EquipmentSlots { get; set; }
 
     [SerializeField] private ModularCharacterManager characterManager;
-//    private SaveManager save;
+    [SerializeField] private ModularCharacterManager playerView;
+    [SerializeField] private RemoteConfigStorage rem;
+    private SaveManager save;
 
     private void OnEnable()
     {
@@ -17,23 +19,31 @@ public class EquipmentManager : MonoBehaviour
         EventsManager.OnItemUnequipped += Unequip;
     }
 
+    private void Awake()
+    {
+        EquipmentSlots = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
+        LoadJson();
+    }
+
     private void Start()
     {
-        // save = GetComponent<SaveManager>();
-        // if (rem.GetConfig(RemoteConfigs.EnableCustomInventory).Value == "1")
-        // {
-        //     equipmentSlots = JsonConvert.DeserializeObject<Equipment[]>(rem.GetConfig(RemoteConfigs.Inventory).DefaultValue);
-        // }
-        // else
-        // {
-        //     equipmentSlots = save.LoadJsonArray("EquipmentList", equipmentSlots);
-        // }
-        EquipmentSlots = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
-
-
         foreach (var item in EquipmentSlots)
             if (item != null) 
                 EquipItem(item);
+    }
+
+    private void LoadJson()
+    {
+        rem = Resources.Load<RemoteConfigStorage>("Storage");
+        save = GetComponent<SaveManager>();
+        if (rem.GetConfig(RemoteConfigs.EnableCustomEquipment).Value == "1")
+        {
+            EquipmentSlots = JsonConvert.DeserializeObject<Equipment[]>(rem.GetConfig(RemoteConfigs.Equipment).DefaultValue);
+        }
+        else
+        {
+            EquipmentSlots = save.LoadJsonArray("Equipment", EquipmentSlots);
+        }
     }
 
     public void EquipItem(Equipment equipment)
@@ -41,9 +51,16 @@ public class EquipmentManager : MonoBehaviour
         foreach (var part in equipment.ArmorParts)
         {
             if (part.partID > -1)
+            {
                 characterManager.ActivatePart(part.bodyType, part.partID);
+                playerView.ActivatePart(part.bodyType,part.partID);
+            }
             else
-                characterManager.DeactivatePart(part.bodyType);
+            {
+                characterManager.DeactivatePart(part.bodyType); 
+                playerView.DeactivatePart(part.bodyType);
+            }
+                
         }
         
         int idEquip = (int)equipment.ArmorType;
@@ -70,7 +87,7 @@ public class EquipmentManager : MonoBehaviour
     {
         EventsManager.OnItemPickedUp -= OnEquipmentAdded;
         EventsManager.OnItemEquipped -= EquipItem;
-       // save.SaveToFile("EquipmentList", equipmentSlots);
+        save.SaveToFile("Equipment", EquipmentSlots);
     }
 
 }
