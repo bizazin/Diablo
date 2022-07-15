@@ -21,14 +21,27 @@ public class LocalQuestsManager : MonoBehaviour, ICanBeSaved
     [SerializeField] private LocalQuestUI localQuestPrefab;
     [SerializeField] private GameObject npcQuestsContainer;
     public LocalQuestUI selectedQuest;
+    public RemoteConfigStorage rem;
     private void Start()
     {
-        LoadQuests();
+        LoadCustomQuests();
     }
 
-    private void LoadQuests()
+    public void LoadCustomQuests()
     {
-        List<int> loadedJson = SaveManager.Instance.LoadJsonList<int>("Quests");
+        rem = Resources.Load<RemoteConfigStorage>("Storage");
+        List<int> loadedJson = new List<int>();
+        
+        if (rem.GetConfig(RemoteConfigs.EnableCustomEquipment).Value == "1")
+            loadedJson = JsonConvert.DeserializeObject<List<int>>(rem.GetConfig(RemoteConfigs.LocalQuests).DefaultValue);
+        else
+            loadedJson = SaveManager.Instance.LoadJsonList<int>("Quests");
+        
+        LoadQuests(loadedJson);
+    }
+
+    private void LoadQuests(List<int> loadedJson)
+    {
         questsUI = new List<LocalQuestUI>();
         if (loadedJson != null)
         {
