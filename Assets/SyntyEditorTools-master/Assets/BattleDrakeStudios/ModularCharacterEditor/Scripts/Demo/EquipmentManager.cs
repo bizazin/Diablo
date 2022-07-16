@@ -17,7 +17,7 @@ public class EquipmentManager : MonoBehaviour
         EventsManager.OnItemUnequipped += Unequip;
     }
 
-    private void Start()
+    private void Awake()
     {
         // save = GetComponent<SaveManager>();
         // if (rem.GetConfig(RemoteConfigs.EnableCustomInventory).Value == "1")
@@ -56,6 +56,10 @@ public class EquipmentManager : MonoBehaviour
     {
         foreach (var part in unequip.ArmorParts)
             characterManager.ActivatePart(part.bodyType, 0);
+
+        int idEquip = (int)unequip.ArmorType;
+        EquipmentSlots[idEquip] = null;
+
         EventsManager.OnStatsChanged.Invoke();
     }
 

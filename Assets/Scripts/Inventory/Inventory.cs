@@ -18,8 +18,7 @@ public class Inventory : MonoBehaviour
     }
     #endregion
 
-    public delegate void OnItemChanged();
-    public OnItemChanged OnItemChangedCallback;
+    
     [JsonProperty] public List<Item> Items = new List<Item>();
     
     [JsonProperty] public List<string> JsonItems = new List<string>();
@@ -44,8 +43,7 @@ public class Inventory : MonoBehaviour
             }
             Items.Add(item);
             JsonItems.Add(item.Name);
-
-            OnItemChangedCallback?.Invoke();
+            EventsManager.OnItemAdded?.Invoke(item);
             KeyManager.SetPrefsValue(KeyManager.ItemsCount, Items.Count);
         }
         return true;
@@ -58,7 +56,7 @@ public class Inventory : MonoBehaviour
             Items.Remove(item);
             JsonItems.Remove(item.Name);
         }
+        EventsManager.OnItemDeleted?.Invoke();
         KeyManager.SetPrefsValue(KeyManager.ItemsCount, Items.Count);
-        OnItemChangedCallback?.Invoke();
     }
 }

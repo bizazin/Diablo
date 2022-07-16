@@ -6,25 +6,42 @@ using UnityEngine.UI;
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private Transform slotsParent;
-    [SerializeField] private InventorySlot slot;
+
+    [SerializeField] private InventorySlot slotPrefab;
+    [SerializeField] private InventorySlot selectedSlot;
+
     [SerializeField] private Button removeButton;
     [SerializeField] private Button equipButton;
-    [SerializeField] private InventorySlot selectedSlot;
-    [SerializeField] private ConfirmSellWindow confirmDeleteWindow;
-    [SerializeField] private EquipmentSlot[] equipmentSlots;
+    [SerializeField] private Button backButton;
+    [SerializeField] private Button openButton;
 
-    private Inventory inventory;
-    
+    [SerializeField] private ConfirmDeleteWindow confirmDeleteWindow;
+
+    [SerializeField] private EquipmentSlot[] equipmentSlots;
 
     private void Start()
     {
-        inventory = Inventory.Instance;
-        inventory.OnItemChangedCallback += AddItemToUI;
-
-        equipButton.onClick.AddListener(EquipItem);
         EventsManager.OnItemClicked += ChangeSelectedSlot;
         EventsManager.OnEquipmentClicked += ChangeEquipmentSlot;
+
+        EventsManager.OnItemAdded += AddItemToUI;
+        EventsManager.OnItemDeleted += DeleteItemFromUI;
+
+        equipButton.onClick.AddListener(EquipItem);
         removeButton.onClick.AddListener(ConfirmDeleteItem);
+        backButton.onClick.AddListener(CloseInventoryWindow);
+        openButton.onClick.AddListener(OpenInventoryWindow);
+    }
+
+    private void CloseInventoryWindow()
+    {
+        GetComponentInChildren<InventoryWindow>().Close();
+        selectedSlot.Deselect();
+    }
+
+    private void OpenInventoryWindow()
+    {
+        GetComponentInChildren<InventoryWindow>().Open();
     }
 
     private void ChangeEquipmentSlot(EquipmentSlot currentSlot)
@@ -57,44 +74,51 @@ public class InventoryUI : MonoBehaviour
         else
             selectedSlot = currentSlot?.Deselect();
 
-        ResetSliders();
+ //       ResetSliders();
 
         EventsManager.OnStatsUIChanged?.Invoke(selectedSlot);
     }
 
-    private void ResetSliders()
+/*    private void ChangeUI()
     {
-        var statsManager = new StatsUIManager();
-        statsManager.SetSlidersToDefault();
+        slots = slotsParent.GetComponentsInChildren<InventorySlot>();
+
+        if (slots.Length > inventory.Items.Count) selectedSlot.DeleteSlot();
+
+        else CreateFrameForItem().AddItem(inventory.Items.Last());
+    }*/
+
+    private void DeleteItemFromUI()
+    {
+        selectedSlot.DeleteSlot();
     }
 
-    private void AddItemToUI()
+    private void AddItemToUI(Item item)
     {
-        CreateFrameForItem().AddItem(inventory.Items.Last());
+        CreateFrameForItem().AddItem(item);
     }
 
     private InventorySlot CreateFrameForItem()
     {
-        return Instantiate(slot, slotsParent);
+        return Instantiate(slotPrefab, slotsParent);
     }
 
     public void EquipItem()
     {
-        if (selectedSlot?.Item is Equipment currentEquipment)
+        if (selectedSlot != null && selectedSlot.Item is Equipment currentEquipment)
         {
             EventsManager.OnItemEquipped?.Invoke(currentEquipment);
 
             ChangeCurrentEquipmentImage(currentEquipment);
 
             Destroy(selectedSlot.gameObject);
-
-            
         }
     }
 
     private void Unequip(Equipment equipment)
     {
         EventsManager.OnItemUnequipped?.Invoke(equipment);
+        EventsManager.OnUnequippedOrDeletedUI?.Invoke(equipment);
     }
 
     private void ChangeCurrentEquipmentImage(Equipment equipment)

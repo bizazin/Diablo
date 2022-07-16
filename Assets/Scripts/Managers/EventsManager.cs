@@ -10,6 +10,9 @@ public class EventsManager : MonoBehaviour
     public static Action<Equipment> OnItemEquipped;
     public static Action<Equipment> OnItemUnequipped;
 
+    public static Action OnItemDeleted;
+    public static Action<Item> OnItemAdded;
+
 
     //quests
     public static Action<QuestData> OnNewQuestAdded;
@@ -23,6 +26,8 @@ public class EventsManager : MonoBehaviour
     
     public static Action OnStatsChanged;
     public static Action<InventorySlot> OnStatsUIChanged;
+    public static Action<Equipment> OnUnequippedOrDeletedUI;
+    public static Action<Equipment> OnItemDeletedUI;
     
     public static Action OnDeath;
 
