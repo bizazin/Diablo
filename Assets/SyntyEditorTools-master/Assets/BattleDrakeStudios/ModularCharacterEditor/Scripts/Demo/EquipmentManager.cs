@@ -73,6 +73,10 @@ public class EquipmentManager : MonoBehaviour
     {
         foreach (var part in unequip.ArmorParts)
             characterManager.ActivatePart(part.bodyType, 0);
+
+        int idEquip = (int)unequip.ArmorType;
+        EquipmentSlots[idEquip] = null;
+
         EventsManager.OnStatsChanged.Invoke();
     }
 

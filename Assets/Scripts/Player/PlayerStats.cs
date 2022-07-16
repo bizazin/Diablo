@@ -16,10 +16,9 @@ public class PlayerStats : ScriptableObject
 
 public enum StatsType
 {
-    MaxHealth,
-    Speed,
-    Damage,
-    Defence,
-    CriticalChance,
-    CriticalDamage
+    Speed = 0,
+    Damage = 1,
+    Defence = 2,
+    CriticalChance = 3,
+    CriticalDamage = 4
 }

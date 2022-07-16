@@ -6,157 +6,137 @@ using UnityEngine;
 public class StatsUIManager : MonoBehaviour
 {
     [SerializeField] private StatsUIComponent[] statsUIs;
-
+    
+    private EquipmentManager equipmentManager;
     private Dictionary<StatsType, float> defaultSlidersValues;
-    private Dictionary<StatsType, float> currentSlidersValues;
 
     private Equipment[] currentEquipment;
 
     private void OnEnable()
     {
         EventsManager.OnStatsUIChanged += ChangeStats;
+        EventsManager.OnUnequippedOrDeletedUI += UnequipStats;
     }
 
     private void Start()
     {
-        currentEquipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
-        CheckCurrentEquipment();
+        equipmentManager = GetComponentInParent<EquipmentManager>();
+        currentEquipment = new Equipment[equipmentManager.EquipmentSlots.Length];
         defaultSlidersValues = new Dictionary<StatsType, float>();
-        currentSlidersValues = new Dictionary<StatsType, float>();
+
+        SetEquippedStuff();
         SetDefaultValues();
-        SetCurrentValues();
+        SetSliders();
     }
 
-    private void CheckCurrentEquipment()
+    private void SetEquippedStuff()
     {
-        var equipManager = new EquipmentManager();
-        equipManager.EquipmentSlots.CopyTo(currentEquipment, 0);
+        Array.Copy(equipmentManager.EquipmentSlots, currentEquipment, currentEquipment.Length);
     }
 
     private void ChangeStats(InventorySlot selectedSlot)
     {
+        ChangeSliders(selectedSlot);
+//        ChangeDifferences();
+    }
+
+
+    private void ChangeSliders(InventorySlot selectedSlot)
+    {
         if (selectedSlot != null)
         {
             var equipment = selectedSlot.Item as Equipment;
-            AddToEquipment(equipment);
-            SetSliders(equipment);
+            SetEquippedStuff();
+            AddToCurEquipment(equipment);
         }
+        else SetEquippedStuff();
+        SetSliders();
     }
 
-    private void AddToEquipment(Equipment equipment)
+    private void ChangeDifferences()
+    {
+        throw new NotImplementedException();
+    }
+    
+    private void UnequipStats(Equipment equipment)
+    {
+        DeleteFromCurEquipment(equipment);
+        SetSliders();
+    }
+
+    private void AddToCurEquipment(Equipment equipment)
     {
         var idEquip = (int)equipment.ArmorType;
         currentEquipment[idEquip] = equipment;
     }
 
+    private void DeleteFromCurEquipment(Equipment equipment)
+    {
+        var idEquip = (int)equipment.ArmorType;
+        currentEquipment[idEquip] = null;
+    }
+
     private void SetDefaultValues()
     {
-        foreach (var item in statsUIs)
-        {
-            if (item.StatsType == StatsType.Speed)
-                defaultSlidersValues.Add(StatsType.Speed, item.Slider.value);
-
-            if (item.StatsType == StatsType.Defence)
-                defaultSlidersValues.Add(StatsType.Defence, item.Slider.value);
-
-            if (item.StatsType == StatsType.CriticalChance)
-                defaultSlidersValues.Add(StatsType.CriticalChance, item.Slider.value);
-
-            if (item.StatsType == StatsType.CriticalDamage)
-                defaultSlidersValues.Add(StatsType.CriticalDamage, item.Slider.value);
-
-            if (item.StatsType == StatsType.Damage)
-                defaultSlidersValues.Add(StatsType.Damage, item.Slider.value);
-        }
+        for (int i = 0; i < statsUIs.Length; i++)
+            defaultSlidersValues.Add((StatsType)i, statsUIs[i].Slider.value);
     }
 
-    private void SetCurrentValues()
+    private void SetSliders()
     {
-        foreach (var item in statsUIs)
-        {
-            if (item.StatsType == StatsType.Speed)
-                currentSlidersValues.Add(StatsType.Speed, item.Slider.value);
+        SetSlidersToDefault();
 
-            if (item.StatsType == StatsType.Defence)
-                currentSlidersValues.Add(StatsType.Defence, item.Slider.value);
+        foreach (var item in currentEquipment)
+            if (item != null)
+            {
+                var stats = item.Stats;
+                foreach (var ui in statsUIs)
+                {
+                    if (ui.StatsType == StatsType.Speed)
+                        ui.Slider.value += stats.Speed;
 
-            if (item.StatsType == StatsType.CriticalChance)
-                currentSlidersValues.Add(StatsType.CriticalChance, item.Slider.value);
+                    if (ui.StatsType == StatsType.Defence)
+                        ui.Slider.value += stats.Defence;
 
-            if (item.StatsType == StatsType.CriticalDamage)
-                currentSlidersValues.Add(StatsType.CriticalDamage, item.Slider.value);
+                    if (ui.StatsType == StatsType.CriticalChance)
+                        ui.Slider.value += stats.CriticalChance;
 
-            if (item.StatsType == StatsType.Damage)
-                currentSlidersValues.Add(StatsType.Damage, item.Slider.value);
-        }
+                    if (ui.StatsType == StatsType.CriticalDamage)
+                        ui.Slider.value += stats.CriticalDamage;
+
+                    if (ui.StatsType == StatsType.Damage)
+                        ui.Slider.value += stats.Damage;
+                }
+            }
     }
 
-
-    private void SetSliders(Equipment equipment)
+    private void SetSlidersToDefault()
     {
-        var stats = equipment.Stats;
-        foreach (var item in statsUIs)
+/*        foreach (var ui in statsUIs)
         {
-            if (item.StatsType == StatsType.Speed)
-                item.Slider.value = defaultSlidersValues[StatsType.Speed] + stats.Speed;
+            if (ui.StatsType == StatsType.Speed)
+                ui.Slider.value = defaultSlidersValues[StatsType.Speed];
 
-            if (item.StatsType == StatsType.Defence)
-                item.Slider.value = defaultSlidersValues[StatsType.Defence] + stats.Defence;
+            if (ui.StatsType == StatsType.Defence)
+                ui.Slider.value = defaultSlidersValues[StatsType.Defence];
 
-            if (item.StatsType == StatsType.CriticalChance)
-                item.Slider.value = defaultSlidersValues[StatsType.CriticalChance] + stats.CriticalChance;
+            if (ui.StatsType == StatsType.CriticalChance)
+                ui.Slider.value = defaultSlidersValues[StatsType.CriticalChance];
 
-            if (item.StatsType == StatsType.CriticalDamage)
-                item.Slider.value = defaultSlidersValues[StatsType.Defence] + stats.CriticalDamage;
+            if (ui.StatsType == StatsType.CriticalDamage)
+                ui.Slider.value = defaultSlidersValues[StatsType.CriticalDamage];
 
-            if (item.StatsType == StatsType.Damage)
-                item.Slider.value = defaultSlidersValues[StatsType.Damage] + stats.Damage;
-        }
+            if (ui.StatsType == StatsType.Damage)
+                ui.Slider.value = defaultSlidersValues[StatsType.Damage];
+        }*/
+
+        for (int i = 0; i < statsUIs.Length; i++)
+            statsUIs[i].Slider.value = defaultSlidersValues[(StatsType)i];
     }
 
-    public void SetSlidersToDefault()
-    {
-        foreach (var item in statsUIs)
-        {
-            if (item.StatsType == StatsType.Speed)
-                item.Slider.value = defaultSlidersValues[StatsType.Speed];
-        
-            if (item.StatsType == StatsType.CriticalDamage)
-                item.Slider.value = defaultSlidersValues[StatsType.CriticalDamage];
-        
-            if (item.StatsType == StatsType.CriticalDamage)
-                item.Slider.value = defaultSlidersValues[StatsType.CriticalDamage];
-        
-            if (item.StatsType == StatsType.CriticalDamage)
-                item.Slider.value = defaultSlidersValues[StatsType.CriticalDamage];
-        
-            if (item.StatsType == StatsType.Damage)
-                item.Slider.value = defaultSlidersValues[StatsType.Damage];
-        }
-    }
-
-    private void SetSlidersToCurrent()
-    {
-        foreach (var item in statsUIs)
-        {
-            if (item.StatsType == StatsType.Speed)
-                item.Slider.value = currentSlidersValues[StatsType.Speed];
-        
-            if (item.StatsType == StatsType.CriticalDamage)
-                item.Slider.value = currentSlidersValues[StatsType.CriticalDamage];
-        
-            if (item.StatsType == StatsType.CriticalDamage)
-                item.Slider.value = currentSlidersValues[StatsType.CriticalDamage];
-        
-            if (item.StatsType == StatsType.CriticalDamage)
-                item.Slider.value = currentSlidersValues[StatsType.CriticalDamage];
-        
-            if (item.StatsType == StatsType.Damage)
-                item.Slider.value = currentSlidersValues[StatsType.Damage];
-        }
-    }
     private void OnDisable()
     {
         EventsManager.OnStatsUIChanged -= ChangeStats;
+        EventsManager.OnUnequippedOrDeletedUI -= UnequipStats;
     }
 }

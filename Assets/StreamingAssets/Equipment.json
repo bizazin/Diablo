@@ -1,1 +1,1 @@
-[null,null,null,null,null,null]
+[{"ArmorType":0,"ArmorParts":[{"bodyType":0,"partID":9},{"bodyType":2,"partID":-1},{"bodyType":5,"partID":-1}],"stats":{"Damage":7,"Defence":8,"CriticalDamage":6,"CriticalChance":2,"Speed":1,"Rar":1}},null,null,{"ArmorType":3,"ArmorParts":[{"bodyType":14,"partID":15},{"bodyType":15,"partID":15},{"bodyType":18,"partID":16},{"bodyType":19,"partID":16},{"bodyType":20,"partID":10},{"bodyType":21,"partID":10}],"stats":{"Damage":4,"Defence":4,"CriticalDamage":5,"CriticalChance":4,"Speed":2,"Rar":2}},null,null]

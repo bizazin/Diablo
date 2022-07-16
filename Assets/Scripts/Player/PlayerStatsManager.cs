@@ -17,11 +17,12 @@ public class PlayerStatsManager : MonoBehaviour
     }
     #endregion
 
-    [SerializeField]private EquipmentManager equipmentManager;
+    [SerializeField] private EquipmentManager equipmentManager;
     
     [SerializeField] private Player player;
     private void Start()
     {
+        equipmentManager = GetComponentInParent<EquipmentManager>();
         EventsManager.OnStatsChanged += ChangeStats;
     }
     public void ChangeStats()
