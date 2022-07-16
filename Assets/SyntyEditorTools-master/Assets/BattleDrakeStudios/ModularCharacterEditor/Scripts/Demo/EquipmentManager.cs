@@ -17,6 +17,8 @@ public class EquipmentManager : MonoBehaviour
         EventsManager.OnItemPickedUp += OnEquipmentAdded;
         EventsManager.OnItemEquipped += EquipItem;
         EventsManager.OnItemUnequipped += Unequip;
+        EventsManager.OnItemEquippedUI += EquipPlayerPreview;
+
     }
 
     private void Awake()
@@ -48,19 +50,13 @@ public class EquipmentManager : MonoBehaviour
 
     public void EquipItem(Equipment equipment)
     {
+        var playerEquipment = characterManager;
         foreach (var part in equipment.ArmorParts)
         {
             if (part.partID > -1)
-            {
-                characterManager.ActivatePart(part.bodyType, part.partID);
-                playerView.ActivatePart(part.bodyType,part.partID);
-            }
+                playerEquipment.ActivatePart(part.bodyType, part.partID);
             else
-            {
-                characterManager.DeactivatePart(part.bodyType); 
-                playerView.DeactivatePart(part.bodyType);
-            }
-                
+                playerEquipment.DeactivatePart(part.bodyType);
         }
         
         int idEquip = (int)equipment.ArmorType;
@@ -68,6 +64,25 @@ public class EquipmentManager : MonoBehaviour
         
         EventsManager.OnStatsChanged.Invoke();
     }
+
+    public void EquipPlayerPreview(PlayerPreview playerPreview)
+    {
+        playerView = playerPreview.GetComponentInChildren<ModularCharacterManager>();
+        foreach (var equipItem in EquipmentSlots)
+        {
+            if (equipItem!=null)
+            {
+                foreach (var part in equipItem.ArmorParts)
+                {
+                    if (part.partID > -1)
+                        playerView.ActivatePart(part.bodyType, part.partID);
+                    else
+                        playerView.DeactivatePart(part.bodyType);
+                }
+            }
+        }
+    }
+    
 
     public void Unequip(Equipment unequip)
     {

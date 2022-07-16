@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using BattleDrakeStudios.ModularCharacters;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,9 @@ public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private Transform slotsParent;
     [SerializeField] private InventorySlot slotPrefab;
+    [SerializeField] private Transform playerPreviewContainer;
+    [SerializeField] private PlayerPreview playerPreviewPrefab;
+
     
     [SerializeField] private Button removeButton;
     [SerializeField] private Button equipButton;
@@ -36,11 +40,15 @@ public class InventoryUI : MonoBehaviour
     {
         GetComponentInChildren<InventoryWindow>().Close();
         selectedSlot?.Deselect();
+        Destroy(playerPreviewContainer.GetComponentInChildren<PlayerPreview>().gameObject);
     }
 
     private void OpenInventoryWindow()
     {
         GetComponentInChildren<InventoryWindow>().Open();
+        var playerPreview = Instantiate(playerPreviewPrefab, playerPreviewContainer.transform);
+        //GetComponent<EquipmentManager>().EquipPlayerPreview();
+        EventsManager.OnItemEquippedUI.Invoke(playerPreview);
     }
 
     private void ChangeEquipmentSlot(EquipmentSlot currentSlot)
@@ -107,7 +115,9 @@ public class InventoryUI : MonoBehaviour
         if (selectedSlot != null && selectedSlot.Item is Equipment currentEquipment)
         {
             EventsManager.OnItemEquipped?.Invoke(currentEquipment);
-
+            var playerPreview = GetComponentInChildren<PlayerPreview>();
+            EventsManager.OnItemEquippedUI?.Invoke(playerPreview);
+            
             ChangeCurrentEquipmentImage(currentEquipment);
 
             Destroy(selectedSlot.gameObject);
