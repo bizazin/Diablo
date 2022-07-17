@@ -15,8 +15,8 @@ MonoBehaviour:
   idQuest: 1
   name: Hero
   goal: 3
-  currentProgress: 0
-  description: Kill 3 Skeletons
+  currentProgress: 3
+  description: Kill 3 Skeletons and go to the Guard Phil
   questTaken: 0
   completed: 0
   rewardClaimed: 0

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Merchant1
   m_EditorClassIdentifier: 
   quest: {fileID: 11400000, guid: 12a5685d054a6d441889a9ed79ab08c8, type: 2}
-  character: 0
+  character: 1
   sentences:
-  - iM A MERCHANT
-  - HELLO THERE
-  - GO OUT
-  name: Warrior222
+  - Hello,  I'm Sten
+  - You came just in time!
+  - The Dark Knight has freed himself and wants to take revenge on our village
+  - Only you can save us!!!
+  name: Merchant Sten

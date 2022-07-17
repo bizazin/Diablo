@@ -15,7 +15,7 @@ MonoBehaviour:
   quest: {fileID: 11400000, guid: f8316ab0b70777843981f0d37eabf748, type: 2}
   character: 0
   sentences:
-  - Pidor
-  - Not you
-  - PIDORRRRRRRRRRRR
-  name: Warrior
+  - Hello, dear wanderer!
+  - Our village is under attack, these skeletons are everywhere
+  - They need to be destroyed
+  name: Guard Phil

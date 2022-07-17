@@ -21,7 +21,7 @@ MonoBehaviour:
     _defaultValue: 1
   - _name: local_quests
     _type: 2
-    _defaultValue: '[1,2]'
+    _defaultValue: '[]'
   - _name: enable_custom_local_quests
     _type: 3
     _defaultValue: 1

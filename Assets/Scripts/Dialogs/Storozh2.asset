@@ -15,7 +15,7 @@ MonoBehaviour:
   quest: {fileID: 11400000, guid: 12a5685d054a6d441889a9ed79ab08c8, type: 2}
   character: 0
   sentences:
-  - Pidor222
-  - Not you222
-  - dfgfdsa sfdgh222
-  name: Warrior222
+  - Huh, thank you!
+  - There is a merchant in the desert, maybe he will help you
+  - Go talk to him
+  name: Guard Phil
