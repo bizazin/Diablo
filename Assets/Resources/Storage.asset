@@ -30,4 +30,4 @@ MonoBehaviour:
     _defaultValue: '[null,null,null,null,null,null]'
   - _name: enable_custom_equipment
     _type: 5
-    _defaultValue: 0
+    _defaultValue: 1
