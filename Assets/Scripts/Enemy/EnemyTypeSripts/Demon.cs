@@ -19,4 +19,12 @@ public class Demon : Enemy
             EventsManager.OnPlayerApplyDamage?.Invoke(stateController.EnemyStats.Damage);
         }
     }
+    
+    protected override void Die()
+    {
+        base.Die();
+        
+        int idMainQuest = 3;
+        EventsManager.MainQuestProgressIncreased.Invoke(idMainQuest);
+    }
 }

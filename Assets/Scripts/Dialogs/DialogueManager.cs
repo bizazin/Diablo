@@ -93,7 +93,11 @@ public class DialogueManager : MonoBehaviour
             int idQuest = 2;
             EventsManager.LocalQuestProgressIncreased.Invoke(idQuest);
         }
-            
+        if (currentDialogue.character == DialogueData.Character.Merchant)
+        {
+            int idMainQuest = 2;
+            EventsManager.MainQuestProgressIncreased.Invoke(idMainQuest);
+        }
     }
     public void DisplayCurrentSentence()
     {
