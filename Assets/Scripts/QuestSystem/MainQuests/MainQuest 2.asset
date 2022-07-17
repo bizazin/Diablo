@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731d4eb8b6e858b4d9996ddc9aa9d09d, type: 3}
   m_Name: MainQuest 2
   m_EditorClassIdentifier: 
-  name: Buy a weapon
-  goal: 6
+  idQuest: 2
+  name: Dark Knight
+  goal: 1
   currentProgress: 0
-  description: Find a dealer and buy a gun
+  description: Kill the Dark Knight
+  questTaken: 0
   completed: 0
   rewardClaimed: 0
   rewardCoins: 40
-  target: {fileID: 4039287397729257012, guid: 6a8024ff879a622409c2a4a6250f8b9e, type: 3}
+  target: {fileID: 170609254583556662, guid: 7e3e93f6d76e13f4cad7c3b0ba8d0fcc, type: 3}
