@@ -1,9 +1,9 @@
 using System;
 using System.Linq;
 using BattleDrakeStudios.ModularCharacters;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private Transform slotsParent;
@@ -19,7 +19,6 @@ public class InventoryUI : MonoBehaviour
     
     [SerializeField] private ConfirmDeleteWindow confirmDeleteWindow;
     [SerializeField] private EquipmentSlot[] equipmentSlots;
-    
     private InventorySlot selectedSlot;
 
     private void Start()
@@ -34,6 +33,9 @@ public class InventoryUI : MonoBehaviour
         removeButton.onClick.AddListener(ConfirmDeleteItem);
         backButton.onClick.AddListener(CloseInventoryWindow);
         openButton.onClick.AddListener(OpenInventoryWindow);
+        
+        //SetSprites();
+        
     }
 
     private void CloseInventoryWindow()
@@ -148,4 +150,5 @@ public class InventoryUI : MonoBehaviour
             confirmDeleteWindow.Open();
         }
     }
+    
 }
