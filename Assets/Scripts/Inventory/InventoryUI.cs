@@ -1,9 +1,10 @@
 using System;
 using System.Linq;
 using BattleDrakeStudios.ModularCharacters;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
-
+[JsonObject(MemberSerialization.OptIn)]
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private Transform slotsParent;
@@ -19,6 +20,7 @@ public class InventoryUI : MonoBehaviour
     
     [SerializeField] private ConfirmDeleteWindow confirmDeleteWindow;
     [SerializeField] private EquipmentSlot[] equipmentSlots;
+    [JsonProperty][SerializeField] private Sprite[] defaultSprites;
     
     private InventorySlot selectedSlot;
 
@@ -34,6 +36,17 @@ public class InventoryUI : MonoBehaviour
         removeButton.onClick.AddListener(ConfirmDeleteItem);
         backButton.onClick.AddListener(CloseInventoryWindow);
         openButton.onClick.AddListener(OpenInventoryWindow);
+        
+        //SetSprites();
+        
+    }
+
+    private void SetSprites()
+    {
+        foreach (var slot in equipmentSlots)
+        {
+            slot.DefaultSprite = defaultSprites[slot.SpriteID];
+        }
     }
 
     private void CloseInventoryWindow()
@@ -147,5 +160,10 @@ public class InventoryUI : MonoBehaviour
             confirmDeleteWindow.Initialize(selectedSlot);
             confirmDeleteWindow.Open();
         }
+    }
+
+    private void OnDisable()
+    {
+        SaveManager.Instance.SaveToFile("EquipmentUI",equipmentSlots);
     }
 }

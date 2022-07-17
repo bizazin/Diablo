@@ -2,11 +2,11 @@
 {
     public enum EquipmentType 
     {
-        Helmet,
-        Chest,
-        Arms,
-        Legs,
-        Sword,
-        Potion
+        Helmet = 0,
+        Chest = 1,
+        Arms = 2,
+        Legs = 3,
+        Sword = 4,
+        Potion = 5,
     }
 }

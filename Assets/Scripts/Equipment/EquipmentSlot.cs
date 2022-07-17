@@ -1,13 +1,17 @@
+using System;
+using System.Runtime.Serialization;
 using BattleDrakeStudios.ModularCharacters;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
-
+[DataContract]
 public class EquipmentSlot : MonoBehaviour
 {
-    [SerializeField] private Image image;
-    [SerializeField] private Sprite defaultSprite;
-    [SerializeField] private Equipment recievedEquipment;
-    [SerializeField] private EquipmentType equipmentType;
+    [DataMember][SerializeField] private Image image;
+    [DataMember] [SerializeField] private Sprite defaultSprite;
+    [DataMember][SerializeField] private EquipmentType equipmentType;
+    [DataMember]private Equipment recievedEquipment;
+    [DataMember]private int spriteID;
 
     private Button button;
 
@@ -16,6 +20,7 @@ public class EquipmentSlot : MonoBehaviour
     public Equipment RecievedEquipment { get { return recievedEquipment; } set { recievedEquipment = value; } }
     public EquipmentType ArmorType { get { return equipmentType; } set { equipmentType = value; } }
     public bool IsFilled { get; private set; }
+    public int SpriteID { get; private set; }
 
     private void Start()
     {
