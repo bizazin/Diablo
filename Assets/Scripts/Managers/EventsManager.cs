@@ -18,7 +18,7 @@ public class EventsManager : MonoBehaviour
     public static Action<QuestData> OnNewQuestAdded;
     public static Action<QuestData> OnQuestCompleted;
 
-    public static Action<QuestData> LocalQuestProgressIncreased;
+    public static Action<int> LocalQuestProgressIncreased;
     public static Action<QuestData, LocalQuestUI> OnLocalQuestRewardClaimed;
 
     public static Action<QuestData> MainQuestProgressIncreased;

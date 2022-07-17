@@ -30,7 +30,7 @@ public class DialogueManager : MonoBehaviour
     }
     public void AddPointQuest()
     {
-        EventsManager.LocalQuestProgressIncreased.Invoke(questData);
+      //  EventsManager.LocalQuestProgressIncreased.Invoke();
     }
     public void EnqueueDialogues(DialogueData.Character character)
     {
@@ -88,6 +88,12 @@ public class DialogueManager : MonoBehaviour
             currentDialogue.quest.questTaken = true;
         }
         
+        if (currentDialogue.character == DialogueData.Character.Merchant)
+        {
+            int idQuest = 2;
+            EventsManager.LocalQuestProgressIncreased.Invoke(idQuest);
+        }
+            
     }
     public void DisplayCurrentSentence()
     {

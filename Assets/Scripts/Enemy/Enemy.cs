@@ -62,21 +62,25 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         enemyAnimator.AnimateDamage(true);
 
     }
-    IEnumerator ReducingDelay(int damageValue)
+
+     public IEnumerator ReducingDelay(int damageValue)
     {
         yield return new WaitForSeconds(.7f);
         currentHealth -= damageValue;
         enemyHealthBar.UpdateHealthBar(maxHealth,currentHealth);
         if (currentHealth == 0)
-        {
-            //тут смэрть
-            gameObject.GetComponent<StateController>().enabled = false;
-            gameObject.GetComponent<Collider>().enabled = false;
-            enemyHealthBar.gameObject.SetActive(false);
-            enemyAgent.enabled = false;
-            enemyAnimator.AnimateDie(true);
-            StartCoroutine(DisappearDelay());
-        }
+            Die();
+    }
+
+   protected virtual void Die()
+    {
+        //тут смэрть
+        gameObject.GetComponent<StateController>().enabled = false;
+        gameObject.GetComponent<Collider>().enabled = false;
+        enemyHealthBar.gameObject.SetActive(false);
+        enemyAgent.enabled = false;
+        enemyAnimator.AnimateDie(true);
+        StartCoroutine(DisappearDelay());
     }
 
     private IEnumerator DisappearDelay()
