@@ -26,6 +26,6 @@ public class Skeleton : Enemy
     {
         base.Die();
         int idQuest = 1;
-        EventsManager.LocalQuestProgressIncreased.Invoke(idQuest);
+        EventsManager.LocalQuestProgressIncreased?.Invoke(idQuest);
     }
 }
