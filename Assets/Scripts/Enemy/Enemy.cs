@@ -15,6 +15,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     [Header("Enemy Properties")]
     [SerializeField] protected int maxHealth; 
     [SerializeField] protected List<Transform> waypoints;
+    [SerializeField] protected ItemPickup itemToDrop;
 
     protected int currentHealth;
 
@@ -80,8 +81,14 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         enemyHealthBar.gameObject.SetActive(false);
         enemyAgent.enabled = false;
         enemyAnimator.AnimateDie(true);
+        DropItem();
         StartCoroutine(DisappearDelay());
     }
+   
+   private void DropItem()
+   {
+       Instantiate(itemToDrop, new Vector3(transform.position.x,transform.position.y+1f, transform.position.z), Quaternion.identity);
+   }
 
     private IEnumerator DisappearDelay()
     {

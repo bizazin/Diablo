@@ -1536,7 +1536,7 @@ GameObject:
   - component: {fileID: 176051222116792419}
   - component: {fileID: 226896719292335768}
   m_Layer: 0
-  m_Name: MainTarget_1_Storozh
+  m_Name: MainTarget_1_Guard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1550,7 +1550,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 226896719292335769}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 36, y: 0, z: 115}
+  m_LocalPosition: {x: 45, y: 0.25, z: 133}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 226220822566729399}

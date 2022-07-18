@@ -6,7 +6,7 @@ using UnityEngine;
 public class DialogueData: ScriptableObject
 {
     public enum Character{
-       Storozh = 0,
+       Guard = 0,
        Merchant = 1,
     }
     

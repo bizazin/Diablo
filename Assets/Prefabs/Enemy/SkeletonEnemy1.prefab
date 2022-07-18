@@ -222,7 +222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7735525758739588380
 Transform:
   m_ObjectHideFlags: 0
@@ -415,6 +415,10 @@ PrefabInstance:
       propertyPath: m_AngularSpeed
       value: 240
       objectReference: {fileID: 0}
+    - target: {fileID: 2105311358, guid: 908987278249b014f91c9e63dd7174e8, type: 3}
+      propertyPath: itemToDrop
+      value: 
+      objectReference: {fileID: 7081282840312082497, guid: e50f9c6d2e38d674a96af05e5be8e1fc, type: 3}
     - target: {fileID: 2105311358, guid: 908987278249b014f91c9e63dd7174e8, type: 3}
       propertyPath: waypoints.Array.size
       value: 2

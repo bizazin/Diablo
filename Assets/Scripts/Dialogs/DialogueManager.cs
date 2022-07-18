@@ -93,9 +93,9 @@ public class DialogueManager : MonoBehaviour
             int idQuest = 2;
             EventsManager.LocalQuestProgressIncreased.Invoke(idQuest);
         }
-        if (currentDialogue.character == DialogueData.Character.Merchant)
+        if (currentDialogue.character == DialogueData.Character.Guard)
         {
-            int idMainQuest = 2;
+            int idMainQuest = 1;
             EventsManager.MainQuestProgressIncreased.Invoke(idMainQuest);
         }
     }
