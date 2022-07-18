@@ -117,9 +117,10 @@ public class InventoryUI : MonoBehaviour
         if (selectedSlot != null && selectedSlot.Item is Equipment currentEquipment)
         {
             EventsManager.OnItemEquipped?.Invoke(currentEquipment);
+
             var playerPreview = GetComponentInChildren<PlayerPreview>();
             EventsManager.OnItemEquippedUI?.Invoke(playerPreview);
-            
+
             ChangeCurrentEquipmentImage(currentEquipment);
 
             Destroy(selectedSlot.gameObject);
@@ -130,6 +131,9 @@ public class InventoryUI : MonoBehaviour
     {
         EventsManager.OnItemUnequipped?.Invoke(equipment);
         EventsManager.OnUnequippedOrDeletedUI?.Invoke(equipment);
+
+        var playerPreview = GetComponentInChildren<PlayerPreview>();
+        EventsManager.OnItemUnequippedUI?.Invoke(playerPreview);
     }
 
     private void ChangeCurrentEquipmentImage(Equipment equipment)

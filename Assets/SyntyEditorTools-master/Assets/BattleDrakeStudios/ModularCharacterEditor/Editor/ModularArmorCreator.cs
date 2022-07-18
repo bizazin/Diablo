@@ -418,6 +418,9 @@ namespace BattleDrakeStudios.ModularCharacters {
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.LegLeft));
                     armorParts.Add(new BodyPartLinker(ModularBodyPart.LegRight));
                     break;
+                case EquipmentType.Sword:
+                    armorParts.Add(new BodyPartLinker(ModularBodyPart.Sword));
+                    break;
             }
             return armorParts;
         }

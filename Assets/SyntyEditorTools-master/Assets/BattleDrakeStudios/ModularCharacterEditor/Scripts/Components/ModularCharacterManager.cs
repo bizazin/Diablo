@@ -60,6 +60,7 @@ namespace BattleDrakeStudios.ModularCharacters {
         [SerializeField] private GameObject[] backAttachmentParts;
         [SerializeField] private GameObject[] shoulderAttachmentRightParts;
         [SerializeField] private GameObject[] shoulderAttachmentLeftParts;
+        [SerializeField] private GameObject[] swordParts;
         [SerializeField] private GameObject[] elbowAttachmentRightParts;
         [SerializeField] private GameObject[] elbowAttachmentLeftParts;
         [SerializeField] private GameObject[] hipsAttachmentParts;
@@ -240,6 +241,7 @@ namespace BattleDrakeStudios.ModularCharacters {
             SetupPartArray(ref backAttachmentParts, ModularCharacterStatics.BackAttachmentPath, isExisting);
             SetupPartArray(ref shoulderAttachmentRightParts, ModularCharacterStatics.ShoulderAttachmentRightPath, isExisting);
             SetupPartArray(ref shoulderAttachmentLeftParts, ModularCharacterStatics.ShoulderAttachmentLeftPath, isExisting);
+            SetupPartArray(ref swordParts, ModularCharacterStatics.SwordPath, isExisting);
             SetupPartArray(ref elbowAttachmentRightParts, ModularCharacterStatics.ElbowAttachmentRightPath, isExisting);
             SetupPartArray(ref elbowAttachmentLeftParts, ModularCharacterStatics.ElbowAttachmentLeftPath, isExisting);
             SetupPartArray(ref hipsAttachmentParts, ModularCharacterStatics.HipsAttachmentPath, isExisting);
@@ -288,6 +290,7 @@ namespace BattleDrakeStudios.ModularCharacters {
             characterBody[ModularBodyPart.BackAttachment] = backAttachmentParts;
             characterBody[ModularBodyPart.ShoulderAttachmentRight] = shoulderAttachmentRightParts;
             characterBody[ModularBodyPart.ShoulderAttachmentLeft] = shoulderAttachmentLeftParts;
+            characterBody[ModularBodyPart.Sword] = swordParts;
             characterBody[ModularBodyPart.ElbowAttachmentRight] = elbowAttachmentRightParts;
             characterBody[ModularBodyPart.ElbowAttachmentLeft] = elbowAttachmentLeftParts;
             characterBody[ModularBodyPart.HipsAttachment] = hipsAttachmentParts;

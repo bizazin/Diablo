@@ -79,6 +79,9 @@ namespace BattleDrakeStudios.ModularCharacters {
         private int shoulderAttachmentLeftCurrentIndex;
         private int shoulderAttachmentLeftMaxIndex;
 
+        private int swordCurrentIndex;
+        private int swordMaxIndex;
+
         private int armUpperRightCurrentIndex;
         private int armUpperRightMaxIndex;
 
@@ -205,6 +208,7 @@ namespace BattleDrakeStudios.ModularCharacters {
             SetupBodyPart(ModularBodyPart.Torso, ref torsoCurrentIndex, ref torsoMaxIndex);
             SetupBodyPart(ModularBodyPart.ShoulderAttachmentRight, ref shoulderAttachmentRightCurrentIndex, ref shoulderAttachmentRightMaxIndex);
             SetupBodyPart(ModularBodyPart.ShoulderAttachmentLeft, ref shoulderAttachmentLeftCurrentIndex, ref shoulderAttachmentLeftMaxIndex);
+            SetupBodyPart(ModularBodyPart.Sword, ref swordCurrentIndex, ref swordMaxIndex);
             SetupBodyPart(ModularBodyPart.ArmUpperRight, ref armUpperRightCurrentIndex, ref armUpperRightMaxIndex);
             SetupBodyPart(ModularBodyPart.ArmUpperLeft, ref armUpperLeftCurrentIndex, ref armUpperLeftMaxIndex);
             SetupBodyPart(ModularBodyPart.ElbowAttachmentRight, ref elbowAttachmentRightCurrentIndex, ref elbowAttachmentRightMaxIndex);
@@ -288,6 +292,7 @@ namespace BattleDrakeStudios.ModularCharacters {
                     SetupPartSlider(ModularBodyPart.Torso, ref torsoCurrentIndex, torsoMaxIndex);
                     SetupPartSlider(ModularBodyPart.ShoulderAttachmentRight, ref shoulderAttachmentRightCurrentIndex, shoulderAttachmentRightMaxIndex);
                     SetupPartSlider(ModularBodyPart.ShoulderAttachmentLeft, ref shoulderAttachmentLeftCurrentIndex, shoulderAttachmentLeftMaxIndex);
+                    SetupPartSlider(ModularBodyPart.Sword, ref swordCurrentIndex, swordMaxIndex);
                     SetupPartSlider(ModularBodyPart.ArmUpperRight, ref armUpperRightCurrentIndex, armUpperRightMaxIndex);
                     SetupPartSlider(ModularBodyPart.ArmUpperLeft, ref armUpperLeftCurrentIndex, armUpperLeftMaxIndex);
                     SetupPartSlider(ModularBodyPart.ElbowAttachmentRight, ref elbowAttachmentRightCurrentIndex, elbowAttachmentRightMaxIndex);

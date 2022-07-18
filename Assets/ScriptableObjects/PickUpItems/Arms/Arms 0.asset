@@ -14,26 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Arms0
   icon: {fileID: 21300000, guid: bd366c5131d0f44de851dc511ebc6653, type: 3}
-  _isDefaultItem: 0
+  isDefaultItem: 0
   isPotion: 0
   stats:
-    damage: 2
-    defence: 2
-    criticalDamage: 2
-    criticalChance: 1
-    speed: 0
-    rarity: 1
-  ArmorType: 3
+    Damage: 0
+    Defence: 0
+    CriticalDamage: 1
+    CriticalChance: 0
+    Speed: 0
+    Rar: 0
+  ArmorType: 2
   ArmorParts:
-  - bodyType: 14
-    partID: 9
   - bodyType: 15
     partID: 9
-  - bodyType: 18
+  - bodyType: 16
     partID: 9
   - bodyType: 19
     partID: 9
   - bodyType: 20
-    partID: 4
+    partID: 9
   - bodyType: 21
+    partID: 4
+  - bodyType: 22
     partID: 4

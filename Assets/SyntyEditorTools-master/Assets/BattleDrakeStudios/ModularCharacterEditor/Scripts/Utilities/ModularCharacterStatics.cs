@@ -45,6 +45,7 @@ namespace BattleDrakeStudios.ModularCharacters {
         public const string HipsAttachmentPath = "All_09_Hips_Attachment";
         public const string KneeAttachmentRightPath = "All_10_Knee_Attachement_Right";
         public const string KneeAttachmentLeftPath = "All_11_Knee_Attachement_Left";
+        public const string SwordPath = "All_12_Sword";
 
         public const string COLOR_PRIMARY = "_Color_Primary";
         public const string COLOR_SECONDARY = "_Color_Secondary";

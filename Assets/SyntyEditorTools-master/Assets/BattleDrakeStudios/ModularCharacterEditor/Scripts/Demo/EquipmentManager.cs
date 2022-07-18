@@ -12,13 +12,13 @@ public class EquipmentManager : MonoBehaviour
     [SerializeField] private RemoteConfigStorage rem;
     private SaveManager save;
 
+
     private void OnEnable()
     {
         EventsManager.OnItemPickedUp += OnEquipmentAdded;
         EventsManager.OnItemEquipped += EquipItem;
         EventsManager.OnItemUnequipped += Unequip;
         EventsManager.OnItemEquippedUI += EquipPlayerPreview;
-
     }
 
     private void Awake()
@@ -70,7 +70,7 @@ public class EquipmentManager : MonoBehaviour
         playerView = playerPreview.GetComponentInChildren<ModularCharacterManager>();
         foreach (var equipItem in EquipmentSlots)
         {
-            if (equipItem!=null)
+            if (equipItem != null)
             {
                 foreach (var part in equipItem.ArmorParts)
                 {
@@ -84,15 +84,26 @@ public class EquipmentManager : MonoBehaviour
     }
     
 
-    public void Unequip(Equipment unequip)
+    private void Unequip(Equipment unequip)
     {
         foreach (var part in unequip.ArmorParts)
+        {
             characterManager.ActivatePart(part.bodyType, 0);
+            playerView.ActivatePart(part.bodyType, 0);
+        }
 
         int idEquip = (int)unequip.ArmorType;
         EquipmentSlots[idEquip] = null;
 
         EventsManager.OnStatsChanged.Invoke();
+    }
+
+    private void UnequipPlayerPreview(PlayerPreview playerPreview, Equipment unequip)
+    {
+        playerView = playerPreview.GetComponentInChildren<ModularCharacterManager>();
+
+        foreach (var part in unequip.ArmorParts)
+            playerView.ActivatePart(part.bodyType, 0);
     }
 
     private void OnEquipmentAdded(Equipment itemToPickedUp)
@@ -106,6 +117,9 @@ public class EquipmentManager : MonoBehaviour
     {
         EventsManager.OnItemPickedUp -= OnEquipmentAdded;
         EventsManager.OnItemEquipped -= EquipItem;
+        EventsManager.OnItemUnequipped -= Unequip;
+        EventsManager.OnItemEquippedUI -= EquipPlayerPreview;
+
         save.SaveToFile("Equipment", EquipmentSlots);
     }
 
