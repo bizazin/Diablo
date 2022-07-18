@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Arms 4
   m_EditorClassIdentifier: 
   name: Arms4
-  icon: {fileID: 21300000, guid: bd366c5131d0f44de851dc511ebc6653, type: 3}
+  icon: {fileID: 21300000, guid: cb6727da53e1c4848af7c1612f63a30f, type: 3}
   isDefaultItem: 0
   isPotion: 0
   isNew: 0

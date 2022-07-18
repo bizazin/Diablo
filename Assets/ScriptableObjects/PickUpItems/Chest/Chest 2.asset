@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chest 2
   m_EditorClassIdentifier: 
   name: Chest2
-  icon: {fileID: 21300000, guid: b91cf1dbd490c41aab12079d0311cdf5, type: 3}
+  icon: {fileID: 21300000, guid: 243ff2c97d34b524b8b0aeaf6c318bfc, type: 3}
   isDefaultItem: 0
   isPotion: 0
   isNew: 0

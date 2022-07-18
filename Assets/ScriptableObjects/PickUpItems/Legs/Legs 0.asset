@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Legs 0
   m_EditorClassIdentifier: 
   name: Legs0
-  icon: {fileID: 21300000, guid: a4ffdf3090d844d40856024a95e484bf, type: 3}
+  icon: {fileID: 21300000, guid: e66eb3951892e0346950424bb53ae585, type: 3}
   isDefaultItem: 0
   isPotion: 0
   isNew: 0

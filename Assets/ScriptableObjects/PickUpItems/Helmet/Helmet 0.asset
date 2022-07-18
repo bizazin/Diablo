@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Helmet 0
   m_EditorClassIdentifier: 
   name: Helmet0
-  icon: {fileID: 21300000, guid: e4c4ad03f82dc470ca1127233f894af0, type: 3}
+  icon: {fileID: 21300000, guid: 6748ba4f098db1f49a308c54882dc264, type: 3}
   isDefaultItem: 0
   isPotion: 0
   isNew: 0
