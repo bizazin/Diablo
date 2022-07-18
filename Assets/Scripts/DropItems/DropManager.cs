@@ -32,6 +32,7 @@ public class DropManager : MonoBehaviour
         SetRare();
         RandomStats();
         MultiplyStats(currentItemID);
+        itemToDrop.IsNew = true;
         itemToDrop.Stats = stats;
         return itemToDrop;
     }
@@ -47,19 +48,19 @@ public class DropManager : MonoBehaviour
                 break;
             case 1:
                 currentItemID = Random.Range(0,container.helmet.Length);
-                itemToDrop = container.helmet[currentItemID];
+                itemToDrop = Instantiate((container.helmet[currentItemID]) as Item);
                 break;
             case 2:
                 currentItemID = Random.Range(0,container.chest.Length);
-                itemToDrop = container.chest[currentItemID];
+                itemToDrop = Instantiate(container.chest[currentItemID]);
                 break;
             case 3:
                 currentItemID = Random.Range(0,container.arms.Length);
-                itemToDrop = container.arms[currentItemID];
+                itemToDrop = Instantiate(container.arms[currentItemID]);
                 break;
             case 4:
                 currentItemID = Random.Range(0,container.legs.Length);
-                itemToDrop = container.legs[currentItemID];
+                itemToDrop = Instantiate(container.legs[currentItemID]);
                 break;
         }
     }

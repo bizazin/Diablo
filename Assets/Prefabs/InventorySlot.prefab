@@ -395,7 +395,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 5483675762004917761}
+  newNotificationSlot: {fileID: 5483675762176911876}
   focus: {fileID: 1522346398915528177}
+  quantityText: {fileID: 0}
   Item: {fileID: 0}
 --- !u!114 &8739599216141625998
 MonoBehaviour:
@@ -561,7 +563,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5483675762176911879
 RectTransform:
   m_ObjectHideFlags: 0
@@ -578,8 +580,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 47.7, y: 46.1}
-  m_SizeDelta: {x: 22.857143, y: 27.428572}
+  m_AnchoredPosition: {x: 60.6166, y: 63.146}
+  m_SizeDelta: {x: 27.3383, y: 31.4225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5483675762176911877
 CanvasRenderer:

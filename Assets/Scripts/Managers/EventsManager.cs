@@ -30,6 +30,9 @@ public class EventsManager : MonoBehaviour
     public static Action<Equipment> OnItemDeletedUI;
     
     public static Action<PlayerPreview> OnItemEquippedUI;
+    public static Action<PlayerPreview> OnItemUnequippedUI;
+
+    public static Action OnCheckingForNewItems;
     
     public static Action OnDeath;
 

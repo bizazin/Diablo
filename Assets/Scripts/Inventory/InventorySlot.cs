@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour
 {
     [SerializeField] private Image icon;
+    [SerializeField] private Image newNotificationSlot;
     [SerializeField] private GameObject focus;
     [SerializeField] private TMP_Text quantityText;
 
@@ -18,14 +19,22 @@ public class InventorySlot : MonoBehaviour
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(OnPointerClick);
+
+        newNotificationSlot.enabled = Item.IsNew;
+
     }
 
     public InventorySlot Select()
     {
         focus.SetActive(true);
         IsSelected = true;
+        Item.IsNew = false;
+        newNotificationSlot.enabled = false;
+        EventsManager.OnCheckingForNewItems.Invoke();
         return this;
     }
+
+    
 
     public InventorySlot Deselect()
     {

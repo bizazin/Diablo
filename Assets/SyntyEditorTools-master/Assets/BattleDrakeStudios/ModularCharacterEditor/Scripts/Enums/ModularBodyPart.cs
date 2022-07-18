@@ -15,6 +15,7 @@ namespace BattleDrakeStudios.ModularCharacters {
         Torso,
         ShoulderAttachmentRight,
         ShoulderAttachmentLeft,
+        Sword,
         ArmUpperRight,
         ArmUpperLeft,
         ElbowAttachmentRight,
