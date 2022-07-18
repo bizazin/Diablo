@@ -222,7 +222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7735525758739588380
 Transform:
   m_ObjectHideFlags: 0
@@ -407,6 +407,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7735525758739588380}
     m_Modifications:
+    - target: {fileID: 2105311354, guid: 908987278249b014f91c9e63dd7174e8, type: 3}
+      propertyPath: viewAngle
+      value: 270
+      objectReference: {fileID: 0}
     - target: {fileID: 2105311356, guid: 908987278249b014f91c9e63dd7174e8, type: 3}
       propertyPath: m_AngularSpeed
       value: 240

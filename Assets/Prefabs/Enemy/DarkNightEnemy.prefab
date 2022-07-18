@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DarkNight
       objectReference: {fileID: 0}
+    - target: {fileID: 287832198344636786, guid: f4943549aa83bf24c890891896f6833f, type: 3}
+      propertyPath: viewAngle
+      value: 270
+      objectReference: {fileID: 0}
     - target: {fileID: 287832198344636787, guid: f4943549aa83bf24c890891896f6833f, type: 3}
       propertyPath: waypoints.Array.size
       value: 2
