@@ -6,8 +6,11 @@ public class InventorySlot : MonoBehaviour
 {
     [SerializeField] private Image icon;
     [SerializeField] private Image newNotificationSlot;
+    [SerializeField] private Sprite[] itemRarityBorders;
+    [SerializeField] private Image itemRarity;
     [SerializeField] private GameObject focus;
     [SerializeField] private TMP_Text quantityText;
+    
 
     private Button button;
 
@@ -19,7 +22,7 @@ public class InventorySlot : MonoBehaviour
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(OnPointerClick);
-
+        itemRarity.sprite = itemRarityBorders[(int) Item.Stats.Rar];
         newNotificationSlot.enabled = Item.IsNew;
 
     }
