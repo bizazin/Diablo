@@ -44,11 +44,11 @@ public class DropManager : MonoBehaviour
         {
             case 0: 
                 currentItemID = Random.Range(0,container.weapon.Length);
-                itemToDrop = container.weapon[currentItemID];
+                itemToDrop = Instantiate(container.weapon[currentItemID]);
                 break;
             case 1:
                 currentItemID = Random.Range(0,container.helmet.Length);
-                itemToDrop = Instantiate((container.helmet[currentItemID]) as Item);
+                itemToDrop = Instantiate(container.helmet[currentItemID]);
                 break;
             case 2:
                 currentItemID = Random.Range(0,container.chest.Length);
