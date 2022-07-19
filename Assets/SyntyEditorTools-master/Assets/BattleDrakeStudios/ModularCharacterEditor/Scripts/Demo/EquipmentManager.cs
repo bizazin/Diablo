@@ -11,7 +11,7 @@ public class EquipmentManager : MonoBehaviour
     [SerializeField] private ModularCharacterManager playerView;
     [SerializeField] private RemoteConfigStorage rem;
     [SerializeField] SaveManager save;
-
+    [SerializeField] private PlayerStats playerStats;
 
     private void OnEnable()
     {
@@ -29,6 +29,7 @@ public class EquipmentManager : MonoBehaviour
 
     private void Start()
     {
+        playerStats.ResetStats();
         foreach (var item in EquipmentSlots)
             if (item != null) 
                 EquipItem(item);
@@ -47,7 +48,7 @@ public class EquipmentManager : MonoBehaviour
         }
     }
 
-    public void EquipItem(Equipment equipment)
+    private void EquipItem(Equipment equipment)
     {
         var playerEquipment = characterManager;
         foreach (var part in equipment.ArmorParts)
@@ -61,10 +62,11 @@ public class EquipmentManager : MonoBehaviour
         int idEquip = (int)equipment.ArmorType;
         EquipmentSlots[idEquip] = equipment;
         
+        SetPlayerStats();
         EventsManager.OnStatsChanged.Invoke();
     }
 
-    public void EquipPlayerPreview(PlayerPreview playerPreview)
+    private void EquipPlayerPreview(PlayerPreview playerPreview)
     {
         playerView = playerPreview.GetComponentInChildren<ModularCharacterManager>();
         foreach (var equipItem in EquipmentSlots)
@@ -94,6 +96,7 @@ public class EquipmentManager : MonoBehaviour
         int idEquip = (int)unequip.ArmorType;
         EquipmentSlots[idEquip] = null;
 
+        SetPlayerStats();
         EventsManager.OnStatsChanged.Invoke();
     }
 
@@ -112,6 +115,22 @@ public class EquipmentManager : MonoBehaviour
         EquipItem(itemToPickedUp);
     }
 
+    private void SetPlayerStats()
+    {
+        playerStats.ResetStats();
+        foreach (var equipmentSlot in EquipmentSlots)
+        {
+            if (equipmentSlot!=null)
+            {
+                playerStats.Damage += equipmentSlot.Stats.Damage;
+                playerStats.Defence += equipmentSlot.Stats.Defence;
+                playerStats.Speed += equipmentSlot.Stats.Speed;
+                playerStats.CriticalChance += equipmentSlot.Stats.CriticalChance;
+                playerStats.CriticalDamage += equipmentSlot.Stats.CriticalDamage;
+            }
+        }
+    }
+    
     private void OnDisable()
     {
         EventsManager.OnItemPickedUp -= OnEquipmentAdded;

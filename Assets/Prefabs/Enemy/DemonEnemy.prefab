@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6024140294102919947
 Transform:
   m_ObjectHideFlags: 0
@@ -409,12 +409,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 809077200, guid: 13087e211b7388945b22bab7dd93cb8f, type: 3}
       propertyPath: viewAngle
-      value: 270
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 809077202, guid: 13087e211b7388945b22bab7dd93cb8f, type: 3}
       propertyPath: m_AngularSpeed
       value: 240
       objectReference: {fileID: 0}
+    - target: {fileID: 809077204, guid: 13087e211b7388945b22bab7dd93cb8f, type: 3}
+      propertyPath: EnemyStats
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d6032a6fd60f8e4cb74ab07bcd0b5c6, type: 2}
+    - target: {fileID: 809077204, guid: 13087e211b7388945b22bab7dd93cb8f, type: 3}
+      propertyPath: itemToDrop
+      value: 
+      objectReference: {fileID: 7081282840312082497, guid: e50f9c6d2e38d674a96af05e5be8e1fc, type: 3}
     - target: {fileID: 809077204, guid: 13087e211b7388945b22bab7dd93cb8f, type: 3}
       propertyPath: waypoints.Array.size
       value: 2

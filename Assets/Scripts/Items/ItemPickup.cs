@@ -22,6 +22,8 @@ public class ItemPickup : Interectable
             item = DropManager.Instance.SetupItem();
             stats = item.Stats;
         }
+        
+        GetComponentInChildren<OrbColor>().SetColor();
     }
 
     public override void Interact()

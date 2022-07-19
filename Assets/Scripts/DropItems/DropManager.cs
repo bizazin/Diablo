@@ -77,12 +77,15 @@ public class DropManager : MonoBehaviour
     private void RandomStats()
     {
         int statsID = (int)stats.Rar;
-        Vector2Int valuesRange = statsValues.statValuesRange[statsID];
         Vector2Int critRange = statsValues.criticalChanceRange[statsID];
         Vector2Int critDamage = statsValues.criticalDamageRange[statsID];
-        SetDamage(valuesRange.x,valuesRange.y);
-        SetDefence(valuesRange.x,valuesRange.y);
-        SetSpeed(valuesRange.x,valuesRange.y);
+        Vector2Int defence = statsValues.defenceRange[statsID];
+        Vector2Int speed = statsValues.speedRange[statsID];
+        Vector2Int damage = statsValues.damageRange[statsID];
+        
+        SetDamage(damage.x,damage.y);
+        SetDefence(defence.x,defence.y);
+        SetSpeed(speed.x,speed.y);
         SetCriticalChance(critRange.x,critRange.y);
         SetCriticalDamage(critDamage.x,critDamage.y);
         

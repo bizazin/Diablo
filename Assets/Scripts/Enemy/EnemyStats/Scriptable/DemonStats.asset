@@ -15,6 +15,7 @@ MonoBehaviour:
   WalkSpeed: 1
   RunSpeed: 3
   AttackRate: 1
-  Damage: 5
+  Damage: 50
+  MaxHealth: 10
   SearchDuration: 3
   SearchingTurnSpeed: 0

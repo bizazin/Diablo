@@ -23,11 +23,11 @@ public class AttackAction : StateAction
         }
         if(fov.damageableTarget != null)
         {
-            if (controller.Agent.remainingDistance <= controller.Agent.stoppingDistance) 
+            if (controller.Agent.remainingDistance <= controller.Agent.stoppingDistance ) 
             {
                 controller.Agent.speed = 0f;
                 controller.Agent.isStopped = true;
-                if (fov.damageableTarget != null && fov.damageableTarget.TryGetComponent(out IDamageable damageable) && controller.HasTimeElapsed(controller.EnemyStats.AttackRate))
+                if (fov.damageableTarget != null && controller.HasTimeElapsed(controller.EnemyStats.AttackRate))
                 {
                     controller.GetComponent<EnemyAnimationController>().AnimateAttack(true);
                     //damageable.ApplyDamage(controller.EnemyStats.Damage);

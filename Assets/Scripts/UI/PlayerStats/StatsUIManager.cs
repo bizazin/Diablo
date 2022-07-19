@@ -7,7 +7,7 @@ public class StatsUIManager : MonoBehaviour
 {
     [SerializeField] private StatsUIComponent[] statsUIs;
 
-    [SerializeField] private PlayerStats playerStats;
+  
     
     private EquipmentManager equipmentManager;
     private Dictionary<StatsType, int> defaultSlidersValues;

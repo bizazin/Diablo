@@ -8,7 +8,8 @@ public class OrbColor : MonoBehaviour
 
     public ParticleSystem[] myColors;
     public Color[] newColors;
-    private void Start()
+  
+    public void SetColor()
     {
         var rarity = GetComponentInParent<ItemPickup>().item.Stats.Rar;
         int idColor = (int)rarity;

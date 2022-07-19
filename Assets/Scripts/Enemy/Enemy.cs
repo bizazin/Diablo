@@ -13,9 +13,10 @@ public enum CurrentState
 public abstract class Enemy : MonoBehaviour, IDamageable
 {
     [Header("Enemy Properties")]
-    [SerializeField] protected int maxHealth; 
+    [SerializeField] protected int maxHealth;
     [SerializeField] protected List<Transform> waypoints;
     [SerializeField] protected ItemPickup itemToDrop;
+    public EnemyStats EnemyStats;
 
     protected int currentHealth;
 
@@ -27,6 +28,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     protected virtual void Start()
     {
+        maxHealth = EnemyStats.MaxHealth;
         enemyAnimator = GetComponent<EnemyAnimationController>();
         enemyAgent = GetComponent<NavMeshAgent>();
         enemyHealthBar = GetComponentInChildren<EnemyHealthBar>();
@@ -69,7 +71,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(.7f);
         currentHealth -= damageValue;
         enemyHealthBar.UpdateHealthBar(maxHealth,currentHealth);
-        if (currentHealth == 0)
+        if (currentHealth <= 0)
             Die();
     }
 
@@ -87,7 +89,12 @@ public abstract class Enemy : MonoBehaviour, IDamageable
    
    private void DropItem()
    {
-       Instantiate(itemToDrop, new Vector3(transform.position.x,transform.position.y+1f, transform.position.z), Quaternion.identity);
+       if (TryGetComponent(out DarkNight darkNight))
+       {
+           Instantiate(itemToDrop, new Vector3(transform.position.x,transform.position.y+1f, transform.position.z), Quaternion.identity);
+           Instantiate(itemToDrop, new Vector3(transform.position.x,transform.position.y+1f, transform.position.z), Quaternion.identity);
+           Instantiate(itemToDrop, new Vector3(transform.position.x,transform.position.y+1f, transform.position.z), Quaternion.identity);
+       }
    }
 
     private IEnumerator DisappearDelay()
