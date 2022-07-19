@@ -1,4 +1,4 @@
-Look 1
+Look 0
 	Helmet:
 		HeadCovering: 13
 		
@@ -20,7 +20,7 @@ Look 1
 		LegRight: 17
 		LegLeft: 17	
 		
-Look 2
+Look 1
 	Helmet:
 		HeadCovering: 2
 		
@@ -42,7 +42,7 @@ Look 2
 		LegRight: 18
 		LegLeft: 18	
 		
-Look 3
+Look 2
 	Helmet:
 		Helmet: 5
 		Head: -1
@@ -67,7 +67,7 @@ Look 3
 		LegRight: 8
 		LegLeft: 8	
 		
-Look 4
+Look 3
 	Helmet:
 		Helmet: 9
 		Head: -1
@@ -92,7 +92,7 @@ Look 4
 		LegRight: 12
 		LegLeft: 12
 		
-Look 5
+Look 4
 	Helmet:
 		HeadCovering: 10
 		
