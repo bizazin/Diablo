@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731d4eb8b6e858b4d9996ddc9aa9d09d, type: 3}
   m_Name: Quest2
   m_EditorClassIdentifier: 
-  idQuest: 2
-  name: Friendly
-  goal: 1
-  currentProgress: 0
-  description: Talk with merchant Sten
-  questTaken: 0
-  completed: 0
-  rewardClaimed: 0
-  rewardCoins: 111
-  target: {fileID: 3559805892712172660, guid: 2e8fb7cc5a8eb6e479b6c323bd1f0c3d, type: 3}
+  IdQuest: 2
+  Name: Friendly
+  Goal: 1
+  CurrentProgress: 0
+  Description: Talk with merchant Sten
+  QuestTaken: 0
+  Completed: 0
+  RewardClaimed: 0
+  RewardCoins: 0
+  Target: {fileID: 3559805892712172660, guid: 2e8fb7cc5a8eb6e479b6c323bd1f0c3d, type: 3}

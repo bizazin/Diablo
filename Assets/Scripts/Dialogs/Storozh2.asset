@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b11b74b1d4b0dfd409fc3517ae1c6010, type: 3}
   m_Name: Storozh2
   m_EditorClassIdentifier: 
-  quest: {fileID: 11400000, guid: 12a5685d054a6d441889a9ed79ab08c8, type: 2}
-  character: 0
-  sentences:
+  Quest: {fileID: 11400000, guid: 12a5685d054a6d441889a9ed79ab08c8, type: 2}
+  Char: 0
+  Sentences:
   - Huh, thank you!
   - There is a merchant in the desert, maybe he will help you
   - Go talk to him
-  name: Guard Phil
+  Name: Guard Phil

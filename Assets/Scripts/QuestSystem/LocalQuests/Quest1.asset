@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731d4eb8b6e858b4d9996ddc9aa9d09d, type: 3}
   m_Name: Quest1
   m_EditorClassIdentifier: 
-  idQuest: 1
-  name: Hero
-  goal: 3
-  currentProgress: 0
-  description: Kill 3 Skeletons and go to the Guard Phil
-  questTaken: 0
-  completed: 0
-  rewardClaimed: 0
-  rewardCoins: 111
-  target: {fileID: 3559805892712172660, guid: ad9da1c2f854c0e44851e4f17286dbd1, type: 3}
+  IdQuest: 1
+  Name: Hero
+  Goal: 3
+  CurrentProgress: 0
+  Description: Kill 3 Skeletons and go to the Guard Phil
+  QuestTaken: 0
+  Completed: 0
+  RewardClaimed: 0
+  RewardCoins: 0
+  Target: {fileID: 3559805892712172660, guid: ad9da1c2f854c0e44851e4f17286dbd1, type: 3}

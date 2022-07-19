@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731d4eb8b6e858b4d9996ddc9aa9d09d, type: 3}
   m_Name: MainQuest 2
   m_EditorClassIdentifier: 
-  idQuest: 2
-  name: Dark Knight
-  goal: 1
-  currentProgress: 0
-  description: Kill the Dark Knight
-  questTaken: 0
-  completed: 0
-  rewardClaimed: 0
-  rewardCoins: 40
-  target: {fileID: 170609254583556662, guid: 7e3e93f6d76e13f4cad7c3b0ba8d0fcc, type: 3}
+  IdQuest: 2
+  Name: Dark Knight
+  Goal: 1
+  CurrentProgress: 0
+  Description: Kill the Dark Knight
+  QuestTaken: 0
+  Completed: 0
+  RewardClaimed: 0
+  RewardCoins: 0
+  Target: {fileID: 170609254583556662, guid: 7e3e93f6d76e13f4cad7c3b0ba8d0fcc, type: 3}

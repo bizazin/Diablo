@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731d4eb8b6e858b4d9996ddc9aa9d09d, type: 3}
   m_Name: MainQuest 3
   m_EditorClassIdentifier: 
-  idQuest: 3
-  name: Demon
-  goal: 1
-  currentProgress: 0
-  description: Kill the Demon
-  questTaken: 0
-  completed: 0
-  rewardClaimed: 0
-  rewardCoins: 40
-  target: {fileID: 7371246542729727044, guid: 1546eb473d22478499f88a71cd4d5163, type: 3}
+  IdQuest: 3
+  Name: Demon
+  Goal: 1
+  CurrentProgress: 0
+  Description: Kill the Demon
+  QuestTaken: 0
+  Completed: 0
+  RewardClaimed: 0
+  RewardCoins: 0
+  Target: {fileID: 7371246542729727044, guid: 1546eb473d22478499f88a71cd4d5163, type: 3}

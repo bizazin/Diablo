@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b11b74b1d4b0dfd409fc3517ae1c6010, type: 3}
   m_Name: Merchant1
   m_EditorClassIdentifier: 
-  quest: {fileID: 11400000, guid: 0620a5e5e998a6a4991e9a40b8ba3de8, type: 2}
-  character: 1
-  sentences:
+  Quest: {fileID: 11400000, guid: 0620a5e5e998a6a4991e9a40b8ba3de8, type: 2}
+  Char: 1
+  Sentences:
   - Hello,  I'm Sten
   - You came just in time!
   - The Dark Knight has freed himself and wants to take revenge on our village
   - Only you can save us!!!
-  name: Merchant Sten
+  Name: Merchant Sten
