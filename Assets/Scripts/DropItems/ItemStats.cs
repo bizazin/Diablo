@@ -1,8 +1,7 @@
 using System;
-using UnityEngine;
 
 [Serializable]
-public class ItemStats 
+public class ItemStats
 {
     public int Damage;
     public int Defence;
@@ -10,6 +9,7 @@ public class ItemStats
     public int CriticalChance;
     public int Speed;
     public Rarity Rar;
+
     public enum Rarity
     {
         Common = 0,

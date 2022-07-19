@@ -1,25 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Storage", menuName = "Remote")]
 public class RemoteConfigStorage : ScriptableObject
 {
-    [SerializeField] private RemoteConfigData[] _configs;
+    [SerializeField] private RemoteConfigData[] configs;
 
     public RemoteConfigData[] Configs
     {
-        get { return _configs;}
-        set { _configs = value; }
+        get { return configs; }
+        set { configs = value; }
     }
-    
+
     public RemoteConfigData GetConfig(RemoteConfigs type)
     {
-        for (int i = 0; i < Configs.Length; i++)
-        {
-            if (Configs[i].Type == type)
-                return Configs[i];
-        }
+        foreach (var conf in Configs)
+            if (conf.Type == type)
+                return conf;
         return null;
     }
 }

@@ -12,9 +12,9 @@ public class LookDecision : Decision
     {
         FieldOfView fov = controller.GetComponent<FieldOfView>();
         if (fov == null) return false;
-        if(fov.visibleTarget != null)
+        if (fov.VisibleTarget != null)
         {
-            controller.Target = fov.visibleTarget;
+            controller.Target = fov.VisibleTarget;
             return true;
         }
         return false;

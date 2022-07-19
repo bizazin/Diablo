@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class MainQuestsManager : MonoBehaviour
 {
-        
     #region Singleton
     public static MainQuestsManager Instance;
 
@@ -29,74 +28,62 @@ public class MainQuestsManager : MonoBehaviour
     {
         mainQuestsData = new Queue<QuestData>();
         foreach (var questData in mainQuestsDatasPool)
-        {
-            if (!questData.rewardClaimed)
-            {
+            if (!questData.RewardClaimed)
                 mainQuestsData.Enqueue(questData);
-            }
-        }
+
         TakeNextQuest();
-    }
-    
-    private void LoadQuests()
-    {
-        
     }
 
     private void OnEnable()
     {
         EventsManager.MainQuestProgressIncreased +=IncreaseQuestProgress;
         EventsManager.OnMainRewardClaimed += ClaimReward;
-        //EventsManager.OnQuestSelected += UnselectQuest;
     }
 
     private void TakeNextQuest()
     {
         currentQuestData = mainQuestsData.Dequeue();
-        mainQuestPrefab.questData = currentQuestData;
+        mainQuestPrefab.QuestData = currentQuestData;
         questsUI.Add(mainQuestPrefab);
-        currentQuestData.questTaken = true;
+        currentQuestData.QuestTaken = true;
         Instantiate(mainQuestPrefab,questsContainer.transform);
-    
     }
+
     private void IncreaseQuestProgress(int questID)
     {
         QuestData quest = null;
         foreach (var questUI in questsUI)
-        {
-            if (questUI.questData.idQuest == questID)
+            if (questUI.QuestData.IdQuest == questID)
             {
-                quest = questUI.questData;
-                quest.currentProgress++;
+                quest = questUI.QuestData;
+                quest.CurrentProgress++;
             }
-        }
 
-        if (quest != null && quest.currentProgress>=quest.goal)
+        if (quest != null && quest.CurrentProgress>=quest.Goal)
             EventsManager.OnQuestCompleted.Invoke(quest);
     }
 
     private void ClaimReward(QuestData questData, MainQuestUI mainQuestUI)
     {
-        questData.rewardClaimed = true;
+        questData.RewardClaimed = true;
         questsUI.Remove(mainQuestUI);
-        KeyManager.SetPrefsValue(KeyManager.Coins,questData.rewardCoins);
+        KeyManager.SetPrefsValue(KeyManager.Coins,questData.RewardCoins);
         TakeNextQuest();
     }
     
     public void ChangeSelectedQuest(MainQuestUI currentQuest)
     {
-      //  EventsManager.OnQuestSelected.Invoke();
-      
         currentQuest.ToggleSelect();
     }
 
     public void UnselectQuest()
     {
-       questsContainer.transform.GetChild(0).GetComponent<MainQuestUI>().UnselectQuest();
+       questsContainer.transform.GetChild(0).GetComponent<MainQuestUI>().DeselectQuest();
     }
+
     private void OnDisable()
     {
-        EventsManager.MainQuestProgressIncreased -=IncreaseQuestProgress;
+        EventsManager.MainQuestProgressIncreased -= IncreaseQuestProgress;
         EventsManager.OnMainRewardClaimed -= ClaimReward;
     }
 }

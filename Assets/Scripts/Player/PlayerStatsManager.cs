@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStatsManager : MonoBehaviour
@@ -26,24 +23,29 @@ public class PlayerStatsManager : MonoBehaviour
         equipmentManager = GetComponentInParent<EquipmentManager>();
         EventsManager.OnStatsChanged += ChangeStats;
     }
+
     public void ChangeStats()
     {
-        player.playerStats.Damage = 0;
-        player.playerStats.Defence = 0;
-        player.playerStats.CriticalChance = 0;
-        player.playerStats.CriticalDamage = 0;
-        player.playerStats.Speed = 0;
+        ResetStats();
+
         foreach (var slot in equipmentManager.EquipmentSlots)
-        {
             if (slot != null)
             {
-                player.playerStats.Damage += slot.Stats.Damage;
-                player.playerStats.Defence += slot.Stats.Defence;
-                player.playerStats.CriticalChance += slot.Stats.CriticalChance;
-                player.playerStats.CriticalDamage += slot.Stats.CriticalDamage;
-                player.playerStats.Speed += slot.Stats.Speed;
+                player.PlayerStats.Damage += slot.Stats.Damage;
+                player.PlayerStats.Defence += slot.Stats.Defence;
+                player.PlayerStats.CriticalChance += slot.Stats.CriticalChance;
+                player.PlayerStats.CriticalDamage += slot.Stats.CriticalDamage;
+                player.PlayerStats.Speed += slot.Stats.Speed;
             }
-        }
+    }
+
+    private void ResetStats()
+    {
+        player.PlayerStats.Damage = 0;
+        player.PlayerStats.Defence = 0;
+        player.PlayerStats.CriticalChance = 0;
+        player.PlayerStats.CriticalDamage = 0;
+        player.PlayerStats.Speed = 0;
     }
     private void OnDisable()
     {

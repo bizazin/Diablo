@@ -1,7 +1,3 @@
-using System;
-using System.Linq;
-using BattleDrakeStudios.ModularCharacters;
-using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
 public class InventoryUI : MonoBehaviour
@@ -11,18 +7,24 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Transform playerPreviewContainer;
     [SerializeField] private PlayerPreview playerPreviewPrefab;
 
-    
     [SerializeField] private Button removeButton;
     [SerializeField] private Button equipButton;
     [SerializeField] private Button backButton;
     [SerializeField] private Button openButton;
-    
+
     [SerializeField] private ConfirmDeleteWindow confirmDeleteWindow;
     [SerializeField] private EquipmentSlot[] equipmentSlots;
-    [SerializeField] private Image newNotification;
+    [SerializeField] private Image newNotif;
+
     private InventorySlot selectedSlot;
 
-    private void Start()
+    private void OnEnable()
+    {
+        EnableEvents();
+        EnableButtons();
+    }
+
+    private void EnableEvents()
     {
         EventsManager.OnItemClicked += ChangeSelectedSlot;
         EventsManager.OnEquipmentClicked += ChangeEquipmentSlot;
@@ -31,14 +33,21 @@ public class InventoryUI : MonoBehaviour
         EventsManager.OnItemDeleted += DeleteItemFromUI;
 
         EventsManager.OnCheckingForNewItems += ToggleNewNotification;
+    }
 
+    private void EnableButtons()
+    {
         equipButton.onClick.AddListener(EquipItem);
         removeButton.onClick.AddListener(ConfirmDeleteItem);
         backButton.onClick.AddListener(CloseInventoryWindow);
         openButton.onClick.AddListener(OpenInventoryWindow);
-        
-        //SetSprites();
-        
+    }
+
+    private void OpenInventoryWindow()
+    {
+        GetComponentInChildren<InventoryWindow>().Open();
+        var playerPreview = Instantiate(playerPreviewPrefab, playerPreviewContainer.transform);
+        EventsManager.OnItemEquippedUI?.Invoke(playerPreview);
     }
 
     private void CloseInventoryWindow()
@@ -48,12 +57,14 @@ public class InventoryUI : MonoBehaviour
         Destroy(playerPreviewContainer.GetComponentInChildren<PlayerPreview>().gameObject);
     }
 
-    private void OpenInventoryWindow()
+    private void AddItemToUI(Item item)
     {
-        GetComponentInChildren<InventoryWindow>().Open();
-        var playerPreview = Instantiate(playerPreviewPrefab, playerPreviewContainer.transform);
-        //GetComponent<EquipmentManager>().EquipPlayerPreview();
-        EventsManager.OnItemEquippedUI.Invoke(playerPreview);
+        CreateFrameForItem().AddItem(item);
+    }
+
+    private void DeleteItemFromUI()
+    {
+        selectedSlot.DeleteSlot();
     }
 
     private void ChangeEquipmentSlot(EquipmentSlot currentSlot)
@@ -73,36 +84,6 @@ public class InventoryUI : MonoBehaviour
             InventorySlot newSlot = CreateFrameForItem();
             newSlot.AddItem(equipment);
         }
-    }
-
-    private void ChangeSelectedSlot(InventorySlot currentSlot)
-    {
-        InventorySlot previousSlot = null;
-        if (!currentSlot.IsSelected)
-        {
-            previousSlot = selectedSlot?.Deselect();
-            selectedSlot = currentSlot?.Select();
-        }
-        else
-            selectedSlot = currentSlot?.Deselect();
-        
-        EventsManager.OnStatsUIChanged?.Invoke(selectedSlot);
-    }
-
-    private void ToggleNewNotification()
-    {
-        newNotification.enabled = Inventory.Instance.CheckForNewItems();
-    }
-
-
-    private void DeleteItemFromUI()
-    {
-        selectedSlot.DeleteSlot();
-    }
-
-    private void AddItemToUI(Item item)
-    {
-        CreateFrameForItem().AddItem(item);
     }
 
     private InventorySlot CreateFrameForItem()
@@ -134,6 +115,20 @@ public class InventoryUI : MonoBehaviour
         EventsManager.OnItemUnequippedUI?.Invoke(playerPreview);
     }
 
+    private void ChangeSelectedSlot(InventorySlot currentSlot)
+    {
+        InventorySlot previousSlot = null;
+        if (!currentSlot.IsSelected)
+        {
+            previousSlot = selectedSlot?.Deselect();
+            selectedSlot = currentSlot?.Select();
+        }
+        else
+            selectedSlot = currentSlot?.Deselect();
+
+        EventsManager.OnStatsUIChanged?.Invoke(selectedSlot);
+    }
+
     private void ChangeCurrentEquipmentImage(Equipment equipment)
     {
         foreach (var slot in equipmentSlots)
@@ -144,6 +139,11 @@ public class InventoryUI : MonoBehaviour
             }
     }
 
+    private void ToggleNewNotification()
+    {
+        newNotif.enabled = Inventory.Instance.CheckForNewItems();
+    }
+
     private void ConfirmDeleteItem()
     {
         if (selectedSlot != null)
@@ -152,5 +152,29 @@ public class InventoryUI : MonoBehaviour
             confirmDeleteWindow.Open();
         }
     }
-    
+
+    private void OnDisable()
+    {
+        DisableEvents();
+        DisableButtons();
+    }
+
+    private void DisableEvents()
+    {
+        EventsManager.OnItemClicked -= ChangeSelectedSlot;
+        EventsManager.OnEquipmentClicked -= ChangeEquipmentSlot;
+
+        EventsManager.OnItemAdded -= AddItemToUI;
+        EventsManager.OnItemDeleted -= DeleteItemFromUI;
+
+        EventsManager.OnCheckingForNewItems -= ToggleNewNotification;
+    }
+
+    private void DisableButtons()
+    {
+        equipButton.onClick.RemoveListener(EquipItem);
+        removeButton.onClick.RemoveListener(ConfirmDeleteItem);
+        backButton.onClick.RemoveListener(CloseInventoryWindow);
+        openButton.onClick.RemoveListener(OpenInventoryWindow);
+    }
 }

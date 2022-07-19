@@ -11,7 +11,7 @@ public class MainQuestUI : MonoBehaviour
 
    [SerializeField] private TextMeshProUGUI questName;
    [SerializeField] private TextMeshProUGUI questText;
-   public QuestData questData;
+   public QuestData QuestData;
 
    private void Start()
    {
@@ -20,29 +20,30 @@ public class MainQuestUI : MonoBehaviour
       questSelected.onClick.AddListener(SelectQuestTarget);
       questCompleted.onClick.AddListener(ClaimReward);
    }
+
    private void SetValues()
    {
-      sliderProgress.maxValue = questData.goal;
-      questName.text = questData.name;
-      questText.text = questData.description;
+      sliderProgress.maxValue = QuestData.Goal;
+      questName.text = QuestData.Name;
+      questText.text = QuestData.Description;
    }
 
    private void Update()
    {
-      sliderProgress.value = questData.currentProgress;
+      sliderProgress.value = QuestData.CurrentProgress;
 
-      if (questData.completed)
+      if (QuestData.Completed)
          questCompleted.gameObject.SetActive(true);
    }
    
    public void ShowQuestCompleted(QuestData quest)
    {
-      quest.completed = true;
+      quest.Completed = true;
    }
 
    public void ClaimReward()
    {
-      EventsManager.OnMainRewardClaimed.Invoke(questData,this);
+      EventsManager.OnMainRewardClaimed.Invoke(QuestData,this);
       Destroy(gameObject);
    }
    
@@ -50,7 +51,7 @@ public class MainQuestUI : MonoBehaviour
    {
       ToggleSelect();
       LocalQuestsManager.Instance.UnselectQuest();
-      TargetPointer.Instance.Target = questData.target;
+      TargetPointer.Instance.Target = QuestData.Target;
    }
    public void ToggleSelect()
    {
@@ -59,15 +60,14 @@ public class MainQuestUI : MonoBehaviour
       TargetPointer.Instance.ToggleTarget(!state);
    }
 
-   public void UnselectQuest()
+   public void DeselectQuest()
    {
       imageSelected.SetActive(false);
    }
 
-   
    private void OnDestroy()
    {
-      UnselectQuest();
+      DeselectQuest();
       questCompleted.onClick.RemoveListener(ClaimReward);
    }
 }

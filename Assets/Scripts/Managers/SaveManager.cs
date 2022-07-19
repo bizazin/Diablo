@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -15,12 +15,12 @@ public class SaveManager : MonoBehaviour
         Instance = this;
     }
     #endregion
-    
-    public RemoteConfigStorage rem;
+
+    public RemoteConfigStorage Rem;
 
     private void Start()
     {
-        rem = Resources.Load<RemoteConfigStorage>("Storage");
+        Rem = Resources.Load<RemoteConfigStorage>("Storage");
     }
 
     public void SaveToFile<T>(string filePath, T[] data)
@@ -30,12 +30,12 @@ public class SaveManager : MonoBehaviour
 
         string str = JsonConvert.SerializeObject(data, Formatting.None,
             new JsonSerializerSettings()
-            { 
+            {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
         File.WriteAllText(path, str);
     }
-    
+
     public void SaveListToFile<T>(string filePath, List<T> data)
     {
         string path = Application.streamingAssetsPath + "/" + filePath + ".json";
@@ -51,25 +51,25 @@ public class SaveManager : MonoBehaviour
         var str = File.ReadAllText(path);
         jsonList = JsonConvert.DeserializeObject<T[]>(str,
             new JsonSerializerSettings()
-            { 
+            {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
         return jsonList;
     }
-    
-    
+
+
     public List<int> LoadJsonList<T>(string filePath)
     {
         string path = Application.streamingAssetsPath + "/" + filePath + ".json";
         var str = File.ReadAllText(path);
         var jsonList = JsonConvert.DeserializeObject<List<int>>(str,
             new JsonSerializerSettings()
-            { 
+            {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
         return jsonList;
     }
-    
+
     // public List<T> LoadJsonListFromRem<T>(RemoteConfigs remoteConfig)
     // {
     //     if (rem.GetConfig(remoteConfig)!=null)

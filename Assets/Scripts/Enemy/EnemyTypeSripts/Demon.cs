@@ -6,7 +6,7 @@ public class Demon : Enemy
     {
         base.Start();
         stateController = GetComponent<StateController>();
-        stateController.InitializeAI(true, this.waypoints);
+        stateController.InitializeAI(true, waypoints);
     }
 
     public void TakePlayerDamage()
@@ -14,17 +14,15 @@ public class Demon : Enemy
         FieldOfView fov = stateController.GetComponent<FieldOfView>();
         if (fov == null) return;
 
-        if (fov.damageableTarget != null)
-        {
+        if (fov.DamageableTarget != null)
             EventsManager.OnPlayerApplyDamage?.Invoke(stateController.EnemyStats.Damage);
-        }
     }
-    
+
     protected override void Die()
     {
         base.Die();
-        
+
         int idMainQuest = 3;
-        EventsManager.MainQuestProgressIncreased.Invoke(idMainQuest);
+        EventsManager.MainQuestProgressIncreased?.Invoke(idMainQuest);
     }
 }

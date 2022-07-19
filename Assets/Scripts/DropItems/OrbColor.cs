@@ -1,23 +1,18 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class OrbColor : MonoBehaviour
 {
+    public ParticleSystem[] MyColors;
+    public Color[] NewColors;
 
-    public ParticleSystem[] myColors;
-    public Color[] newColors;
-  
     public void SetColor()
     {
-        var rarity = GetComponentInParent<ItemPickup>().item.Stats.Rar;
+        var rarity = GetComponentInParent<ItemPickup>().Item.Stats.Rar;
         int idColor = (int)rarity;
-        foreach (var color in myColors)
+        foreach (var color in MyColors)
         {
             var settings = color.main;
-            var tempTransparent = settings.startColor.color.a;
-            settings.startColor = new ParticleSystem.MinMaxGradient(newColors[idColor]);
+            settings.startColor = new ParticleSystem.MinMaxGradient(NewColors[idColor]);
         }
     }
 }

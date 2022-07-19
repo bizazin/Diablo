@@ -1,4 +1,3 @@
-using System;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -8,15 +7,11 @@ public class Item : ScriptableObject
 {
     [SerializeField] private string name;
     [SerializeField] private Sprite icon;
-    [SerializeField] private bool isDefaultItem;
-    [SerializeField] private bool isPotion;
     [SerializeField] private bool isNew = true;
-    [JsonProperty] [SerializeField] private ItemStats stats; 
+    [JsonProperty][SerializeField] private ItemStats stats;
 
     public string Name { get { return name; } set { name = value; } }
     public Sprite Icon { get { return icon; } set { icon = value; } }
-    public bool IsDefaultItem { get { return isDefaultItem; } set { isDefaultItem = value; } }
     public bool IsNew { get { return isNew; } set { isNew = value; } }
-
     public ItemStats Stats { get { return stats; } set { stats = value; } }
 }

@@ -21,8 +21,8 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private LayerMask obstacleMask;
 
-    public Transform damageableTarget;
-    public Transform visibleTarget;
+    public Transform DamageableTarget;
+    public Transform VisibleTarget;
 
     public float ViewRadius
     {
@@ -57,7 +57,7 @@ public class FieldOfView : MonoBehaviour
 
     private void FindVisibleTargets()
     {
-        visibleTarget = null;
+        VisibleTarget = null;
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
 
         for (int i = 0; i < targetsInViewRadius.Length; i++)
@@ -70,16 +70,14 @@ public class FieldOfView : MonoBehaviour
 
                 // If there are no obstacles on the way to target
                 if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, obstacleMask))
-                {
-                    visibleTarget = target;
-                }
+                    VisibleTarget = target;
             }
         }
     }
 
     private void FindDamageableTargets()
     {
-        damageableTarget = null;
+        DamageableTarget = null;
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, attackRadius, targetMask);
 
         for (int i = 0; i < targetsInViewRadius.Length; i++)
@@ -93,7 +91,7 @@ public class FieldOfView : MonoBehaviour
                 // If there are no obstacles on the way to target
                 if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, obstacleMask))
                 {
-                    damageableTarget = target;
+                    DamageableTarget = target;
                 }
             }
         }

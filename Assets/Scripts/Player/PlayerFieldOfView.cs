@@ -18,21 +18,18 @@ public class PlayerFieldOfView : MonoBehaviour
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private LayerMask obstacleMask;
 
-    public List<Transform> damageableTargets;   
+    public List<Transform> DamageableTargets;   
     public float AttackRadius { get => attackRadius; }
     public float AttackAngle { get => attackAngle; }
+
     private void FixedUpdate()
     {
         FindDamageableTargets();
     }
-    public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
-    {
-        if (!angleIsGlobal) angleInDegrees += transform.eulerAngles.y;
-        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
-    }
+
     private void FindDamageableTargets()
     {
-        damageableTargets.Clear();
+        DamageableTargets.Clear();
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, attackRadius, targetMask);
 
         for (int i = 0; i < targetsInViewRadius.Length; i++)
@@ -45,10 +42,16 @@ public class PlayerFieldOfView : MonoBehaviour
 
                 // If there are no obstacles on the way to target
                 if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, obstacleMask))
-                {
-                    damageableTargets.Add(target);
-                }
+                    DamageableTargets.Add(target);
             }
         }
+    }
+
+    public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
+    {
+        if (!angleIsGlobal) 
+            angleInDegrees += transform.eulerAngles.y;
+
+        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
 }

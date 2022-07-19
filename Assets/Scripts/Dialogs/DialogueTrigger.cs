@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public DialogueData.Character character;
+    public DialogueData.Character Charact;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -16,7 +16,7 @@ public class DialogueTrigger : MonoBehaviour
     
     private void TriggerDialogue()
     {
-        FindObjectOfType<DialogueManager>().StartDialogue(character);
+        FindObjectOfType<DialogueManager>().StartDialogue(Charact);
     }
     
     private void ExitDialogue()

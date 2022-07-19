@@ -20,7 +20,6 @@ public class PlayerStats : ScriptableObject
         CriticalChance = 0;
         CriticalDamage = 0;
     }
-
 }
 
 public enum StatsType

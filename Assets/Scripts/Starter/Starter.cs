@@ -3,14 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class Starter : MonoBehaviour
 {
-    [SerializeField] private StartConfig _startConfig;
-    [SerializeField] private CheatWindow _cheatWindow;
-    private GamePreparer _preparer;
+    [SerializeField] private StartConfig startConfig;
+    [SerializeField] private CheatWindow cheatWindow;
+
+    private GamePreparer preparer;
     private RemoteConfigStorage rem;
 
     private void Awake()
     {
-        if (!_startConfig.ShowCheats) 
+        if (!startConfig.ShowCheats)
             SceneManager.LoadScene(1);
 
         rem = Resources.Load<RemoteConfigStorage>("Storage");
@@ -23,8 +24,8 @@ public class Starter : MonoBehaviour
 
     public void Initialization()
     {
-        _preparer = new GamePreparer(_startConfig);
-        _preparer.Prepare();
-        Instantiate(_cheatWindow);
+        preparer = new GamePreparer(startConfig);
+        preparer.Prepare();
+        Instantiate(cheatWindow);
     }
 }

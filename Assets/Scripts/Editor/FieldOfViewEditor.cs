@@ -32,15 +32,15 @@ public class FieldOfViewEditor : Editor
 
         Handles.color = Color.cyan;
 
-        if (fov.visibleTarget != null)
+        if (fov.VisibleTarget != null)
         {
-            Handles.DrawLine(fov.transform.position, fov.visibleTarget.position);
+            Handles.DrawLine(fov.transform.position, fov.VisibleTarget.position);
         }
 
         Handles.color = Color.green;
-        if(fov.damageableTarget != null)
+        if(fov.DamageableTarget != null)
         {
-            Handles.DrawLine(fov.transform.position, fov.damageableTarget.position);
+            Handles.DrawLine(fov.transform.position, fov.DamageableTarget.position);
         }
     }
 }

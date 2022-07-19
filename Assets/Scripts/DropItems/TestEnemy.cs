@@ -2,17 +2,19 @@ using UnityEngine;
 
 public class TestEnemy : Interectable
 {
-    public ItemPickup itemToDrop;
- 
+    [SerializeField] private ItemPickup itemToDrop;
+
     public override void Interact()
     {
         base.Interact();
         DropItem();
     }
-    
+
     private void DropItem()
     {
-        var droppedItem = Instantiate(itemToDrop, new Vector3(transform.position.x,transform.position.y+1f, transform.position.z), Quaternion.identity);
+        var pos = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+        Instantiate(itemToDrop, pos, Quaternion.identity);
+
         Destroy(gameObject);
     }
 }

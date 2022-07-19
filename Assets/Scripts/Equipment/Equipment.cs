@@ -1,5 +1,4 @@
-﻿using System;
-using BattleDrakeStudios.ModularCharacters;
+﻿using BattleDrakeStudios.ModularCharacters;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ using UnityEngine;
 [JsonObject(MemberSerialization.OptIn)]
 public class Equipment : Item
 {
-   [JsonProperty]public EquipmentType ArmorType;
-   [JsonProperty]public BodyPartLinker[] ArmorParts;
+    [JsonProperty] public EquipmentType ArmorType;
+    [JsonProperty] public BodyPartLinker[] ArmorParts;
 }
 

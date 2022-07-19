@@ -26,11 +26,11 @@ public class FieldOfViewEditorPlayer : Editor
         
 
         Handles.color = Color.green;
-        if(fov.damageableTargets.Count > 0)
+        if(fov.DamageableTargets.Count > 0)
         {
-            for (int i = 0; i < fov.damageableTargets.Count; i++)
+            for (int i = 0; i < fov.DamageableTargets.Count; i++)
             {
-                Handles.DrawLine(fov.transform.position, fov.damageableTargets[i].position);
+                Handles.DrawLine(fov.transform.position, fov.DamageableTargets[i].position);
             }
         }
     }

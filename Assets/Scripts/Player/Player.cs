@@ -1,30 +1,34 @@
 using UnityEngine;
-
-
 public class Player : MonoBehaviour, IDamageable
 {
-    [SerializeField] private HealthBar _healthBar;
+    [SerializeField] private HealthBar healthBar;
     [SerializeField] private PlayerAnimationController animator;
-    public PlayerStats playerStats;
-    
+
+    public PlayerStats PlayerStats;
+
     private void Start()
     {
-        playerStats.CurrentHealth = playerStats.MaxHealth;
-        _healthBar.SetMaxHealth(playerStats.MaxHealth);
+        PlayerStats.CurrentHealth = PlayerStats.MaxHealth;
+        healthBar.SetMaxHealth(PlayerStats.MaxHealth);
         EventsManager.OnPlayerApplyDamage += ApplyDamage;
     }
-    
+
     public void ApplyDamage(int damageValue)
     {
         int damageReducer = 300;
-        damageValue -= damageValue * playerStats.Defence/damageReducer;
-        playerStats.CurrentHealth -= damageValue;
-        _healthBar.SetHealth(playerStats.CurrentHealth);
-        if (playerStats.CurrentHealth <= 0)
+        damageValue -= damageValue * PlayerStats.Defence / damageReducer;
+        PlayerStats.CurrentHealth -= damageValue;
+        healthBar.SetHealth(PlayerStats.CurrentHealth);
+
+        CheckDeath();
+    }
+
+    private void CheckDeath()
+    {
+        if (PlayerStats.CurrentHealth <= 0)
         {
             animator.Die();
             EventsManager.OnDeath.Invoke();
         }
     }
-    
 }

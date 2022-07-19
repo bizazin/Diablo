@@ -5,55 +5,55 @@ using UnityEngine.SceneManagement;
 
 public class CheatWindow : MonoBehaviour
 {
-    [SerializeField] private Button _startButton;
-    [SerializeField] private Button _closeButton;
-    [SerializeField] private GameObject _container;
+    [SerializeField] private Button startButton;
+    [SerializeField] private Button closeButton;
+    [SerializeField] private GameObject container;
     
-    private bool _opened;
+    private bool opened;
 
     private void Awake()
     {
-        _opened = true;
-        UpdateView(_opened);
+        opened = true;
+        UpdateView(opened);
     }
     
-    public void SetActive(bool value)
+    private void SetActive(bool value)
     {
-        if (_container != null)
-            _container.SetActive(value);
-    }
-    
-    private void SwitchState()
-    {
-        _opened = !_opened;
-        UpdateView(_opened);
+        if (container != null)
+            container.SetActive(value);
     }
     
     private void UpdateView(bool value)
     {
         SetActive(value);
     }
-
-    public void StartGame()
-    {
-        SceneController.OnGameStarted?.Invoke();
-    }
     
     private void OnEnable()
     {
-        if (_startButton != null)
-            _startButton.onClick.AddListener(StartGame);
+        if (startButton != null)
+            startButton.onClick.AddListener(StartGame);
 
-        if (_closeButton != null)
-            _closeButton.onClick.AddListener(SwitchState);
+        if (closeButton != null)
+            closeButton.onClick.AddListener(SwitchState);
     }
 
     private void OnDisable()
     {
-        if(_startButton != null)
-            _startButton.onClick.RemoveListener(StartGame);
+        if(startButton != null)
+            startButton.onClick.RemoveListener(StartGame);
 
-        if (_closeButton != null)
-            _closeButton.onClick.RemoveListener(SwitchState);
+        if (closeButton != null)
+            closeButton.onClick.RemoveListener(SwitchState);
+    }
+
+    private void StartGame()
+    {
+        SceneController.OnGameStarted?.Invoke();
+    }
+
+    private void SwitchState()
+    {
+        opened = !opened;
+        UpdateView(opened);
     }
 }

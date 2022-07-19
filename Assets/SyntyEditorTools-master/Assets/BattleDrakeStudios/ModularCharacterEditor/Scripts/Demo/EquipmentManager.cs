@@ -10,12 +10,11 @@ public class EquipmentManager : MonoBehaviour
     [SerializeField] private ModularCharacterManager characterManager;
     [SerializeField] private ModularCharacterManager playerView;
     [SerializeField] private RemoteConfigStorage rem;
-    [SerializeField] SaveManager save;
+    [SerializeField] private SaveManager save;
     [SerializeField] private PlayerStats playerStats;
 
     private void OnEnable()
     {
-        EventsManager.OnItemPickedUp += OnEquipmentAdded;
         EventsManager.OnItemEquipped += EquipItem;
         EventsManager.OnItemUnequipped += Unequip;
         EventsManager.OnItemEquippedUI += EquipPlayerPreview;
@@ -39,13 +38,9 @@ public class EquipmentManager : MonoBehaviour
     {
         rem = Resources.Load<RemoteConfigStorage>("Storage");
         if (rem.GetConfig(RemoteConfigs.EnableCustomEquipment).Value == "1")
-        {
             EquipmentSlots = JsonConvert.DeserializeObject<Equipment[]>(rem.GetConfig(RemoteConfigs.Equipment).DefaultValue);
-        }
         else
-        {
             EquipmentSlots = save.LoadJsonArray("Equipment", EquipmentSlots);
-        }
     }
 
     private void EquipItem(Equipment equipment)
@@ -70,9 +65,7 @@ public class EquipmentManager : MonoBehaviour
     {
         playerView = playerPreview.GetComponentInChildren<ModularCharacterManager>();
         foreach (var equipItem in EquipmentSlots)
-        {
             if (equipItem != null)
-            {
                 foreach (var part in equipItem.ArmorParts)
                 {
                     if (part.partID > -1)
@@ -80,8 +73,6 @@ public class EquipmentManager : MonoBehaviour
                     else
                         playerView.DeactivatePart(part.bodyType);
                 }
-            }
-        }
     }
     
 
@@ -100,26 +91,10 @@ public class EquipmentManager : MonoBehaviour
         EventsManager.OnStatsChanged.Invoke();
     }
 
-    private void UnequipPlayerPreview(PlayerPreview playerPreview, Equipment unequip)
-    {
-        playerView = playerPreview.GetComponentInChildren<ModularCharacterManager>();
-
-        foreach (var part in unequip.ArmorParts)
-            playerView.ActivatePart(part.bodyType, 0);
-    }
-
-    private void OnEquipmentAdded(Equipment itemToPickedUp)
-    {
-        int i = (int)itemToPickedUp.ArmorType;
-        EquipmentSlots[i] = itemToPickedUp;
-        EquipItem(itemToPickedUp);
-    }
-
     private void SetPlayerStats()
     {
         playerStats.ResetStats();
         foreach (var equipmentSlot in EquipmentSlots)
-        {
             if (equipmentSlot!=null)
             {
                 playerStats.Damage += equipmentSlot.Stats.Damage;
@@ -128,12 +103,10 @@ public class EquipmentManager : MonoBehaviour
                 playerStats.CriticalChance += equipmentSlot.Stats.CriticalChance;
                 playerStats.CriticalDamage += equipmentSlot.Stats.CriticalDamage;
             }
-        }
     }
     
     private void OnDisable()
     {
-        EventsManager.OnItemPickedUp -= OnEquipmentAdded;
         EventsManager.OnItemEquipped -= EquipItem;
         EventsManager.OnItemUnequipped -= Unequip;
         EventsManager.OnItemEquippedUI -= EquipPlayerPreview;

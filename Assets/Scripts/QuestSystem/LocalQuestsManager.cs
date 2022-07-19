@@ -1,6 +1,5 @@
-using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LocalQuestsManager : MonoBehaviour, ICanBeSaved
@@ -15,53 +14,48 @@ public class LocalQuestsManager : MonoBehaviour, ICanBeSaved
         Instance = this;
     }
     #endregion
-    
+
     [SerializeField] private List<QuestData> questsDatasPool;
     [SerializeField] private List<LocalQuestUI> questsUI;
     [SerializeField] private LocalQuestUI localQuestPrefab;
     [SerializeField] private GameObject npcQuestsContainer;
-    public LocalQuestUI selectedQuest;
-    public RemoteConfigStorage rem;
+
+    private LocalQuestUI selectedQuest;
+
+    public RemoteConfigStorage Rem;
+
     private void Start()
     {
         LoadCustomQuests();
     }
 
-    public void LoadCustomQuests()
+    private void LoadCustomQuests()
     {
-        rem = Resources.Load<RemoteConfigStorage>("Storage");
+        Rem = Resources.Load<RemoteConfigStorage>("Storage");
         List<int> loadedJson = new List<int>();
-        
-        if (rem.GetConfig(RemoteConfigs.EnableCustomEquipment).Value == "1")
-            loadedJson = JsonConvert.DeserializeObject<List<int>>(rem.GetConfig(RemoteConfigs.LocalQuests).DefaultValue);
+
+        if (Rem.GetConfig(RemoteConfigs.EnableCustomEquipment).Value == "1")
+            loadedJson = JsonConvert.DeserializeObject<List<int>>(Rem.GetConfig(RemoteConfigs.LocalQuests).DefaultValue);
         else
             loadedJson = SaveManager.Instance.LoadJsonList<int>("Quests");
-        
+
         LoadQuests(loadedJson);
     }
 
     private void LoadQuests(List<int> loadedJson)
     {
         questsUI = new List<LocalQuestUI>();
+
         if (loadedJson != null)
-        {
-            for (int i=0; i<questsDatasPool.Count;i++)
-            {
+            for (int i = 0; i < questsDatasPool.Count; i++)
                 for (int j = 0; j < loadedJson.Count; j++)
-                {
-                    if (questsDatasPool[i].idQuest == loadedJson[j])
-                    {
+                    if (questsDatasPool[i].IdQuest == loadedJson[j])
                         AddQuest(questsDatasPool[i]);
-                    };
-                }
-            }
-        }
     }
 
     private void OnEnable()
-    {        
-        EventsManager.OnNewQuestAdded += AddQuest;
-        EventsManager.LocalQuestProgressIncreased +=QuestProgressIncreased;
+    {
+        EventsManager.LocalQuestProgressIncreased += QuestProgressIncreased;
         EventsManager.OnLocalQuestRewardClaimed += ClaimReward;
     }
 
@@ -69,30 +63,30 @@ public class LocalQuestsManager : MonoBehaviour, ICanBeSaved
     {
         localQuestPrefab.questData = quest;
         questsUI.Add(localQuestPrefab);
-        Instantiate(localQuestPrefab,npcQuestsContainer.transform);
+        Instantiate(localQuestPrefab, npcQuestsContainer.transform);
     }
 
     private void QuestProgressIncreased(int questID)
     {
-        
+
         QuestData quest = null;
         foreach (var questUI in questsUI)
         {
-            if (questUI.questData.idQuest == questID)
+            if (questUI.questData.IdQuest == questID)
             {
                 quest = questUI.questData;
-                quest.currentProgress++;
+                quest.CurrentProgress++;
             }
         }
-        
-        if (quest != null && quest.currentProgress>=quest.goal)
+
+        if (quest != null && quest.CurrentProgress >= quest.Goal)
             EventsManager.OnQuestCompleted.Invoke(quest);
     }
     private void ClaimReward(QuestData questData, LocalQuestUI localQuestUI)
     {
-        questData.rewardClaimed = true;
+        questData.RewardClaimed = true;
         questsUI.Remove(localQuestUI);
-        KeyManager.SetPrefsValue(KeyManager.Coins,questData.rewardCoins);
+        KeyManager.SetPrefsValue(KeyManager.Coins, questData.RewardCoins);
     }
 
     public void ChangeSelectedQuest(LocalQuestUI currentQuest)
@@ -102,7 +96,7 @@ public class LocalQuestsManager : MonoBehaviour, ICanBeSaved
             selectedQuest.ToggleSelect();
             selectedQuest = null;
         }
-        else if(selectedQuest!=null)
+        else if (selectedQuest != null)
         {
             selectedQuest.ToggleSelect();
             selectedQuest = currentQuest;
@@ -126,8 +120,7 @@ public class LocalQuestsManager : MonoBehaviour, ICanBeSaved
 
     private void OnDisable()
     {
-        EventsManager.OnNewQuestAdded -= AddQuest;
-        EventsManager.LocalQuestProgressIncreased -=QuestProgressIncreased;
+        EventsManager.LocalQuestProgressIncreased -= QuestProgressIncreased;
         EventsManager.OnLocalQuestRewardClaimed -= ClaimReward;
         SaveQuests();
     }
@@ -136,12 +129,12 @@ public class LocalQuestsManager : MonoBehaviour, ICanBeSaved
         List<int> questIDs = new List<int>();
         foreach (var quest in questsDatasPool)
         {
-            if (quest.questTaken && !quest.rewardClaimed)
+            if (quest.QuestTaken && !quest.RewardClaimed)
             {
-                questIDs.Add(quest.idQuest);
+                questIDs.Add(quest.IdQuest);
             }
         }
         SaveManager.Instance.SaveListToFile("Quests", questIDs);
     }
-    
+
 }

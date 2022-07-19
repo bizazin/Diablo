@@ -12,43 +12,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4080061dfa4b5234182d104f1af1390a, type: 3}
   m_Name: ItemStatsRange
   m_EditorClassIdentifier: 
-  rarityChanceRange:
+  RarityChanceRange:
   - {x: 0, y: 40}
   - {x: 41, y: 70}
   - {x: 71, y: 86}
   - {x: 86, y: 95}
   - {x: 96, y: 101}
-  defenceRange:
+  DefenceRange:
   - {x: 10, y: 40}
   - {x: 15, y: 40}
   - {x: 20, y: 40}
   - {x: 25, y: 40}
   - {x: 30, y: 40}
-  speedRange:
+  SpeedRange:
   - {x: 20, y: 40}
   - {x: 20, y: 40}
   - {x: 20, y: 40}
   - {x: 20, y: 40}
   - {x: 20, y: 40}
-  damageRange:
+  DamageRange:
   - {x: 40, y: 40}
   - {x: 40, y: 40}
   - {x: 40, y: 40}
   - {x: 40, y: 40}
   - {x: 40, y: 40}
-  criticalChanceRange:
-  - {x: 5, y: 20}
-  - {x: 8, y: 20}
-  - {x: 10, y: 20}
-  - {x: 25, y: 20}
-  - {x: 60, y: 20}
-  criticalDamageRange:
+  CriticalChanceRange:
+  - {x: 20, y: 20}
+  - {x: 20, y: 20}
+  - {x: 20, y: 20}
+  - {x: 20, y: 20}
+  - {x: 20, y: 20}
+  CriticalDamageRange:
   - {x: 10, y: 40}
   - {x: 15, y: 40}
   - {x: 20, y: 40}
   - {x: 25, y: 40}
   - {x: 30, y: 40}
-  statsMultiplier:
+  StatsMultiplier:
   - 0.3
   - 0.4
   - 0.5

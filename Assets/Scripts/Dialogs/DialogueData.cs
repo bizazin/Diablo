@@ -3,16 +3,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewDialogue", menuName = "Dialogues")]
 
 [Serializable]
-public class DialogueData: ScriptableObject
+public class DialogueData : ScriptableObject
 {
-    public enum Character{
+    public QuestData Quest;
+    public Character Char;
+    public string[] Sentences;
+    public string Name;
+
+    public enum Character
+    {
        Guard = 0,
        Merchant = 1,
     }
-    
-    public QuestData quest;
-    public Character character;
-    public string[] sentences;
-    public string name;
-
 }

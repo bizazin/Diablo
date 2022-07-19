@@ -8,34 +8,27 @@ using UnityEngine;
 public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    
     [SerializeField] private TextMeshProUGUI name;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private List<DialogueData> allDialogues;
-    
+
     private Queue<DialogueData> dialoguesQueue;
     private Queue<string> sentences;
-    public QuestData questData;
-    
-    private string isOpen = "IsOpen";
-    
+    private string isOpen;
+
+    public QuestData QuestData;
+
     private void Start()
     {
+        isOpen = "IsOpen";
         sentences = new Queue<string>();
         dialoguesQueue = new Queue<DialogueData>();
     }
-    public void AddQuest()
-    {
-        LocalQuestsManager.Instance.AddQuest(questData);
-    }
-    public void AddPointQuest()
-    {
-      //  EventsManager.LocalQuestProgressIncreased.Invoke();
-    }
+
     public void EnqueueDialogues(DialogueData.Character character)
     {
         foreach (var dialogue in allDialogues)
-            if(dialogue.character == character && !dialogue.quest.completed)
+            if (dialogue.Char == character && !dialogue.Quest.Completed)
                 dialoguesQueue.Enqueue(dialogue);
     }
 
@@ -48,25 +41,21 @@ public class DialogueManager : MonoBehaviour
         else
         {
             //добавляем предложения только из первого, незавершенного диалога
-            foreach (var sentence in dialoguesQueue.Peek().sentences)
-            {
+            foreach (var sentence in dialoguesQueue.Peek().Sentences)
                 sentences.Enqueue(sentence);
-            }
 
             DisplayCurrentSentence();
         }
 
         Debug.Log("Dialogue started");
-        animator.SetBool(isOpen, true);;
-        name.text = dialoguesQueue.Peek().name;
+        animator.SetBool(isOpen, true); ;
+        name.text = dialoguesQueue.Peek().Name;
     }
-    
-
 
     public void DisplayNextSentence()
     {
-        var currentDialogue =  dialoguesQueue.Peek();
-        if (allDialogues!=null)
+        var currentDialogue = dialoguesQueue.Peek();
+        if (allDialogues != null)
         {
             sentences.Dequeue();
             if (sentences.Count == 0)
@@ -80,25 +69,28 @@ public class DialogueManager : MonoBehaviour
             StartCoroutine(FadeSentence(sentence));
         }
     }
+
     public void TakeQuest(DialogueData currentDialogue)
     {
-        if (!currentDialogue.quest.questTaken)
+        if (!currentDialogue.Quest.QuestTaken)
         {
-            LocalQuestsManager.Instance.AddQuest(dialoguesQueue.Peek().quest);
-            currentDialogue.quest.questTaken = true;
+            LocalQuestsManager.Instance.AddQuest(dialoguesQueue.Peek().Quest);
+            currentDialogue.Quest.QuestTaken = true;
         }
-        
-        if (currentDialogue.character == DialogueData.Character.Merchant)
-        {
-            int idQuest = 2;
-            EventsManager.LocalQuestProgressIncreased.Invoke(idQuest);
-        }
-        if (currentDialogue.character == DialogueData.Character.Guard)
+
+        if (currentDialogue.Char == DialogueData.Character.Guard)
         {
             int idMainQuest = 1;
-            EventsManager.MainQuestProgressIncreased.Invoke(idMainQuest);
+            EventsManager.MainQuestProgressIncreased?.Invoke(idMainQuest);
+        }
+
+        if (currentDialogue.Char == DialogueData.Character.Merchant)
+        {
+            int idLocalQuest = 2;
+            EventsManager.LocalQuestProgressIncreased?.Invoke(idLocalQuest);
         }
     }
+
     public void DisplayCurrentSentence()
     {
         string sentence = sentences.Peek();
@@ -108,7 +100,8 @@ public class DialogueManager : MonoBehaviour
 
     public IEnumerator FadeSentence(string sentence)
     {
-        dialogueText.text = "";
+        dialogueText.text = string.Empty;
+
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;

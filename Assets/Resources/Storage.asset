@@ -12,22 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb92226e9cd970b43bd11ea929aeeab7, type: 3}
   m_Name: Storage
   m_EditorClassIdentifier: 
-  _configs:
-  - _name: inventory
-    _type: 0
-    _defaultValue: '[null,null,null,null,null,null,null]'
-  - _name: enable_custom_inventory
-    _type: 1
-    _defaultValue: 1
-  - _name: local_quests
-    _type: 2
-    _defaultValue: '[]'
-  - _name: enable_custom_local_quests
-    _type: 3
-    _defaultValue: 1
-  - _name: equipment
-    _type: 4
-    _defaultValue: '[null,null,null,null,null,null]'
-  - _name: enable_custom_equipment
-    _type: 5
-    _defaultValue: 1
+  configs:
+  - name: inventory
+    type: 0
+    defaultValue: '[null,null,null,null,null,null,null]'
+  - name: enable_custom_inventory
+    type: 1
+    defaultValue: 1
+  - name: local_quests
+    type: 2
+    defaultValue: '[]'
+  - name: enable_custom_local_quests
+    type: 3
+    defaultValue: 1
+  - name: equipment
+    type: 4
+    defaultValue: '[null,null,null,null,null,null]'
+  - name: enable_custom_equipment
+    type: 5
+    defaultValue: 1

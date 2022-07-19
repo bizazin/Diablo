@@ -39,55 +39,57 @@ public class DropManager : MonoBehaviour
 
     private void ChooseItemType()
     {
-        int idType = Random.Range(0,5);
+        int idType = Random.Range(0, 5);
         switch (idType)
         {
             case 0: 
-                currentItemID = Random.Range(0,container.weapon.Length);
-                itemToDrop = Instantiate(container.weapon[currentItemID]);
+                currentItemID = Random.Range(0, container.Weapon.Length);
+                itemToDrop = Instantiate(container.Weapon[currentItemID]);
                 break;
             case 1:
-                currentItemID = Random.Range(0,container.helmet.Length);
-                itemToDrop = Instantiate(container.helmet[currentItemID]);
+                currentItemID = Random.Range(0, container.Helmet.Length);
+                itemToDrop = Instantiate(container.Helmet[currentItemID]);
                 break;
             case 2:
-                currentItemID = Random.Range(0,container.chest.Length);
-                itemToDrop = Instantiate(container.chest[currentItemID]);
+                currentItemID = Random.Range(0, container.Chest.Length);
+                itemToDrop = Instantiate(container.Chest[currentItemID]);
                 break;
             case 3:
-                currentItemID = Random.Range(0,container.arms.Length);
-                itemToDrop = Instantiate(container.arms[currentItemID]);
+                currentItemID = Random.Range(0, container.Arms.Length);
+                itemToDrop = Instantiate(container.Arms[currentItemID]);
                 break;
             case 4:
-                currentItemID = Random.Range(0,container.legs.Length);
-                itemToDrop = Instantiate(container.legs[currentItemID]);
+                currentItemID = Random.Range(0, container.Legs.Length);
+                itemToDrop = Instantiate(container.Legs[currentItemID]);
                 break;
         }
     }
+
     private void SetRare()
     {
-        int randomValue = Random.Range(0,100);
-        Vector2Int[] chance = statsValues.rarityChanceRange;
+        int random = Random.Range(0, 100);
+        Vector2Int[] chance = statsValues.RarityChanceRange;
         ItemStats.Rarity[] rarity = (ItemStats.Rarity[]) Enum.GetValues(typeof(ItemStats.Rarity));
-        for (int i = 0; i< rarity.Length;i++)
-            if (randomValue >= chance[i].x && randomValue <=chance[i].y )
+
+        for (int i = 0; i < rarity.Length; i++)
+            if (random >= chance[i].x && random <= chance[i].y)
                 stats.Rar = rarity[i];
     }
 
     private void RandomStats()
     {
         int statsID = (int)stats.Rar;
-        Vector2Int critRange = statsValues.criticalChanceRange[statsID];
-        Vector2Int critDamage = statsValues.criticalDamageRange[statsID];
-        Vector2Int defence = statsValues.defenceRange[statsID];
-        Vector2Int speed = statsValues.speedRange[statsID];
-        Vector2Int damage = statsValues.damageRange[statsID];
+        Vector2Int critRange = statsValues.CriticalChanceRange[statsID];
+        Vector2Int critDamage = statsValues.CriticalDamageRange[statsID];
+        Vector2Int defence = statsValues.DefenceRange[statsID];
+        Vector2Int speed = statsValues.SpeedRange[statsID];
+        Vector2Int damage = statsValues.DamageRange[statsID];
         
-        SetDamage(damage.x,damage.y);
-        SetDefence(defence.x,defence.y);
-        SetSpeed(speed.x,speed.y);
-        SetCriticalChance(critRange.x,critRange.y);
-        SetCriticalDamage(critDamage.x,critDamage.y);
+        SetDamage(damage.x, damage.y);
+        SetDefence(defence.x, defence.y);
+        SetSpeed(speed.x, speed.y);
+        SetCriticalChance(critRange.x, critRange.y);
+        SetCriticalDamage(critDamage.x, critDamage.y);
         
         MultiplyStats(statsID);
     }
@@ -96,29 +98,34 @@ public class DropManager : MonoBehaviour
     {
         stats.Damage = Random.Range(min, max);
     }
+
     private void SetDefence(int min, int max)
     {
         stats.Defence = Random.Range(min, max);
     } 
+
     private void SetCriticalDamage(int min, int max)
     {
         stats.CriticalDamage = Random.Range(min, max);
     }
+
     private void SetCriticalChance(int min, int max)
     {
         stats.CriticalChance = Random.Range(min, max);
     }
+
     private void SetSpeed(int min, int max)
     {
         stats.Speed = Random.Range(min, max);
     }
+
     private void MultiplyStats(int idStats)
     {
-        stats.Damage = (int)(stats.Damage * statsValues.statsMultiplier[idStats]);
-        stats.Defence = (int)(stats.Defence * statsValues.statsMultiplier[idStats]);
-        stats.CriticalDamage = (int)(stats.CriticalDamage * statsValues.statsMultiplier[idStats]);
-        stats.CriticalChance = (int)(stats.CriticalChance * statsValues.statsMultiplier[idStats]);
-        stats.Speed = (int)(stats.CriticalChance * statsValues.statsMultiplier[idStats]);
+        stats.Damage = (int)(stats.Damage * statsValues.StatsMultiplier[idStats]);
+        stats.Defence = (int)(stats.Defence * statsValues.StatsMultiplier[idStats]);
+        stats.CriticalDamage = (int)(stats.CriticalDamage * statsValues.StatsMultiplier[idStats]);
+        stats.CriticalChance = (int)(stats.CriticalChance * statsValues.StatsMultiplier[idStats]);
+        stats.Speed = (int)(stats.CriticalChance * statsValues.StatsMultiplier[idStats]);
     }
 
     private void ClearItemSlots()
@@ -126,6 +133,4 @@ public class DropManager : MonoBehaviour
         stats = null;
         itemToDrop = null;
     }
-    
-    
 }

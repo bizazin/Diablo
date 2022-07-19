@@ -28,23 +28,23 @@ public class LocalQuestUI : MonoBehaviour
    
    private void SetValues()
    {
-      sliderProgress.maxValue = questData.goal;
-      questName.text = questData.name;
-      questText.text = questData.description;
+      sliderProgress.maxValue = questData.Goal;
+      questName.text = questData.Name;
+      questText.text = questData.Description;
    }
 
 
    private void Update()
    {
-      sliderProgress.value = questData.currentProgress;
+      sliderProgress.value = questData.CurrentProgress;
 
-      if (questData.completed)
+      if (questData.Completed)
          questCompleted.gameObject.SetActive(true);
    }
 
    private void ShowQuestCompleted(QuestData quest)
    {
-      quest.completed = true;
+      quest.Completed = true;
    }
 
    private void SelectQuestTarget()
@@ -53,7 +53,7 @@ public class LocalQuestUI : MonoBehaviour
       //ToggleSelect();
       MainQuestsManager.Instance.UnselectQuest();
       LocalQuestsManager.Instance.ChangeSelectedQuest(this);
-      TargetPointer.Instance.Target = questData.target;
+      TargetPointer.Instance.Target = questData.Target;
       //LocalQuestsManager.Instance.ChangeSelectedQuest(this);
      // EventsManager.OnQuestSelected.Invoke(this);
    }

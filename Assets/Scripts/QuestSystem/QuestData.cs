@@ -3,15 +3,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewQuest", menuName = "Quests")]
 public class QuestData : ScriptableObject
 {
-    public int idQuest;
-    public string name;
-    public int goal;
-    public int currentProgress;
-    public string description;
-    public bool questTaken;
-    public bool completed;
-    public bool rewardClaimed;
-    public int rewardCoins;
+    public int IdQuest;
+    public string Name;
+    public int Goal;
+    public int CurrentProgress;
+    public string Description;
+    public bool QuestTaken;
+    public bool Completed;
+    public bool RewardClaimed;
+    public int RewardCoins;
 
-    public Transform target;
+    public Transform Target;
 }

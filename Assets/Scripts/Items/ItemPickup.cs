@@ -7,23 +7,28 @@ using Random = UnityEngine.Random;
 public class ItemPickup : Interectable
 {
     [SerializeField] private ItemStats stats;
-    private Rigidbody rb;
-    public Item item;
     private bool canPickUp;
+
+    public Item Item;
     
     private void Start()
     {
         StartCoroutine(PickUpDelay());
-        rb = GetComponent<Rigidbody>();
-        var pos = transform.position;
-        rb.AddForce(new Vector3(Random.Range(-.5f,.5f), 2, Random.Range(-.5f,.5f)), ForceMode.Impulse);
-        if (item == null)
+        ShootItem();
+
+        if (Item == null)
         {
-            item = DropManager.Instance.SetupItem();
-            stats = item.Stats;
+            Item = DropManager.Instance.SetupItem();
+            stats = Item.Stats;
         }
         
         GetComponentInChildren<OrbColor>().SetColor();
+    }
+
+    private void ShootItem()
+    {
+        var pos = new Vector3(Random.Range(-.5f, .5f), 2, Random.Range(-.5f, .5f));
+        GetComponent<Rigidbody>().AddForce(pos, ForceMode.Impulse);
     }
 
     public override void Interact()
@@ -43,9 +48,10 @@ public class ItemPickup : Interectable
 
     private void PickUp()
     {
-        Debug.Log("Picking up " + item.Name);
-        bool wasPickedUp = Inventory.Instance.Add(item);
+        Debug.Log("Picking up " + Item.Name);
+        bool wasPickedUp = Inventory.Instance.Add(Item);
         EventsManager.OnCheckingForNewItems?.Invoke();
+
         if (wasPickedUp)
             Destroy(gameObject);
     }
