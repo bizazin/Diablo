@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actions: []
   Transitions: []
-  gizmoColor: {r: 0.22627269, g: 0.22627269, b: 0.5283019, a: 1}
+  GizmoColor: {r: 0, g: 0.4379828, b: 1, a: 1}
