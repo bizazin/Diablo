@@ -89,10 +89,14 @@ public abstract class Enemy : MonoBehaviour, IDamageable
    
    private void DropItem()
    {
-       if (TryGetComponent(out DarkNight darkNight))
+       if (TryGetComponent(out DarkNight darkNight)||TryGetComponent(out Demon demon))
        {
            Instantiate(itemToDrop, new Vector3(transform.position.x,transform.position.y+1f, transform.position.z), Quaternion.identity);
            Instantiate(itemToDrop, new Vector3(transform.position.x,transform.position.y+1f, transform.position.z), Quaternion.identity);
+           Instantiate(itemToDrop, new Vector3(transform.position.x,transform.position.y+1f, transform.position.z), Quaternion.identity);
+       }
+       else
+       {
            Instantiate(itemToDrop, new Vector3(transform.position.x,transform.position.y+1f, transform.position.z), Quaternion.identity);
        }
    }

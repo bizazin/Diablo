@@ -9,7 +9,7 @@ public class TargetPointer : MonoBehaviour
 
 	public Transform Target; // цель
 	[SerializeField] private RectTransform PointerUI; // объект Image UI
-	[SerializeField] private Sprite PointerIcon; // иконка когда цель в поле видимости
+	///[SerializeField] private Sprite PointerIcon; // иконка когда цель в поле видимости
 	[SerializeField] private Sprite OutOfScreenIcon; // иконка когда цель за приделами экрана	
 	[SerializeField] private float InterfaceScale = 100; // масштаб интерфейса
 
@@ -45,7 +45,7 @@ public class TargetPointer : MonoBehaviour
 		{
 			if (rect.Contains(realPos)) // и если цель в окне экрана
 			{
-				PointerUI.GetComponent<Image>().sprite = PointerIcon;
+			 //	PointerUI.GetComponent<Image>().sprite = PointerIcon;
 			}
 		}
 		else // если цель cзади
