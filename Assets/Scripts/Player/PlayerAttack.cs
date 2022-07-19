@@ -10,6 +10,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private PlayerAnimationController animator;
     [SerializeField] private Button attackButton;
     [SerializeField] private PlayerFieldOfView fovPlayer;
+
     private bool canAttack =true;
  
     private void OnEnable()
@@ -18,22 +19,26 @@ public class PlayerAttack : MonoBehaviour
         //player = GetComponent<Player>();
     }
 
-    public void Attack()
+    private void Attack()
     {
         animator.Attack();
-       // StartCoroutine(CanAttack());
-       if (canAttack && fovPlayer.damageableTargets.Count > 0)
-       {
-
-           foreach (var enemy in fovPlayer.damageableTargets)
-               enemy.GetComponent<Enemy>().ApplyDamage(1);
-           
+        if (canAttack && fovPlayer.damageableTargets.Count > 0) 
+        { 
+           foreach (var enemy in fovPlayer.damageableTargets) 
+               enemy.GetComponent<Enemy>().ApplyDamage(SetPlayerDamage());
            StartCoroutine(CanAttack());
-       }
+        }
+    }
 
+    private int SetPlayerDamage()
+    {
+        var stats = GetComponent<Player>().playerStats;
+        int random = Random.Range(1, 101);
 
-      
-        //  player.Attack();
+        if (random > stats.CriticalChance)
+            return stats.Damage;
+        
+        return stats.Damage * (1 + stats.CriticalDamage/100);
     }
  
 
