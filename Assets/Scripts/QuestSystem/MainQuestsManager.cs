@@ -59,17 +59,20 @@ public class MainQuestsManager : MonoBehaviour
         Instantiate(mainQuestPrefab,questsContainer.transform);
     
     }
-    public void AddPoint()
+    private void IncreaseQuestProgress(int questID)
     {
-        EventsManager.MainQuestProgressIncreased.Invoke(currentQuestData);
-    }
-    private void IncreaseQuestProgress(QuestData quest)
-    {
-        quest.currentProgress++;
-        if (quest.currentProgress>=quest.goal)
+        QuestData quest = null;
+        foreach (var questUI in questsUI)
         {
-            EventsManager.OnQuestCompleted.Invoke(quest);
+            if (questUI.questData.idQuest == questID)
+            {
+                quest = questUI.questData;
+                quest.currentProgress++;
+            }
         }
+
+        if (quest != null && quest.currentProgress>=quest.goal)
+            EventsManager.OnQuestCompleted.Invoke(quest);
     }
 
     private void ClaimReward(QuestData questData, MainQuestUI mainQuestUI)

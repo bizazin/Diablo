@@ -10,7 +10,7 @@ public class EquipmentManager : MonoBehaviour
     [SerializeField] private ModularCharacterManager characterManager;
     [SerializeField] private ModularCharacterManager playerView;
     [SerializeField] private RemoteConfigStorage rem;
-    private SaveManager save;
+    [SerializeField] SaveManager save;
 
 
     private void OnEnable()
@@ -37,7 +37,6 @@ public class EquipmentManager : MonoBehaviour
     private void LoadJson()
     {
         rem = Resources.Load<RemoteConfigStorage>("Storage");
-        save = GetComponent<SaveManager>();
         if (rem.GetConfig(RemoteConfigs.EnableCustomEquipment).Value == "1")
         {
             EquipmentSlots = JsonConvert.DeserializeObject<Equipment[]>(rem.GetConfig(RemoteConfigs.Equipment).DefaultValue);

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Legs 3
   m_EditorClassIdentifier: 
   name: Legs3
-  icon: {fileID: 21300000, guid: a4ffdf3090d844d40856024a95e484bf, type: 3}
+  icon: {fileID: 21300000, guid: 8c20aa78dd1620a41a9bbf565f7e7512, type: 3}
   isDefaultItem: 0
   isPotion: 0
+  isNew: 0
   stats:
     Damage: 0
     Defence: 0

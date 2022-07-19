@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 731d4eb8b6e858b4d9996ddc9aa9d09d, type: 3}
+  m_Name: Quest3
+  m_EditorClassIdentifier: 
+  idQuest: 3
+  name: Save the vilage
+  goal: 1
+  currentProgress: 0
+  description: Kill the Dark Knight
+  questTaken: 0
+  completed: 0
+  rewardClaimed: 0
+  rewardCoins: 111
+  target: {fileID: 3559805892712172660, guid: 3909065447af4544090f3cad2aa490df, type: 3}

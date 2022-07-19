@@ -43,6 +43,7 @@ public class ItemPickup : Interectable
     {
         Debug.Log("Picking up " + item.Name);
         bool wasPickedUp = Inventory.Instance.Add(item);
+        EventsManager.OnCheckingForNewItems?.Invoke();
         if (wasPickedUp)
             Destroy(gameObject);
     }

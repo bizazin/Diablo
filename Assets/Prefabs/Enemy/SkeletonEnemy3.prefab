@@ -246,10 +246,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8959318853963532626}
     m_Modifications:
+    - target: {fileID: 1241889261, guid: 3e4cf0221a0e8db41bcb50be99ebe457, type: 3}
+      propertyPath: viewAngle
+      value: 270
+      objectReference: {fileID: 0}
     - target: {fileID: 1241889263, guid: 3e4cf0221a0e8db41bcb50be99ebe457, type: 3}
       propertyPath: m_AngularSpeed
       value: 240
       objectReference: {fileID: 0}
+    - target: {fileID: 1241889265, guid: 3e4cf0221a0e8db41bcb50be99ebe457, type: 3}
+      propertyPath: itemToDrop
+      value: 
+      objectReference: {fileID: 7081282840312082497, guid: e50f9c6d2e38d674a96af05e5be8e1fc, type: 3}
     - target: {fileID: 1241889265, guid: 3e4cf0221a0e8db41bcb50be99ebe457, type: 3}
       propertyPath: waypoints.Array.size
       value: 2

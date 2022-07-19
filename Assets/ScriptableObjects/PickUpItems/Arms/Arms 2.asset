@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: Arms 2
   m_EditorClassIdentifier: 
   name: Arms2
-  icon: {fileID: 21300000, guid: bd366c5131d0f44de851dc511ebc6653, type: 3}
+  icon: {fileID: 21300000, guid: cb4a08eb1fd36fe408662b490641238c, type: 3}
   isDefaultItem: 0
   isPotion: 0
+  isNew: 0
   stats:
-    Damage: 6
-    Defence: 9
-    CriticalDamage: 6
-    CriticalChance: 4
-    Speed: 2
+    Damage: 0
+    Defence: 0
+    CriticalDamage: 0
+    CriticalChance: 0
+    Speed: 0
     Rar: 2
   ArmorType: 2
   ArmorParts:

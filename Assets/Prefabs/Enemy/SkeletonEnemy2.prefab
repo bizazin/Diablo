@@ -407,6 +407,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1780115107112015294}
     m_Modifications:
+    - target: {fileID: 47718373, guid: 1e1312b383a084a42a9930f135c39ff7, type: 3}
+      propertyPath: viewAngle
+      value: 270
+      objectReference: {fileID: 0}
     - target: {fileID: 47718375, guid: 1e1312b383a084a42a9930f135c39ff7, type: 3}
       propertyPath: m_AngularSpeed
       value: 240

@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: Legs 4
   m_EditorClassIdentifier: 
   name: Legs4
-  icon: {fileID: 21300000, guid: a4ffdf3090d844d40856024a95e484bf, type: 3}
+  icon: {fileID: 21300000, guid: 1083a92281629b043bd38d1a85fd8d71, type: 3}
   isDefaultItem: 0
   isPotion: 0
+  isNew: 0
   stats:
     Damage: 0
     Defence: 0
     CriticalDamage: 0
     CriticalChance: 0
     Speed: 0
-    Rar: 0
+    Rar: 4
   ArmorType: 3
   ArmorParts:
   - bodyType: 24

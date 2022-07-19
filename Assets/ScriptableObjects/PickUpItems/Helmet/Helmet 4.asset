@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: Helmet 4
   m_EditorClassIdentifier: 
   name: Helmet4
-  icon: {fileID: 21300000, guid: e4c4ad03f82dc470ca1127233f894af0, type: 3}
+  icon: {fileID: 21300000, guid: 98877af1ea77cec45ae62fdd3ab60dd0, type: 3}
   isDefaultItem: 0
   isPotion: 0
+  isNew: 0
   stats:
-    Damage: 19
-    Defence: 8
-    CriticalDamage: 11
-    CriticalChance: 10
-    Speed: 10
-    Rar: 2
+    Damage: 0
+    Defence: 0
+    CriticalDamage: 0
+    CriticalChance: 0
+    Speed: 0
+    Rar: 3
   ArmorType: 0
   ArmorParts:
   - bodyType: 5

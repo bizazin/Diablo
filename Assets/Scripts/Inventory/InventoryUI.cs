@@ -19,6 +19,7 @@ public class InventoryUI : MonoBehaviour
     
     [SerializeField] private ConfirmDeleteWindow confirmDeleteWindow;
     [SerializeField] private EquipmentSlot[] equipmentSlots;
+    [SerializeField] private Image newNotification;
     private InventorySlot selectedSlot;
 
     private void Start()
@@ -28,6 +29,8 @@ public class InventoryUI : MonoBehaviour
 
         EventsManager.OnItemAdded += AddItemToUI;
         EventsManager.OnItemDeleted += DeleteItemFromUI;
+
+        EventsManager.OnCheckingForNewItems += ToggleNewNotification;
 
         equipButton.onClick.AddListener(EquipItem);
         removeButton.onClick.AddListener(ConfirmDeleteItem);
@@ -82,20 +85,15 @@ public class InventoryUI : MonoBehaviour
         }
         else
             selectedSlot = currentSlot?.Deselect();
-
- //       ResetSliders();
-
+        
         EventsManager.OnStatsUIChanged?.Invoke(selectedSlot);
     }
 
-/*    private void ChangeUI()
+    private void ToggleNewNotification()
     {
-        slots = slotsParent.GetComponentsInChildren<InventorySlot>();
+        newNotification.enabled = Inventory.Instance.CheckForNewItems();
+    }
 
-        if (slots.Length > inventory.Items.Count) selectedSlot.DeleteSlot();
-
-        else CreateFrameForItem().AddItem(inventory.Items.Last());
-    }*/
 
     private void DeleteItemFromUI()
     {

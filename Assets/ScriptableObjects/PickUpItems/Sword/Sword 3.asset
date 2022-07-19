@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2823cab264e989448ae0ac1a156539d7, type: 3}
   m_Name: Sword 3
   m_EditorClassIdentifier: 
-  name: Sword
-  icon: {fileID: 21300000, guid: 62ccc79667caf4300ad03d3cf8f40523, type: 3}
+  name: Sword3
+  icon: {fileID: 21300000, guid: 416ca77ac688c6b438b14eb1bc31bf27, type: 3}
   isDefaultItem: 0
   isPotion: 0
+  isNew: 0
   stats:
     Damage: 0
     Defence: 0

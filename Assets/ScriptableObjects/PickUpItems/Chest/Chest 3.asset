@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: Chest 3
   m_EditorClassIdentifier: 
   name: Chest3
-  icon: {fileID: 21300000, guid: b91cf1dbd490c41aab12079d0311cdf5, type: 3}
+  icon: {fileID: 21300000, guid: 0558eb71af15f21448fabaa1685c8599, type: 3}
   isDefaultItem: 0
   isPotion: 0
+  isNew: 1
   stats:
     Damage: 0
     Defence: 0
     CriticalDamage: 0
     CriticalChance: 0
-    Speed: 0
-    Rar: 0
+    Speed: 19
+    Rar: 3
   ArmorType: 1
   ArmorParts:
   - bodyType: 11

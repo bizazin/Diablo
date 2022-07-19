@@ -19,4 +19,13 @@ public class DarkNight : Enemy
             EventsManager.OnPlayerApplyDamage?.Invoke(stateController.EnemyStats.Damage);
         }
     }
+    
+    protected override void Die()
+    {
+        base.Die();
+        int idQuest = 3;
+        EventsManager.LocalQuestProgressIncreased.Invoke(idQuest);
+        int idMainQuest = 2;
+        EventsManager.MainQuestProgressIncreased.Invoke(idMainQuest);
+    }
 }

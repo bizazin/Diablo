@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731d4eb8b6e858b4d9996ddc9aa9d09d, type: 3}
   m_Name: Quest1
   m_EditorClassIdentifier: 
-  idQuest: 0
-  name: Warrior
-  goal: 4
+  idQuest: 1
+  name: Hero
+  goal: 3
   currentProgress: 0
-  description: Pick up a sword
+  description: Kill 3 Skeletons and go to the Guard Phil
   questTaken: 0
   completed: 0
   rewardClaimed: 0
   rewardCoins: 111
-  target: {fileID: 7493679806028298752, guid: f59e7803ae42f5b44a2f1dcab0f671c4, type: 3}
+  target: {fileID: 3559805892712172660, guid: ad9da1c2f854c0e44851e4f17286dbd1, type: 3}

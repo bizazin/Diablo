@@ -1,3 +1,5 @@
+using System.Collections;
+
 public class Skeleton : Enemy
 {
     private StateController stateController;
@@ -18,5 +20,12 @@ public class Skeleton : Enemy
         {
             EventsManager.OnPlayerApplyDamage?.Invoke(stateController.EnemyStats.Damage);
         }
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+        int idQuest = 1;
+        EventsManager.LocalQuestProgressIncreased?.Invoke(idQuest);
     }
 }

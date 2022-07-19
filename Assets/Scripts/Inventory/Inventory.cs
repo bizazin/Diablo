@@ -59,4 +59,14 @@ public class Inventory : MonoBehaviour
         EventsManager.OnItemDeleted?.Invoke();
         KeyManager.SetPrefsValue(KeyManager.ItemsCount, Items.Count);
     }
+    
+    public bool CheckForNewItems()
+    {
+        foreach (var item in Items)
+        {
+            if (item.IsNew)
+                return true;
+        }
+        return false;
+    }
 }

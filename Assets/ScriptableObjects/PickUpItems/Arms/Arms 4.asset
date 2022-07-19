@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: Arms 4
   m_EditorClassIdentifier: 
   name: Arms4
-  icon: {fileID: 21300000, guid: bd366c5131d0f44de851dc511ebc6653, type: 3}
+  icon: {fileID: 21300000, guid: cb6727da53e1c4848af7c1612f63a30f, type: 3}
   isDefaultItem: 0
   isPotion: 0
+  isNew: 0
   stats:
-    Damage: 9
-    Defence: 9
-    CriticalDamage: 4
-    CriticalChance: 4
-    Speed: 4
+    Damage: 0
+    Defence: 0
+    CriticalDamage: 0
+    CriticalChance: 0
+    Speed: 0
     Rar: 1
   ArmorType: 2
   ArmorParts:
