@@ -17,9 +17,10 @@ public class PlayerStatsManager : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] private EquipmentManager equipmentManager;
-    
     [SerializeField] private Player player;
+
+    private EquipmentManager equipmentManager;
+
     private void Start()
     {
         equipmentManager = GetComponentInParent<EquipmentManager>();

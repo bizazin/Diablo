@@ -7,5 +7,6 @@ public class StatsValuesContainer : ScriptableObject
     public Vector2Int[] rarityChanceRange;
     public Vector2Int[] statValuesRange;
     public Vector2Int[] criticalChanceRange;
+    public Vector2Int[] criticalDamageRange;
     public float[] statsMultiplier;
 }

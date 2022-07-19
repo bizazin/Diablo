@@ -24,8 +24,8 @@ public class DarkNight : Enemy
     {
         base.Die();
         int idQuest = 3;
-        EventsManager.LocalQuestProgressIncreased.Invoke(idQuest);
+        EventsManager.LocalQuestProgressIncreased?.Invoke(idQuest);
         int idMainQuest = 2;
-        EventsManager.MainQuestProgressIncreased.Invoke(idMainQuest);
+        EventsManager.MainQuestProgressIncreased?.Invoke(idMainQuest);
     }
 }

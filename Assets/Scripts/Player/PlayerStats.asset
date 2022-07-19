@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  CurrentHealth: 0
-  Damage: 11
-  Defence: 18
-  CriticalChance: 14
-  CriticalDamage: 20
-  Speed: 9
+  CurrentHealth: 100
+  Speed: 0
+  Damage: 0
+  Defence: 0
+  CriticalChance: 0
+  CriticalDamage: 0
