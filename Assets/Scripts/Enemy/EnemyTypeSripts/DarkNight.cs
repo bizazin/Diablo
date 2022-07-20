@@ -1,7 +1,5 @@
 public class DarkNight : Enemy
 {
-    private StateController stateController;
-
     protected override void Start()
     {
         base.Start();

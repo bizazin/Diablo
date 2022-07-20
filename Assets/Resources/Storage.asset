@@ -24,7 +24,7 @@ MonoBehaviour:
     defaultValue: '[]'
   - name: enable_custom_local_quests
     type: 3
-    defaultValue: 1
+    defaultValue: 0
   - name: equipment
     type: 4
     defaultValue: '[null,null,null,null,null,null]'

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,11 +10,19 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Button attackButton;
     [SerializeField] private PlayerFieldOfView fovPlayer;
 
+    private Player player;
     private bool canAttack = true;
+    private float attackDelay;
 
     private void OnEnable()
     {
         attackButton.onClick.AddListener(Attack);
+    }
+
+    private void Start()
+    {
+        attackDelay = 1f;
+        player = GetComponent<Player>();
     }
 
     private void Attack()
@@ -29,7 +38,7 @@ public class PlayerAttack : MonoBehaviour
 
     private int SetPlayerDamage()
     {
-        var stats = GetComponent<Player>().PlayerStats;
+        var stats = player.PlayerStats;
         int random = Random.Range(1, 101);
 
         if (random > stats.CriticalChance)
@@ -42,7 +51,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator CanAttack()
     {
         canAttack = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(attackDelay);
         canAttack = true;
     }
 

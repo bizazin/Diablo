@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 [Serializable]
@@ -15,8 +16,10 @@ public class DialogueManager : MonoBehaviour
     private Queue<DialogueData> dialoguesQueue;
     private Queue<string> sentences;
     private string isOpen;
-
+    private float charDelay;
+        
     public QuestData QuestData;
+    
 
     private void Start()
     {
@@ -78,16 +81,16 @@ public class DialogueManager : MonoBehaviour
             currentDialogue.Quest.QuestTaken = true;
         }
 
-        if (currentDialogue.Char == DialogueData.Character.Guard)
+        switch (currentDialogue.Char)
         {
-            int idMainQuest = 1;
-            EventsManager.MainQuestProgressIncreased?.Invoke(idMainQuest);
-        }
-
-        if (currentDialogue.Char == DialogueData.Character.Merchant)
-        {
-            int idLocalQuest = 2;
-            EventsManager.LocalQuestProgressIncreased?.Invoke(idLocalQuest);
+            case DialogueData.Character.Guard:
+                int idMainQuest = 1;
+                EventsManager.MainQuestProgressIncreased?.Invoke(idMainQuest);
+                break;
+            case DialogueData.Character.Merchant:
+                int idLocalQuest = 2;
+                EventsManager.LocalQuestProgressIncreased?.Invoke(idLocalQuest);
+                break;
         }
     }
 
@@ -105,7 +108,7 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
-            yield return new WaitForSeconds(0.04f);
+            yield return new WaitForSeconds(charDelay);
         }
     }
 

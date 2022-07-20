@@ -22,9 +22,13 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     protected EnemyHealthBar enemyHealthBar;
     protected EnemyAnimationController enemyAnimator;
     protected NavMeshAgent enemyAgent;
-
+    protected StateController stateController;
+    
     public EnemyStats EnemyStats;
     public CurrentState CurState;
+
+    
+    private Collider collider;
 
     protected virtual void Start()
     {
@@ -32,6 +36,8 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         enemyAnimator = GetComponent<EnemyAnimationController>();
         enemyAgent = GetComponent<NavMeshAgent>();
         enemyHealthBar = GetComponentInChildren<EnemyHealthBar>();
+        stateController = GetComponent<StateController>();
+        collider = GetComponent<Collider>();
 
         currentHealth = maxHealth;
         enemyHealthBar.UpdateHealthBar(maxHealth, currentHealth);
@@ -46,11 +52,21 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     {
         if (Mathf.Abs(enemyAgent.velocity.x) > 0.2f || Mathf.Abs(enemyAgent.velocity.z) > 0.2f)
         {
-            if (CurState == CurrentState.Attack)
-                animationController.AnimateRun(true);
-
-            else if (CurState == CurrentState.Patrol)
-                animationController.AnimateWalk(true);
+            // if (CurState == CurrentState.Attack)
+            //     animationController.AnimateRun(true);
+            //
+            // else if (CurState == CurrentState.Patrol)
+            //     animationController.AnimateWalk(true);
+            //
+            switch(CurState)
+            {
+              case CurrentState.Attack:   
+                  animationController.AnimateRun(true);
+                  break;
+              case CurrentState.Patrol:
+                  animationController.AnimateWalk(true);
+                  break;
+            }
         }
         else
             animationController.AnimateRun(false);
@@ -75,9 +91,8 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     protected virtual void Die()
     {
-        gameObject.GetComponent<StateController>().enabled = false;
-        gameObject.GetComponent<Collider>().enabled = false;
-
+        stateController.enabled = false;
+        collider.enabled = false;
         enemyHealthBar.gameObject.SetActive(false);
         enemyAgent.enabled = false;
         enemyAnimator.AnimateDie(true);

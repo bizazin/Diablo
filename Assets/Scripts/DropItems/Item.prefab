@@ -12,20 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150452a3982d243479e4b5771cd363bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myColors:
+  MyColors:
   - {fileID: 5173773917257399567}
   - {fileID: 5173560374713729707}
   - {fileID: 5174391895540172959}
   - {fileID: 5166233840226791489}
   - {fileID: 5173896850918873045}
   - {fileID: 5173951173272018235}
-  newColors:
-  - {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 0.2}
-  - {r: 0.3622641, g: 1, b: 0.57211053, a: 0.45490196}
-  - {r: 0.1830188, g: 0.34688374, b: 1, a: 0.41960785}
-  - {r: 0.7216928, g: 0.11698109, b: 1, a: 0.34117648}
-  - {r: 0.8584906, g: 0.4874846, b: 0, a: 0.3764706}
-  alphas: 28000000ff0000001e000000ff0000001e000000ff000000
+  NewColors:
+  - {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 0.24705882}
+  - {r: 0.22922742, g: 0.8867924, b: 0.30346856, a: 0.29803923}
+  - {r: 0.20932715, g: 0.3291929, b: 0.754717, a: 0.36862746}
+  - {r: 0.6541214, g: 0.15852615, b: 0.6886792, a: 0.35686275}
+  - {r: 0.745283, g: 0.278286, b: 0.023905255, a: 0.33333334}
 --- !u!1 &5051793743522808010
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,13 +156,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    damage: 0
-    defence: 0
-    criticalDamage: 0
-    criticalChance: 0
-    speed: 0
-    rarity: 0
-  item: {fileID: 0}
+    Damage: 0
+    Defence: 0
+    CriticalDamage: 0
+    CriticalChance: 0
+    Speed: 0
+    Rar: 0
+  Item: {fileID: 0}
 --- !u!95 &7241679521081556584
 Animator:
   serializedVersion: 3

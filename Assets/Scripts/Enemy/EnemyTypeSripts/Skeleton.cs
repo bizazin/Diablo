@@ -1,7 +1,5 @@
 public class Skeleton : Enemy
 {
-    private StateController stateController;
-
     protected override void Start()
     {
         base.Start();
